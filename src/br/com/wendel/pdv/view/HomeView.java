@@ -20,6 +20,7 @@ public class HomeView extends javax.swing.JFrame {
      */
     public HomeView() {
         initComponents();
+        this.jPCadastros.setVisible(false);
     }
 
     /**
@@ -45,6 +46,13 @@ public class HomeView extends javax.swing.JFrame {
         jPMenuAtendimento = new javax.swing.JPanel();
         jLMenuAtendimento = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jPCadastros = new javax.swing.JPanel();
+        jPMenuProdutos = new javax.swing.JPanel();
+        jLMenuCadastroProdutos = new javax.swing.JLabel();
+        jPMenuClientes = new javax.swing.JPanel();
+        jLMenuCadastroProdutos1 = new javax.swing.JLabel();
+        jPMenuUnidades = new javax.swing.JPanel();
+        jLMenuCadastroProdutos2 = new javax.swing.JLabel();
         jPTop = new javax.swing.JPanel();
         jPMostraMenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -94,6 +102,9 @@ public class HomeView extends javax.swing.JFrame {
         jPMenuCadastros.setBackground(new java.awt.Color(79, 195, 247));
         jPMenuCadastros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPMenuCadastros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPMenuCadastrosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPMenuCadastrosMouseEntered(evt);
             }
@@ -182,12 +193,12 @@ public class HomeView extends javax.swing.JFrame {
         jPMenuAtendimento.setLayout(jPMenuAtendimentoLayout);
         jPMenuAtendimentoLayout.setHorizontalGroup(
             jPMenuAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPMenuAtendimentoLayout.createSequentialGroup()
+            .addGroup(jPMenuAtendimentoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLMenuAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPMenuAtendimentoLayout.setVerticalGroup(
             jPMenuAtendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,17 +207,126 @@ public class HomeView extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPCadastros.setBackground(new java.awt.Color(79, 195, 247));
+
+        jPMenuProdutos.setBackground(new java.awt.Color(79, 195, 247));
+        jPMenuProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPMenuProdutos.setPreferredSize(new java.awt.Dimension(100, 35));
+        jPMenuProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPMenuProdutosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPMenuProdutosMouseExited(evt);
+            }
+        });
+
+        jLMenuCadastroProdutos.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLMenuCadastroProdutos.setForeground(new java.awt.Color(255, 255, 255));
+        jLMenuCadastroProdutos.setText("Produtos");
+
+        javax.swing.GroupLayout jPMenuProdutosLayout = new javax.swing.GroupLayout(jPMenuProdutos);
+        jPMenuProdutos.setLayout(jPMenuProdutosLayout);
+        jPMenuProdutosLayout.setHorizontalGroup(
+            jPMenuProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPMenuProdutosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLMenuCadastroProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPMenuProdutosLayout.setVerticalGroup(
+            jPMenuProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLMenuCadastroProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        jPMenuClientes.setBackground(new java.awt.Color(79, 195, 247));
+        jPMenuClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPMenuClientes.setPreferredSize(new java.awt.Dimension(100, 35));
+        jPMenuClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPMenuClientesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPMenuClientesMouseExited(evt);
+            }
+        });
+
+        jLMenuCadastroProdutos1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLMenuCadastroProdutos1.setForeground(new java.awt.Color(255, 255, 255));
+        jLMenuCadastroProdutos1.setText("Clientes");
+
+        javax.swing.GroupLayout jPMenuClientesLayout = new javax.swing.GroupLayout(jPMenuClientes);
+        jPMenuClientes.setLayout(jPMenuClientesLayout);
+        jPMenuClientesLayout.setHorizontalGroup(
+            jPMenuClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPMenuClientesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLMenuCadastroProdutos1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPMenuClientesLayout.setVerticalGroup(
+            jPMenuClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLMenuCadastroProdutos1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        jPMenuUnidades.setBackground(new java.awt.Color(79, 195, 247));
+        jPMenuUnidades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPMenuUnidades.setPreferredSize(new java.awt.Dimension(100, 35));
+        jPMenuUnidades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPMenuUnidadesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPMenuUnidadesMouseExited(evt);
+            }
+        });
+
+        jLMenuCadastroProdutos2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLMenuCadastroProdutos2.setForeground(new java.awt.Color(255, 255, 255));
+        jLMenuCadastroProdutos2.setText("Unidades");
+
+        javax.swing.GroupLayout jPMenuUnidadesLayout = new javax.swing.GroupLayout(jPMenuUnidades);
+        jPMenuUnidades.setLayout(jPMenuUnidadesLayout);
+        jPMenuUnidadesLayout.setHorizontalGroup(
+            jPMenuUnidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPMenuUnidadesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLMenuCadastroProdutos2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPMenuUnidadesLayout.setVerticalGroup(
+            jPMenuUnidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLMenuCadastroProdutos2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPCadastrosLayout = new javax.swing.GroupLayout(jPCadastros);
+        jPCadastros.setLayout(jPCadastrosLayout);
+        jPCadastrosLayout.setHorizontalGroup(
+            jPCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPMenuProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(jPMenuClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(jPMenuUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+        );
+        jPCadastrosLayout.setVerticalGroup(
+            jPCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPCadastrosLayout.createSequentialGroup()
+                .addComponent(jPMenuClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPMenuProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPMenuUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPMenuLayout = new javax.swing.GroupLayout(jPMenu);
         jPMenu.setLayout(jPMenuLayout);
         jPMenuLayout.setHorizontalGroup(
             jPMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPMenuHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPMenuCadastros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPMenuLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPMenuAtendimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPMenuRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(jPMenuRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPMenuAtendimento, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(jPCadastros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPMenuLayout.setVerticalGroup(
             jPMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,10 +336,12 @@ public class HomeView extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jPMenuCadastros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
+                .addComponent(jPCadastros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(jPMenuAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPMenuRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPTop.setBackground(new java.awt.Color(3, 169, 244));
@@ -279,11 +401,11 @@ public class HomeView extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 564, Short.MAX_VALUE)
+            .addGap(0, 550, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 297, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -309,7 +431,7 @@ public class HomeView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -373,11 +495,7 @@ public class HomeView extends javax.swing.JFrame {
 
     private void jPMostraMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMostraMenuMouseClicked
         if (evt.getButton() == MouseEvent.BUTTON1) {
-            if (this.jPMenu.isVisible()) {
-                this.jPMenu.setVisible(false);
-            } else {
-                this.jPMenu.setVisible(true);
-            }
+            this.jPMenu.setVisible(!this.jPMenu.isVisible());
         }
     }//GEN-LAST:event_jPMostraMenuMouseClicked
 
@@ -404,6 +522,46 @@ public class HomeView extends javax.swing.JFrame {
             this.jPMenuRelatorios.setBackground(new Color(79, 195, 247));
         });
     }//GEN-LAST:event_jPMenuRelatoriosMouseExited
+
+    private void jPMenuCadastrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuCadastrosMouseClicked
+        this.jPCadastros.setVisible(!this.jPCadastros.isVisible());
+    }//GEN-LAST:event_jPMenuCadastrosMouseClicked
+
+    private void jPMenuClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuClientesMouseEntered
+        SwingUtilities.invokeLater(() -> {
+            this.jPMenuClientes.setBackground(new Color(3, 169, 244));
+        });
+    }//GEN-LAST:event_jPMenuClientesMouseEntered
+
+    private void jPMenuClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuClientesMouseExited
+        SwingUtilities.invokeLater(() -> {
+            this.jPMenuClientes.setBackground(new Color(79, 195, 247));
+        });
+    }//GEN-LAST:event_jPMenuClientesMouseExited
+
+    private void jPMenuProdutosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuProdutosMouseEntered
+        SwingUtilities.invokeLater(() -> {
+            this.jPMenuProdutos.setBackground(new Color(3, 169, 244));
+        });
+    }//GEN-LAST:event_jPMenuProdutosMouseEntered
+
+    private void jPMenuProdutosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuProdutosMouseExited
+        SwingUtilities.invokeLater(() -> {
+            this.jPMenuProdutos.setBackground(new Color(79, 195, 247));
+        });
+    }//GEN-LAST:event_jPMenuProdutosMouseExited
+
+    private void jPMenuUnidadesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuUnidadesMouseEntered
+        SwingUtilities.invokeLater(() -> {
+            this.jPMenuUnidades.setBackground(new Color(3, 169, 244));
+        });
+    }//GEN-LAST:event_jPMenuUnidadesMouseEntered
+
+    private void jPMenuUnidadesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuUnidadesMouseExited
+        SwingUtilities.invokeLater(() -> {
+            this.jPMenuUnidades.setBackground(new Color(79, 195, 247));
+        });
+    }//GEN-LAST:event_jPMenuUnidadesMouseExited
 
     /**
      * @param args the command line arguments
@@ -440,6 +598,9 @@ public class HomeView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLMenuAtendimento;
+    private javax.swing.JLabel jLMenuCadastroProdutos;
+    private javax.swing.JLabel jLMenuCadastroProdutos1;
+    private javax.swing.JLabel jLMenuCadastroProdutos2;
     private javax.swing.JLabel jLMenuCadastros;
     private javax.swing.JLabel jLMenuHome;
     private javax.swing.JLabel jLMenuRelatorios;
@@ -448,11 +609,15 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPCadastros;
     private javax.swing.JPanel jPMenu;
     private javax.swing.JPanel jPMenuAtendimento;
     private javax.swing.JPanel jPMenuCadastros;
+    private javax.swing.JPanel jPMenuClientes;
     private javax.swing.JPanel jPMenuHome;
+    private javax.swing.JPanel jPMenuProdutos;
     private javax.swing.JPanel jPMenuRelatorios;
+    private javax.swing.JPanel jPMenuUnidades;
     private javax.swing.JPanel jPMostraMenu;
     private javax.swing.JPanel jPTop;
     private javax.swing.JPanel jPanel1;
