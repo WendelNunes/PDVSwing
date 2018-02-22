@@ -5,7 +5,7 @@
  */
 package br.com.wendel.pdv;
 
-import br.com.wendel.pdv.view.HomeView;
+import br.com.wendel.pdv.view.PrincipalView;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -24,7 +24,7 @@ public class App {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             java.awt.EventQueue.invokeLater(() -> {
-                new HomeView().setVisible(true);
+                new PrincipalView().setVisible(true);
             });
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);

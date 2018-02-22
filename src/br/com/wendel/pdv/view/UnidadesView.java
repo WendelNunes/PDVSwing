@@ -9,12 +9,12 @@ package br.com.wendel.pdv.view;
  *
  * @author INLOC01
  */
-public class HomeView extends javax.swing.JPanel {
+public class UnidadesView extends javax.swing.JPanel {
 
     /**
      * Creates new form HomeView
      */
-    public HomeView() {
+    public UnidadesView() {
         initComponents();
     }
 
@@ -31,7 +31,7 @@ public class HomeView extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Home");
+        jLabel1.setText("Unidades");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -39,8 +39,8 @@ public class HomeView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(424, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(415, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -9,12 +9,12 @@ package br.com.wendel.pdv.view;
  *
  * @author INLOC01
  */
-public class HomeView extends javax.swing.JPanel {
+public class ProdutosView extends javax.swing.JPanel {
 
     /**
      * Creates new form HomeView
      */
-    public HomeView() {
+    public ProdutosView() {
         initComponents();
     }
 
@@ -31,7 +31,8 @@ public class HomeView extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Home");
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Produtos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
