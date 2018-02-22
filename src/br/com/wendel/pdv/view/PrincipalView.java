@@ -98,7 +98,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jLMenuCadastrosUnidades = new javax.swing.JLabel();
         jPTop = new javax.swing.JPanel();
         jPMostraMenu = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLIconMenu = new javax.swing.JLabel();
         jPPrincipal = new javax.swing.JPanel();
         jPConteudo = new javax.swing.JPanel();
 
@@ -418,8 +418,8 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_menu.png"))); // NOI18N
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLIconMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_menu.png"))); // NOI18N
+        jLIconMenu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPMostraMenuLayout = new javax.swing.GroupLayout(jPMostraMenu);
         jPMostraMenu.setLayout(jPMostraMenuLayout);
@@ -427,12 +427,12 @@ public class PrincipalView extends javax.swing.JFrame {
             jPMostraMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPMostraMenuLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(jLabel1)
+                .addComponent(jLIconMenu)
                 .addGap(5, 5, 5))
         );
         jPMostraMenuLayout.setVerticalGroup(
             jPMostraMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+            .addComponent(jLIconMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPTopLayout = new javax.swing.GroupLayout(jPTop);
@@ -683,6 +683,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLIconAtendimento;
     private javax.swing.JLabel jLIconCadastros;
     private javax.swing.JLabel jLIconHome;
+    private javax.swing.JLabel jLIconMenu;
     private javax.swing.JLabel jLIconRelatorios;
     private javax.swing.JLabel jLMenuAtendimento;
     private javax.swing.JLabel jLMenuCadastros;
@@ -691,7 +692,6 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLMenuCadastrosUnidades;
     private javax.swing.JLabel jLMenuHome;
     private javax.swing.JLabel jLMenuRelatorios;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPCadastros;
     private javax.swing.JPanel jPConteudo;
     private javax.swing.JPanel jPMenu;
