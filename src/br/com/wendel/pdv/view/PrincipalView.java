@@ -451,7 +451,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        jPPrincipal.setBackground(new java.awt.Color(179, 229, 252));
+        jPPrincipal.setBackground(new java.awt.Color(241, 241, 241));
 
         jPConteudo.setBackground(new java.awt.Color(255, 255, 255));
 
