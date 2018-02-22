@@ -83,6 +83,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jPMenuCadastros = new javax.swing.JPanel();
         jLMenuCadastros = new javax.swing.JLabel();
         jLIconCadastros = new javax.swing.JLabel();
+        jLIconExpandCadastros = new javax.swing.JLabel();
         jPMenuRelatorios = new javax.swing.JPanel();
         jLMenuRelatorios = new javax.swing.JLabel();
         jLIconRelatorios = new javax.swing.JLabel();
@@ -165,6 +166,8 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jLIconCadastros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_create.png"))); // NOI18N
 
+        jLIconExpandCadastros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_expand.png"))); // NOI18N
+
         javax.swing.GroupLayout jPMenuCadastrosLayout = new javax.swing.GroupLayout(jPMenuCadastros);
         jPMenuCadastros.setLayout(jPMenuCadastrosLayout);
         jPMenuCadastrosLayout.setHorizontalGroup(
@@ -173,13 +176,19 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLIconCadastros)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLMenuCadastros, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jLMenuCadastros)
+                .addGap(38, 38, 38)
+                .addComponent(jLIconExpandCadastros)
+                .addGap(10, 10, 10))
         );
         jPMenuCadastrosLayout.setVerticalGroup(
             jPMenuCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLIconCadastros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLMenuCadastros, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPMenuCadastrosLayout.createSequentialGroup()
+                .addGroup(jPMenuCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLIconExpandCadastros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLIconCadastros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLMenuCadastros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPMenuRelatorios.setBackground(new java.awt.Color(79, 195, 247));
@@ -281,10 +290,10 @@ public class PrincipalView extends javax.swing.JFrame {
         jPMenuProdutos.setLayout(jPMenuProdutosLayout);
         jPMenuProdutosLayout.setHorizontalGroup(
             jPMenuProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPMenuProdutosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPMenuProdutosLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addComponent(jLMenuCadastrosProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPMenuProdutosLayout.setVerticalGroup(
             jPMenuProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,10 +323,10 @@ public class PrincipalView extends javax.swing.JFrame {
         jPMenuClientes.setLayout(jPMenuClientesLayout);
         jPMenuClientesLayout.setHorizontalGroup(
             jPMenuClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPMenuClientesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPMenuClientesLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addComponent(jLMenuCadastrosClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPMenuClientesLayout.setVerticalGroup(
             jPMenuClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,10 +356,10 @@ public class PrincipalView extends javax.swing.JFrame {
         jPMenuUnidades.setLayout(jPMenuUnidadesLayout);
         jPMenuUnidadesLayout.setHorizontalGroup(
             jPMenuUnidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPMenuUnidadesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPMenuUnidadesLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addComponent(jLMenuCadastrosUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPMenuUnidadesLayout.setVerticalGroup(
             jPMenuUnidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,9 +370,9 @@ public class PrincipalView extends javax.swing.JFrame {
         jPCadastros.setLayout(jPCadastrosLayout);
         jPCadastrosLayout.setHorizontalGroup(
             jPCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPMenuProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-            .addComponent(jPMenuClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-            .addComponent(jPMenuUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(jPMenuProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+            .addComponent(jPMenuClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+            .addComponent(jPMenuUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
         );
         jPCadastrosLayout.setVerticalGroup(
             jPCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,10 +390,10 @@ public class PrincipalView extends javax.swing.JFrame {
         jPMenuLayout.setHorizontalGroup(
             jPMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPMenuHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPMenuCadastros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPMenuRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPMenuAtendimento, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(jPMenuAtendimento, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
             .addComponent(jPCadastros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPMenuCadastros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPMenuLayout.setVerticalGroup(
             jPMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -459,7 +468,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jPConteudo.setLayout(jPConteudoLayout);
         jPConteudoLayout.setHorizontalGroup(
             jPConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 523, Short.MAX_VALUE)
         );
         jPConteudoLayout.setVerticalGroup(
             jPConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -682,6 +691,7 @@ public class PrincipalView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLIconAtendimento;
     private javax.swing.JLabel jLIconCadastros;
+    private javax.swing.JLabel jLIconExpandCadastros;
     private javax.swing.JLabel jLIconHome;
     private javax.swing.JLabel jLIconMenu;
     private javax.swing.JLabel jLIconRelatorios;
