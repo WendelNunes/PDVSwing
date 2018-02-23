@@ -60,6 +60,7 @@ public class UnidadesView extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jSPUnidades.setBackground(new java.awt.Color(255, 255, 255));
+        jSPUnidades.getViewport().setBackground(new java.awt.Color(255, 255, 255));
         jSPUnidades.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
         jTUnidades.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
