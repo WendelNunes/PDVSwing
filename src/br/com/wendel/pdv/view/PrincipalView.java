@@ -12,6 +12,8 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -20,7 +22,7 @@ import javax.swing.SwingUtilities;
  * @author INLOC01
  */
 public class PrincipalView extends javax.swing.JFrame {
-
+    
     private final List<JPanel> listaMenus = new ArrayList<>();
     private JPanel menuSelecionado;
     private final HomeView telaHome = new HomeView();
@@ -34,6 +36,7 @@ public class PrincipalView extends javax.swing.JFrame {
      */
     public PrincipalView() {
         initComponents();
+        this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         this.listaMenus.add(this.jPMenuHome);
         this.listaMenus.add(this.jPMenuClientes);
         this.listaMenus.add(this.jPMenuProdutos);
@@ -43,7 +46,7 @@ public class PrincipalView extends javax.swing.JFrame {
         this.mouseMenuClicked(this.jPMenuHome, this.telaHome);
         this.jPCadastros.setVisible(false);
     }
-
+    
     private void mostraTelaConteudo(JPanel tela) {
         jPConteudo.removeAll();
         javax.swing.GroupLayout jPConteudoLayout = new javax.swing.GroupLayout(jPConteudo);
@@ -59,7 +62,7 @@ public class PrincipalView extends javax.swing.JFrame {
                         .addComponent(tela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
-
+    
     private void setarCorDefaultMenusNaoSelecionados() {
         this.listaMenus.stream().filter(i -> !i.equals(this.menuSelecionado)).forEach(i -> {
             i.setBackground(COR_BOTAO_MENU);
@@ -83,7 +86,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jPMenuCadastros = new javax.swing.JPanel();
         jLMenuCadastros = new javax.swing.JLabel();
         jLIconCadastros = new javax.swing.JLabel();
-        jLIconExpandCadastros = new javax.swing.JLabel();
+        jLIconExpandCollapseCadastros = new javax.swing.JLabel();
         jPMenuRelatorios = new javax.swing.JPanel();
         jLMenuRelatorios = new javax.swing.JLabel();
         jLIconRelatorios = new javax.swing.JLabel();
@@ -166,7 +169,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jLIconCadastros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_create.png"))); // NOI18N
 
-        jLIconExpandCadastros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_expand.png"))); // NOI18N
+        jLIconExpandCollapseCadastros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_expand.png"))); // NOI18N
 
         javax.swing.GroupLayout jPMenuCadastrosLayout = new javax.swing.GroupLayout(jPMenuCadastros);
         jPMenuCadastros.setLayout(jPMenuCadastrosLayout);
@@ -178,14 +181,14 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLMenuCadastros)
                 .addGap(38, 38, 38)
-                .addComponent(jLIconExpandCadastros)
+                .addComponent(jLIconExpandCollapseCadastros)
                 .addGap(10, 10, 10))
         );
         jPMenuCadastrosLayout.setVerticalGroup(
             jPMenuCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPMenuCadastrosLayout.createSequentialGroup()
                 .addGroup(jPMenuCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLIconExpandCadastros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLIconExpandCollapseCadastros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLIconCadastros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLMenuCadastros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -382,7 +385,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addComponent(jPMenuProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPMenuUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPMenuLayout = new javax.swing.GroupLayout(jPMenu);
@@ -533,7 +536,7 @@ public class PrincipalView extends javax.swing.JFrame {
             });
         }
     }
-
+    
     private void mouseMenuExited(JPanel menu) {
         if (!menu.equals(this.menuSelecionado)) {
             SwingUtilities.invokeLater(() -> {
@@ -541,7 +544,7 @@ public class PrincipalView extends javax.swing.JFrame {
             });
         }
     }
-
+    
     private void mouseMenuClicked(JPanel menu, JPanel tela) {
         if (!menu.equals(this.menuSelecionado)) {
             SwingUtilities.invokeLater(() -> {
@@ -554,7 +557,15 @@ public class PrincipalView extends javax.swing.JFrame {
             });
         }
     }
-
+    
+    private void menuExpandCollapse(JPanel menu, JLabel icon) {
+        SwingUtilities.invokeLater(() -> {
+            menu.setVisible(!menu.isVisible());
+            icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/"
+                    + (menu.isVisible() ? "icon_collapse.png" : "icon_expand.png"))));
+        });
+    }
+    
 
     private void jPMenuHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuHomeMouseEntered
         this.mouseMenuEntered(this.jPMenuHome);
@@ -607,7 +618,7 @@ public class PrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_jPMenuRelatoriosMouseExited
 
     private void jPMenuCadastrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuCadastrosMouseClicked
-        this.jPCadastros.setVisible(!this.jPCadastros.isVisible());
+        this.menuExpandCollapse(this.jPCadastros, this.jLIconExpandCollapseCadastros);
     }//GEN-LAST:event_jPMenuCadastrosMouseClicked
 
     private void jPMenuClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuClientesMouseEntered
@@ -654,44 +665,10 @@ public class PrincipalView extends javax.swing.JFrame {
         this.mouseMenuClicked(this.jPMenuAtendimento, this.telaAtendimento);
     }//GEN-LAST:event_jPMenuAtendimentoMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new PrincipalView().setVisible(true);
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLIconAtendimento;
     private javax.swing.JLabel jLIconCadastros;
-    private javax.swing.JLabel jLIconExpandCadastros;
+    private javax.swing.JLabel jLIconExpandCollapseCadastros;
     private javax.swing.JLabel jLIconHome;
     private javax.swing.JLabel jLIconMenu;
     private javax.swing.JLabel jLIconRelatorios;

@@ -180,7 +180,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLMenuCadastros" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="jLIconExpandCadastros" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLIconExpandCollapseCadastros" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -189,7 +189,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLIconExpandCadastros" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLIconExpandCollapseCadastros" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLIconCadastros" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLMenuCadastros" alignment="0" pref="35" max="32767" attributes="0"/>
                           </Group>
@@ -217,7 +217,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLIconExpandCadastros">
+                <Component class="javax.swing.JLabel" name="jLIconExpandCollapseCadastros">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/br/com/wendel/pdv/images/icon_expand.png"/>
@@ -365,7 +365,7 @@
                           <Component id="jPMenuProdutos" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="jPMenuUnidades" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
