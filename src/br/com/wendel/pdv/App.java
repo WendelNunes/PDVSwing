@@ -17,14 +17,17 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class App {
 
+    public static PrincipalView PRINCIPAL_VIEW;
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            PRINCIPAL_VIEW = new PrincipalView();
             java.awt.EventQueue.invokeLater(() -> {
-                new PrincipalView().setVisible(true);
+                PRINCIPAL_VIEW.setVisible(true);
             });
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);

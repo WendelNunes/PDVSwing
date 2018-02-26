@@ -5,8 +5,8 @@
  */
 package br.com.wendel.pdv.view;
 
+import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Cores;
-import java.awt.Color;
 import javax.swing.SwingUtilities;
 
 /**
@@ -17,9 +17,16 @@ public class UnidadesView extends javax.swing.JPanel {
 
     /**
      * Creates new form HomeView
+     *
      */
     public UnidadesView() {
         initComponents();
+    }
+
+    public void carregaTela() {
+        this.jPButtonNovo.setBackground(Cores.COR_BOTAO_MENU);
+        this.jPButtonEditar.setBackground(Cores.COR_BOTAO_MENU);
+        this.jPButtonExcluir.setBackground(Cores.COR_BOTAO_MENU);
     }
 
     /**
@@ -281,7 +288,7 @@ public class UnidadesView extends javax.swing.JPanel {
 
     private void jPButtonNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonNovoMouseClicked
         try {
-            new UnidadeCadastroView().setVisible(true);
+            App.PRINCIPAL_VIEW.mostraConteudo(new UnidadeCadastroView());
         } catch (Exception e) {
             System.out.println(e);
         }

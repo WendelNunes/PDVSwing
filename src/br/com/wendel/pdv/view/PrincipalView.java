@@ -22,14 +22,14 @@ import javax.swing.SwingUtilities;
  * @author INLOC01
  */
 public class PrincipalView extends javax.swing.JFrame {
-    
+
     private final List<JPanel> listaMenus = new ArrayList<>();
     private JPanel menuSelecionado;
-    private final HomeView telaHome = new HomeView();
-    private final ClientesView telaClientes = new ClientesView();
-    private final ProdutosView telaProdutos = new ProdutosView();
-    private final UnidadesView telaUnidades = new UnidadesView();
-    private final AtendimentoView telaAtendimento = new AtendimentoView();
+    private HomeView telaHome;
+    private final ClientesView telaClientes;
+    private final ProdutosView telaProdutos;
+    private final UnidadesView telaUnidades;
+    private AtendimentoView telaAtendimento = new AtendimentoView();
 
     /**
      * Creates new form HomeView
@@ -37,17 +37,22 @@ public class PrincipalView extends javax.swing.JFrame {
     public PrincipalView() {
         initComponents();
         this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        this.telaHome = new HomeView();
+        this.telaClientes = new ClientesView();
+        this.telaProdutos = new ProdutosView();
+        this.telaUnidades = new UnidadesView();
+        this.telaAtendimento = new AtendimentoView();
         this.listaMenus.add(this.jPMenuHome);
         this.listaMenus.add(this.jPMenuClientes);
         this.listaMenus.add(this.jPMenuProdutos);
         this.listaMenus.add(this.jPMenuUnidades);
         this.listaMenus.add(this.jPMenuAtendimento);
         this.listaMenus.add(this.jPMenuRelatorios);
-        this.mouseMenuClicked(this.jPMenuHome, this.telaHome);
+        this.mostraTelaHome();
         this.jPCadastros.setVisible(false);
     }
-    
-    private void mostraTelaConteudo(JPanel tela) {
+
+    public void mostraConteudo(JPanel tela) {
         jPConteudo.removeAll();
         javax.swing.GroupLayout jPConteudoLayout = new javax.swing.GroupLayout(jPConteudo);
         jPConteudo.setLayout(jPConteudoLayout);
@@ -62,7 +67,7 @@ public class PrincipalView extends javax.swing.JFrame {
                         .addComponent(tela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
-    
+
     private void setarCorDefaultMenusNaoSelecionados() {
         this.listaMenus.stream().filter(i -> !i.equals(this.menuSelecionado)).forEach(i -> {
             i.setBackground(COR_BOTAO_MENU);
@@ -536,7 +541,7 @@ public class PrincipalView extends javax.swing.JFrame {
             });
         }
     }
-    
+
     private void mouseMenuExited(JPanel menu) {
         if (!menu.equals(this.menuSelecionado)) {
             SwingUtilities.invokeLater(() -> {
@@ -544,20 +549,18 @@ public class PrincipalView extends javax.swing.JFrame {
             });
         }
     }
-    
-    private void mouseMenuClicked(JPanel menu, JPanel tela) {
-        if (!menu.equals(this.menuSelecionado)) {
-            SwingUtilities.invokeLater(() -> {
-                menu.setBackground(COR_BOTAO_MENU_SELECIONADO);
-                this.menuSelecionado = menu;
-                this.setarCorDefaultMenusNaoSelecionados();
-                if (tela != null) {
-                    this.mostraTelaConteudo(tela);
-                }
-            });
-        }
+
+    private void ajustaTela(JPanel menu, JPanel tela) {
+        SwingUtilities.invokeLater(() -> {
+            menu.setBackground(COR_BOTAO_MENU_SELECIONADO);
+            this.menuSelecionado = menu;
+            this.setarCorDefaultMenusNaoSelecionados();
+            if (tela != null) {
+                this.mostraConteudo(tela);
+            }
+        });
     }
-    
+
     private void menuExpandCollapse(JPanel menu, JLabel icon) {
         SwingUtilities.invokeLater(() -> {
             menu.setVisible(!menu.isVisible());
@@ -565,7 +568,7 @@ public class PrincipalView extends javax.swing.JFrame {
                     + (menu.isVisible() ? "icon_collapse.png" : "icon_expand.png"))));
         });
     }
-    
+
 
     private void jPMenuHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuHomeMouseEntered
         this.mouseMenuEntered(this.jPMenuHome);
@@ -646,23 +649,23 @@ public class PrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_jPMenuUnidadesMouseExited
 
     private void jPMenuHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuHomeMouseClicked
-        this.mouseMenuClicked(this.jPMenuHome, this.telaHome);
+        this.mostraTelaHome();
     }//GEN-LAST:event_jPMenuHomeMouseClicked
 
     private void jPMenuClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuClientesMouseClicked
-        this.mouseMenuClicked(this.jPMenuClientes, this.telaClientes);
+        this.mostraTelaClientes();
     }//GEN-LAST:event_jPMenuClientesMouseClicked
 
     private void jPMenuProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuProdutosMouseClicked
-        this.mouseMenuClicked(this.jPMenuProdutos, this.telaProdutos);
+        this.mostraTelaProdutos();
     }//GEN-LAST:event_jPMenuProdutosMouseClicked
 
     private void jPMenuUnidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuUnidadesMouseClicked
-        this.mouseMenuClicked(this.jPMenuUnidades, this.telaUnidades);
+        this.mostraTelaUnidades();
     }//GEN-LAST:event_jPMenuUnidadesMouseClicked
 
     private void jPMenuAtendimentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuAtendimentoMouseClicked
-        this.mouseMenuClicked(this.jPMenuAtendimento, this.telaAtendimento);
+        this.mostraTelaAtendimento();
     }//GEN-LAST:event_jPMenuAtendimentoMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -694,4 +697,25 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JPanel jPTela;
     private javax.swing.JPanel jPTop;
     // End of variables declaration//GEN-END:variables
+
+    public void mostraTelaUnidades() {
+        this.telaUnidades.carregaTela();
+        this.ajustaTela(this.jPMenuUnidades, this.telaUnidades);
+    }
+
+    public final void mostraTelaHome() {
+        this.ajustaTela(this.jPMenuHome, this.telaHome);
+    }
+
+    public void mostraTelaClientes() {
+        this.ajustaTela(this.jPMenuClientes, this.telaClientes);
+    }
+
+    public void mostraTelaProdutos() {
+        this.ajustaTela(this.jPMenuProdutos, this.telaProdutos);
+    }
+
+    public void mostraTelaAtendimento() {
+        this.ajustaTela(this.jPMenuAtendimento, this.telaAtendimento);
+    }
 }
