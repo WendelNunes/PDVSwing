@@ -7,7 +7,9 @@ package br.com.wendel.pdv.view;
 
 import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Cores;
+import br.com.wendel.pdv.util.TraversalPolicy;
 import java.awt.event.KeyEvent;
+import static java.util.Arrays.asList;
 import javax.swing.SwingUtilities;
 
 /**
@@ -50,6 +52,8 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
         jLIconButtonCancelar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setFocusTraversalPolicy(new TraversalPolicy(asList(this.jTFDescricao, this.jTFSigla, this.jPButtonSalvar, this.jPButtonCancelar)));
+        setFocusTraversalPolicyProvider(true);
 
         jPTopo.setBackground(new java.awt.Color(79, 195, 247));
         jPTopo.setPreferredSize(new java.awt.Dimension(85, 35));
