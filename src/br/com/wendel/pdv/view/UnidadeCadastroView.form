@@ -31,7 +31,7 @@
                   <Component id="jLSigla" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jPButtonSalvar" min="-2" pref="106" max="-2" attributes="0"/>
+                      <Component id="jPButtonSalvar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPButtonCancelar" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -116,7 +116,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="15" style="0"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Descri&#xe7;&#xe3;o da unidade"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFDescricaoKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLSigla">
       <Properties>
@@ -131,15 +135,22 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="15" style="0"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Sigla da unidade"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFSiglaKeyPressed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPButtonSalvar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="7b" red="0" type="rgb"/>
         </Property>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor em Forma de M&#xe3;o"/>
+        </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[77, 35]"/>
+          <Dimension value="[106, 35]"/>
         </Property>
       </Properties>
       <Events>
@@ -194,6 +205,12 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="45" green="35" red="dc" type="rgb"/>
         </Property>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor em Forma de M&#xe3;o"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[106, 35]"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPButtonCancelarMouseClicked"/>
@@ -207,9 +224,9 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="jLIconButtonCancelar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLButtonCancelar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLButtonCancelar" pref="60" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

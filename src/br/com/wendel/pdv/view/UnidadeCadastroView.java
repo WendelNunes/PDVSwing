@@ -7,6 +7,7 @@ package br.com.wendel.pdv.view;
 
 import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Cores;
+import java.awt.event.KeyEvent;
 import javax.swing.SwingUtilities;
 
 /**
@@ -75,14 +76,27 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
         jLDescricao.setText("Descrição");
 
         jTFDescricao.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFDescricao.setToolTipText("Descrição da unidade");
+        jTFDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFDescricaoKeyPressed(evt);
+            }
+        });
 
         jLSigla.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLSigla.setText("Sigla");
 
         jTFSigla.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFSigla.setToolTipText("Sigla da unidade");
+        jTFSigla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFSiglaKeyPressed(evt);
+            }
+        });
 
         jPButtonSalvar.setBackground(new java.awt.Color(0, 123, 255));
-        jPButtonSalvar.setPreferredSize(new java.awt.Dimension(77, 35));
+        jPButtonSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPButtonSalvar.setPreferredSize(new java.awt.Dimension(106, 35));
         jPButtonSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPButtonSalvarMouseClicked(evt);
@@ -120,6 +134,8 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
         );
 
         jPButtonCancelar.setBackground(new java.awt.Color(220, 53, 69));
+        jPButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPButtonCancelar.setPreferredSize(new java.awt.Dimension(106, 35));
         jPButtonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPButtonCancelarMouseClicked(evt);
@@ -146,9 +162,9 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPButtonCancelarLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jLIconButtonCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLButtonCancelar)
-                .addGap(10, 10, 10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPButtonCancelarLayout.setVerticalGroup(
             jPButtonCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +186,7 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
                     .addComponent(jLSigla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -226,6 +242,22 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
     private void jPButtonCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonCancelarMouseClicked
         App.PRINCIPAL_VIEW.mostraTelaUnidades();
     }//GEN-LAST:event_jPButtonCancelarMouseClicked
+
+    private void jTFDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescricaoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jTFSigla.requestFocusInWindow();
+            });
+        }
+    }//GEN-LAST:event_jTFDescricaoKeyPressed
+
+    private void jTFSiglaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFSiglaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jPButtonSalvar.requestFocusInWindow();
+            });
+        }
+    }//GEN-LAST:event_jTFSiglaKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
