@@ -99,6 +99,9 @@ public class UnidadesView extends javax.swing.JPanel {
         jPButtonNovo.setBackground(new java.awt.Color(79, 195, 247));
         jPButtonNovo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPButtonNovo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPButtonNovoMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPButtonNovoMouseEntered(evt);
             }
@@ -275,6 +278,14 @@ public class UnidadesView extends javax.swing.JPanel {
             this.jPButtonEditar.setBackground(Cores.COR_BOTAO_MENU);
         });
     }//GEN-LAST:event_jPButtonEditarMouseExited
+
+    private void jPButtonNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonNovoMouseClicked
+        try {
+            new UnidadeCadastroView().setVisible(true);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jPButtonNovoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
