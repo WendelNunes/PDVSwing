@@ -10,6 +10,7 @@ import br.com.wendel.pdv.util.Cores;
 import br.com.wendel.pdv.util.TraversalPolicy;
 import java.awt.event.KeyEvent;
 import static java.util.Arrays.asList;
+import javax.swing.BorderFactory;
 import javax.swing.SwingUtilities;
 
 /**
@@ -101,6 +102,14 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
         jPButtonSalvar.setBackground(new java.awt.Color(0, 123, 255));
         jPButtonSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPButtonSalvar.setPreferredSize(new java.awt.Dimension(106, 35));
+        jPButtonSalvar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPButtonSalvarFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPButtonSalvarFocusLost(evt);
+            }
+        });
         jPButtonSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPButtonSalvarMouseClicked(evt);
@@ -110,6 +119,11 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jPButtonSalvarMouseExited(evt);
+            }
+        });
+        jPButtonSalvar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPButtonSalvarKeyPressed(evt);
             }
         });
 
@@ -140,6 +154,14 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
         jPButtonCancelar.setBackground(new java.awt.Color(220, 53, 69));
         jPButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPButtonCancelar.setPreferredSize(new java.awt.Dimension(106, 35));
+        jPButtonCancelar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPButtonCancelarFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPButtonCancelarFocusLost(evt);
+            }
+        });
         jPButtonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPButtonCancelarMouseClicked(evt);
@@ -149,6 +171,11 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jPButtonCancelarMouseExited(evt);
+            }
+        });
+        jPButtonCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPButtonCancelarKeyPressed(evt);
             }
         });
 
@@ -208,7 +235,7 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTFSigla, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -262,6 +289,42 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
             });
         }
     }//GEN-LAST:event_jTFSiglaKeyPressed
+
+    private void jPButtonSalvarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonSalvarFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonSalvar.setBorder(BorderFactory.createDashedBorder(null, 1, 5, 5, false));
+        });
+    }//GEN-LAST:event_jPButtonSalvarFocusGained
+
+    private void jPButtonSalvarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonSalvarFocusLost
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonSalvar.setBorder(null);
+        });
+    }//GEN-LAST:event_jPButtonSalvarFocusLost
+
+    private void jPButtonCancelarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonCancelarFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonCancelar.setBorder(BorderFactory.createDashedBorder(null, 1, 5, 5, false));
+        });
+    }//GEN-LAST:event_jPButtonCancelarFocusGained
+
+    private void jPButtonCancelarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonCancelarFocusLost
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonCancelar.setBorder(null);
+        });
+    }//GEN-LAST:event_jPButtonCancelarFocusLost
+
+    private void jPButtonSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonSalvarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            this.jPButtonSalvarMouseClicked(null);
+        }
+    }//GEN-LAST:event_jPButtonSalvarKeyPressed
+
+    private void jPButtonCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonCancelarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            this.jPButtonCancelarMouseClicked(null);
+        }
+    }//GEN-LAST:event_jPButtonCancelarKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
