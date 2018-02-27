@@ -5,9 +5,12 @@
  */
 package br.com.wendel.pdv.view;
 
+import br.com.wendel.controller.UnidadesViewController;
 import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Cores;
+import java.util.Map;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,18 +18,32 @@ import javax.swing.SwingUtilities;
  */
 public class UnidadesView extends javax.swing.JPanel {
 
+    private final UnidadesViewController unidadesViewController;
+
     /**
      * Creates new form HomeView
      *
+     * @throws java.lang.Exception
      */
-    public UnidadesView() {
+    public UnidadesView() throws Exception {
+        this.unidadesViewController = new UnidadesViewController();
         initComponents();
     }
 
-    public void carregaTela() {
+    public void carregaTela() throws Exception {
         this.jPButtonNovo.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonEditar.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonExcluir.setBackground(Cores.COR_BOTAO_MENU);
+        this.atualizaTabela();
+    }
+
+    public void atualizaTabela() throws Exception {
+        this.unidadesViewController.atualizaLista();
+        DefaultTableModel model = (DefaultTableModel) this.jTUnidades.getModel();
+        model.setRowCount(0);
+        this.unidadesViewController.getList().stream().forEach((item) -> {
+            model.addRow(new Object[]{item.get("SIGLA"), item.get("DESCRICAO")});
+        });
     }
 
     /**
@@ -288,7 +305,7 @@ public class UnidadesView extends javax.swing.JPanel {
 
     private void jPButtonNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonNovoMouseClicked
         try {
-            App.PRINCIPAL_VIEW.mostraConteudo(new UnidadeCadastroView());
+            App.PRINCIPAL_VIEW.mostraConteudo(new UnidadeCadastroView(null));
         } catch (Exception e) {
             System.out.println(e);
         }

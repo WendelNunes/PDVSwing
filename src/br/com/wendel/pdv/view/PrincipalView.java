@@ -25,7 +25,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private final List<JPanel> listaMenus = new ArrayList<>();
     private JPanel menuSelecionado;
-    private HomeView telaHome;
+    private final HomeView telaHome;
     private final ClientesView telaClientes;
     private final ProdutosView telaProdutos;
     private final UnidadesView telaUnidades;
@@ -33,8 +33,10 @@ public class PrincipalView extends javax.swing.JFrame {
 
     /**
      * Creates new form HomeView
+     *
+     * @throws java.lang.Exception
      */
-    public PrincipalView() {
+    public PrincipalView() throws Exception {
         initComponents();
         this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         this.telaHome = new HomeView();

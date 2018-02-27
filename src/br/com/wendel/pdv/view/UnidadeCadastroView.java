@@ -5,8 +5,12 @@
  */
 package br.com.wendel.pdv.view;
 
+import br.com.wendel.controller.UnidadeCadastroController;
+import br.com.wendel.entity.Unidade;
 import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Cores;
+import br.com.wendel.pdv.util.Mensagem;
+import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
 import br.com.wendel.pdv.util.TraversalPolicy;
 import java.awt.event.KeyEvent;
 import static java.util.Arrays.asList;
@@ -19,11 +23,15 @@ import javax.swing.SwingUtilities;
  */
 public class UnidadeCadastroView extends javax.swing.JPanel {
 
+    private final UnidadeCadastroController controller;
+
     /**
      * Creates new form UnidadeCadastroViewPanel
      *
+     * @param unidade
      */
-    public UnidadeCadastroView() {
+    public UnidadeCadastroView(Unidade unidade) {
+        this.controller = new UnidadeCadastroController(unidade);
         initComponents();
         SwingUtilities.invokeLater(() -> {
             this.jTFDescricao.requestFocusInWindow();
@@ -267,12 +275,22 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
     }//GEN-LAST:event_jPButtonCancelarMouseExited
 
     private void jPButtonSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonSalvarMouseClicked
-        App.PRINCIPAL_VIEW.mostraTelaUnidades();
+        this.acaoSalvar();
     }//GEN-LAST:event_jPButtonSalvarMouseClicked
 
     private void jPButtonCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonCancelarMouseClicked
         App.PRINCIPAL_VIEW.mostraTelaUnidades();
     }//GEN-LAST:event_jPButtonCancelarMouseClicked
+
+    private void acaoSalvar() {
+        try {
+            if (this.controller.salvarUnidade(this.jTFDescricao.getText(), this.jTFSigla.getText())) {
+                App.PRINCIPAL_VIEW.mostraTelaUnidades();
+            }
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
+    }
 
     private void jTFDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescricaoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -316,7 +334,7 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
 
     private void jPButtonSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonSalvarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            this.jPButtonSalvarMouseClicked(null);
+            this.acaoSalvar();
         }
     }//GEN-LAST:event_jPButtonSalvarKeyPressed
 
