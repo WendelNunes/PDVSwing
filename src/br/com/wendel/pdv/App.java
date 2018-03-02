@@ -29,8 +29,8 @@ public class App {
             java.awt.EventQueue.invokeLater(() -> {
                 PRINCIPAL_VIEW.setVisible(true);
             });
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }

@@ -8,9 +8,8 @@ package br.com.wendel.pdv.view;
 import br.com.wendel.controller.UnidadesViewController;
 import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Cores;
-import java.util.Map;
+import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +18,8 @@ import javax.swing.table.DefaultTableModel;
 public class UnidadesView extends javax.swing.JPanel {
 
     private final UnidadesViewController unidadesViewController;
+    private final UnidadeTableModel unidadeTableModel;
+    private final JTableCustom tabela;
 
     /**
      * Creates new form HomeView
@@ -27,6 +28,8 @@ public class UnidadesView extends javax.swing.JPanel {
      */
     public UnidadesView() throws Exception {
         this.unidadesViewController = new UnidadesViewController();
+        this.unidadeTableModel = new UnidadeTableModel();
+        this.tabela = new JTableCustom(this.unidadeTableModel);
         initComponents();
     }
 
@@ -39,11 +42,7 @@ public class UnidadesView extends javax.swing.JPanel {
 
     public void atualizaTabela() throws Exception {
         this.unidadesViewController.atualizaLista();
-        DefaultTableModel model = (DefaultTableModel) this.jTUnidades.getModel();
-        model.setRowCount(0);
-        this.unidadesViewController.getList().stream().forEach((item) -> {
-            model.addRow(new Object[]{item.get("SIGLA"), item.get("DESCRICAO")});
-        });
+        this.unidadeTableModel.setLista(this.unidadesViewController.getList());
     }
 
     /**
@@ -56,8 +55,6 @@ public class UnidadesView extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jSPUnidades = new javax.swing.JScrollPane();
-        jTUnidades = new javax.swing.JTable();
         jPTopo = new javax.swing.JPanel();
         jLTitulo = new javax.swing.JLabel();
         jPButtonNovo = new javax.swing.JPanel();
@@ -69,6 +66,7 @@ public class UnidadesView extends javax.swing.JPanel {
         jPButtonEditar = new javax.swing.JPanel();
         jLButtonEditar = new javax.swing.JLabel();
         jLIconButtonEditar = new javax.swing.JLabel();
+        jSPUnidades = new JScrollPane(this.tabela);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,36 +80,6 @@ public class UnidadesView extends javax.swing.JPanel {
         );
 
         setBackground(new java.awt.Color(255, 255, 255));
-
-        jSPUnidades.setBackground(new java.awt.Color(255, 255, 255));
-        jSPUnidades.getViewport().setBackground(new java.awt.Color(255, 255, 255));
-        jSPUnidades.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-
-        jTUnidades.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jTUnidades.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Código", "Descrição"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTUnidades.setGridColor(new java.awt.Color(240, 240, 240));
-        jTUnidades.setSelectionBackground(new java.awt.Color(79, 195, 247));
-        jSPUnidades.setViewportView(jTUnidades);
-        if (jTUnidades.getColumnModel().getColumnCount() > 0) {
-            jTUnidades.getColumnModel().getColumn(0).setMinWidth(100);
-            jTUnidades.getColumnModel().getColumn(0).setPreferredWidth(100);
-            jTUnidades.getColumnModel().getColumn(0).setMaxWidth(100);
-        }
 
         jPTopo.setBackground(new java.awt.Color(79, 195, 247));
         jPTopo.setPreferredSize(new java.awt.Dimension(85, 35));
@@ -232,7 +200,7 @@ public class UnidadesView extends javax.swing.JPanel {
             .addGroup(jPTopoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
                 .addComponent(jPButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,6 +215,10 @@ public class UnidadesView extends javax.swing.JPanel {
             .addComponent(jPButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jSPUnidades.setBackground(new java.awt.Color(255, 255, 255));
+        jSPUnidades.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jSPUnidades.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -254,7 +226,7 @@ public class UnidadesView extends javax.swing.JPanel {
             .addComponent(jPTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSPUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+                .addComponent(jSPUnidades)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -262,9 +234,11 @@ public class UnidadesView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPTopo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSPUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                .addComponent(jSPUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jSPUnidades.getViewport().setBackground(new java.awt.Color(255, 255, 255));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPButtonNovoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonNovoMouseEntered
@@ -326,6 +300,5 @@ public class UnidadesView extends javax.swing.JPanel {
     private javax.swing.JPanel jPTopo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jSPUnidades;
-    private javax.swing.JTable jTUnidades;
     // End of variables declaration//GEN-END:variables
 }
