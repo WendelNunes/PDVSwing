@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.wendel.dao;
+package br.com.wendel.pdv.dao;
 
-import br.com.wendel.entity.Unidade;
+import br.com.wendel.pdv.entity.Unidade;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.wendel.controller;
+package br.com.wendel.pdv.controller;
 
-import br.com.wendel.dao.UnidadeDao;
+import br.com.wendel.pdv.dao.UnidadeDao;
 import br.com.wendel.pdv.util.Conexao;
 import java.sql.Connection;
 import java.util.ArrayList;

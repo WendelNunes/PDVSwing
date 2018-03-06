@@ -5,7 +5,7 @@
  */
 package br.com.wendel.pdv.view;
 
-import br.com.wendel.controller.UnidadesViewController;
+import br.com.wendel.pdv.controller.UnidadesViewController;
 import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Cores;
 import javax.swing.JScrollPane;
