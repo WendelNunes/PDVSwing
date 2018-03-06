@@ -9,10 +9,15 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
@@ -24,12 +29,16 @@ import javax.swing.table.TableRowSorter;
 public class JTableCustom extends JTable {
 
     private final TableModelCustom tableModelCustom;
+    private final ImageIcon iconAscending = new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_sort_down.png"));
+    private final ImageIcon iconDescending = new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_sort_up.png"));
+    private final ImageIcon iconUnsorted = new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_sort.png"));
 
     public JTableCustom(TableModelCustom tableModelCustom) {
         super(tableModelCustom);
         this.setBackground(Color.WHITE);
         this.setBorder(null);
         this.setGridColor(Color.WHITE);
+        this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.setSelectionBackground(new Color(140, 219, 254));
         this.getTableHeader().setPreferredSize(new Dimension(WIDTH, 35));
         this.getTableHeader().setDefaultRenderer(new TableHeader(this.getTableHeader().getDefaultRenderer()));
@@ -40,7 +49,13 @@ public class JTableCustom extends JTable {
         for (int i = 0; i < this.tableModelCustom.getColumnWidth().length; i++) {
             this.getColumnModel().getColumn(i).setPreferredWidth(this.tableModelCustom.getColumnWidth()[i]);
         }
-        this.setRowSorter(new TableRowSorter<>(this.tableModelCustom));
+        TableRowSorter<TableModelCustom> sorter = new TableRowSorter<>(this.tableModelCustom);
+        this.setRowSorter(sorter);
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+        for (int i = 0; i < this.tableModelCustom.getColumnCount(); i++) {
+            sortKeys.add(new RowSorter.SortKey(i, SortOrder.UNSORTED));
+        }
+        sorter.setSortKeys(sortKeys);
     }
 
     private class TableHeader extends JLabel implements TableCellRenderer {
@@ -61,6 +76,13 @@ public class JTableCustom extends JTable {
                 label.setBackground(new Color(255, 255, 255));
                 label.setForeground(new Color(3, 169, 244));
                 label.setBorder(BorderFactory.createMatteBorder(1, 0, 3, 0, new Color(241, 241, 241)));
+                if (getRowSorter().getSortKeys().get(column).getSortOrder().equals(SortOrder.UNSORTED)) {
+                    label.setIcon(iconUnsorted);
+                } else if (getRowSorter().getSortKeys().get(column).getSortOrder().equals(SortOrder.ASCENDING)) {
+                    label.setIcon(iconAscending);
+                } else if (getRowSorter().getSortKeys().get(column).getSortOrder().equals(SortOrder.DESCENDING)) {
+                    label.setIcon(iconDescending);
+                }
             }
             return c;
         }
