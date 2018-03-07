@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowSorter;
+import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
@@ -27,12 +28,12 @@ import javax.swing.table.TableRowSorter;
  * @author INLOC01
  */
 public class JTableCustom extends JTable {
-
+    
     private final TableModelCustom tableModelCustom;
     private final ImageIcon iconAscending = new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_sort_down.png"));
     private final ImageIcon iconDescending = new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_sort_up.png"));
     private final ImageIcon iconUnsorted = new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_sort.png"));
-
+    
     public JTableCustom(TableModelCustom tableModelCustom) {
         super(tableModelCustom);
         this.setBackground(Color.WHITE);
@@ -57,15 +58,15 @@ public class JTableCustom extends JTable {
         }
         sorter.setSortKeys(sortKeys);
     }
-
+    
     private class TableHeader extends JLabel implements TableCellRenderer {
-
+        
         private final TableCellRenderer delegate;
-
+        
         public TableHeader(TableCellRenderer delegate) {
             this.delegate = delegate;
         }
-
+        
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             Component c = this.delegate.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -76,26 +77,42 @@ public class JTableCustom extends JTable {
                 label.setBackground(new Color(255, 255, 255));
                 label.setForeground(new Color(3, 169, 244));
                 label.setBorder(BorderFactory.createMatteBorder(1, 0, 3, 0, new Color(241, 241, 241)));
-                if (getRowSorter().getSortKeys().get(column).getSortOrder().equals(SortOrder.UNSORTED)) {
-                    label.setIcon(iconUnsorted);
-                } else if (getRowSorter().getSortKeys().get(column).getSortOrder().equals(SortOrder.ASCENDING)) {
-                    label.setIcon(iconAscending);
-                } else if (getRowSorter().getSortKeys().get(column).getSortOrder().equals(SortOrder.DESCENDING)) {
-                    label.setIcon(iconDescending);
-                }
+                label.setIcon(getSortIcon(table, column));
             }
             return c;
         }
+        
+        private ImageIcon getSortIcon(JTable table, int column) {
+            SortOrder sortOrder = getColumnSortOrder(table, column);
+            if (SortOrder.UNSORTED == sortOrder) {
+                return iconUnsorted;
+            }
+            return SortOrder.ASCENDING == sortOrder ? iconAscending : iconDescending;
+        }
+        
+        private SortOrder getColumnSortOrder(JTable table, int column) {
+            if (table == null || table.getRowSorter() == null) {
+                return SortOrder.UNSORTED;
+            }
+            List<? extends SortKey> keys = table.getRowSorter().getSortKeys();
+            if (keys.size() > 0) {
+                SortKey key = keys.get(0);
+                if (key.getColumn() == table.convertColumnIndexToModel(column)) {
+                    return key.getSortOrder();
+                }
+            }
+            return SortOrder.UNSORTED;
+        }
     }
-
+    
     private class TableCell extends JLabel implements TableCellRenderer {
-
+        
         private final TableCellRenderer delegate;
-
+        
         public TableCell(TableCellRenderer delegate) {
             this.delegate = delegate;
         }
-
+        
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             JComponent c = (JComponent) this.delegate.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
