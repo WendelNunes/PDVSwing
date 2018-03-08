@@ -26,6 +26,7 @@ import javax.swing.table.TableRowSorter;
 /**
  *
  * @author INLOC01
+ * @param <T>
  */
 public class JTableCustom<T> extends JTable {
 
