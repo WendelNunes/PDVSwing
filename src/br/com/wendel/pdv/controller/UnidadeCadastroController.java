@@ -21,8 +21,12 @@ public class UnidadeCadastroController {
 
     private Unidade unidade;
 
-    public UnidadeCadastroController(Unidade unidade) {
-        this.unidade = unidade;
+    public UnidadeCadastroController(Long id) throws Exception {
+        if (id != null) {
+            try (Connection connection = criarConexao()) {
+                this.unidade = new UnidadeDao(connection).findById(id);
+            }
+        }
     }
 
     public boolean salvarUnidade(String descricao, String sigla) throws Exception {

@@ -27,14 +27,14 @@ import javax.swing.table.TableRowSorter;
  *
  * @author INLOC01
  */
-public class JTableCustom extends JTable {
-    
-    private final TableModelCustom tableModelCustom;
+public class JTableCustom<T> extends JTable {
+
+    private final TableModelCustom<T> tableModelCustom;
     private final ImageIcon iconAscending = new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_sort_down.png"));
     private final ImageIcon iconDescending = new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_sort_up.png"));
     private final ImageIcon iconUnsorted = new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_sort.png"));
-    
-    public JTableCustom(TableModelCustom tableModelCustom) {
+
+    public JTableCustom(TableModelCustom<T> tableModelCustom) {
         super(tableModelCustom);
         this.setBackground(Color.WHITE);
         this.setBorder(null);
@@ -58,15 +58,15 @@ public class JTableCustom extends JTable {
         }
         sorter.setSortKeys(sortKeys);
     }
-    
+
     private class TableHeader extends JLabel implements TableCellRenderer {
-        
+
         private final TableCellRenderer delegate;
-        
+
         public TableHeader(TableCellRenderer delegate) {
             this.delegate = delegate;
         }
-        
+
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             Component c = this.delegate.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -81,7 +81,7 @@ public class JTableCustom extends JTable {
             }
             return c;
         }
-        
+
         private ImageIcon getSortIcon(JTable table, int column) {
             SortOrder sortOrder = getColumnSortOrder(table, column);
             if (SortOrder.UNSORTED == sortOrder) {
@@ -89,7 +89,7 @@ public class JTableCustom extends JTable {
             }
             return SortOrder.ASCENDING == sortOrder ? iconAscending : iconDescending;
         }
-        
+
         private SortOrder getColumnSortOrder(JTable table, int column) {
             if (table == null || table.getRowSorter() == null) {
                 return SortOrder.UNSORTED;
@@ -104,15 +104,15 @@ public class JTableCustom extends JTable {
             return SortOrder.UNSORTED;
         }
     }
-    
+
     private class TableCell extends JLabel implements TableCellRenderer {
-        
+
         private final TableCellRenderer delegate;
-        
+
         public TableCell(TableCellRenderer delegate) {
             this.delegate = delegate;
         }
-        
+
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             JComponent c = (JComponent) this.delegate.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -126,5 +126,12 @@ public class JTableCustom extends JTable {
             }
             return c;
         }
+    }
+
+    public T getSelected() {
+        if (this.getSelectedRow() >= 0) {
+            return this.tableModelCustom.getLista().get(this.convertRowIndexToModel(this.getSelectedRow()));
+        }
+        return null;
     }
 }

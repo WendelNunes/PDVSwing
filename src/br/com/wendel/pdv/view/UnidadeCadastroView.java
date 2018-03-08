@@ -6,7 +6,6 @@
 package br.com.wendel.pdv.view;
 
 import br.com.wendel.pdv.controller.UnidadeCadastroController;
-import br.com.wendel.pdv.entity.Unidade;
 import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
@@ -27,13 +26,18 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
     /**
      * Creates new form UnidadeCadastroViewPanel
      *
-     * @param unidade
+     * @param id
+     * @throws java.lang.Exception
      */
-    public UnidadeCadastroView(Unidade unidade) {
-        this.controller = new UnidadeCadastroController(unidade);
+    public UnidadeCadastroView(Long id) throws Exception {
+        this.controller = new UnidadeCadastroController(id);
         initComponents();
+        if (this.controller.getUnidade() != null) {
+            this.jTFSigla.setText(this.controller.getUnidade().getSigla());
+            this.jTFDescricao.setText(this.controller.getUnidade().getDescricao());
+        }
         SwingUtilities.invokeLater(() -> {
-            this.jTFDescricao.requestFocusInWindow();
+            this.jTFSigla.requestFocusInWindow();
         });
     }
 
@@ -60,7 +64,7 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
         jLIconButtonCancelar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setFocusTraversalPolicy(new TraversalPolicy(asList(this.jTFDescricao, this.jTFSigla, this.jPButtonSalvar, this.jPButtonCancelar)));
+        setFocusTraversalPolicy(new TraversalPolicy(asList(this.jTFSigla, this.jTFDescricao, this.jPButtonSalvar, this.jPButtonCancelar)));
         setFocusTraversalPolicyProvider(true);
 
         jPTopo.setBackground(new java.awt.Color(79, 195, 247));
@@ -89,6 +93,11 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
 
         jTFDescricao.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jTFDescricao.setToolTipText("Descrição da unidade");
+        jTFDescricao.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFDescricaoFocusGained(evt);
+            }
+        });
         jTFDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTFDescricaoKeyPressed(evt);
@@ -100,6 +109,11 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
 
         jTFSigla.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jTFSigla.setToolTipText("Sigla da unidade");
+        jTFSigla.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFSiglaFocusGained(evt);
+            }
+        });
         jTFSigla.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTFSiglaKeyPressed(evt);
@@ -234,14 +248,14 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPTopo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLDescricao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTFDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLSigla)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTFSigla, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLDescricao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTFDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -298,7 +312,7 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
     private void jTFDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescricaoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             SwingUtilities.invokeLater(() -> {
-                this.jTFSigla.requestFocusInWindow();
+                this.jPButtonSalvar.requestFocusInWindow();
             });
         }
     }//GEN-LAST:event_jTFDescricaoKeyPressed
@@ -306,7 +320,7 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
     private void jTFSiglaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFSiglaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             SwingUtilities.invokeLater(() -> {
-                this.jPButtonSalvar.requestFocusInWindow();
+                this.jTFDescricao.requestFocusInWindow();
             });
         }
     }//GEN-LAST:event_jTFSiglaKeyPressed
@@ -346,6 +360,18 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
             this.jPButtonCancelarMouseClicked(null);
         }
     }//GEN-LAST:event_jPButtonCancelarKeyPressed
+
+    private void jTFSiglaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFSiglaFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jTFSigla.selectAll();
+        });
+    }//GEN-LAST:event_jTFSiglaFocusGained
+
+    private void jTFDescricaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFDescricaoFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jTFDescricao.selectAll();
+        });
+    }//GEN-LAST:event_jTFDescricaoFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

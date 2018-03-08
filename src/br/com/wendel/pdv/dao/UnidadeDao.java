@@ -65,4 +65,16 @@ public class UnidadeDao {
         }
         return list;
     }
+
+    public Unidade findById(Long id) throws Exception {
+        try (PreparedStatement ps = this.connection.prepareStatement("SELECT id, descricao, sigla FROM unidade WHERE id = ?")) {
+            ps.setLong(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new Unidade(rs.getLong("id"), rs.getString("descricao"), rs.getString("sigla"));
+                }
+            }
+        }
+        return null;
+    }
 }

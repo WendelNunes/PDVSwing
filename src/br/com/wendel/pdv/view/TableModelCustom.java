@@ -5,13 +5,19 @@
  */
 package br.com.wendel.pdv.view;
 
+import java.util.List;
 import javax.swing.table.TableModel;
 
 /**
  *
  * @author INLOC01
+ * @param <T>
  */
-public interface TableModelCustom extends TableModel {
+public interface TableModelCustom<T> extends TableModel {
+
+    public void setLista(List<T> lista);
 
     public int[] getColumnWidth();
+
+    public List<T> getLista();
 }

@@ -8,6 +8,8 @@ package br.com.wendel.pdv.view;
 import br.com.wendel.pdv.controller.UnidadesViewController;
 import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Cores;
+import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
+import java.util.Map;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
@@ -19,7 +21,7 @@ public class UnidadesView extends javax.swing.JPanel {
 
     private final UnidadesViewController unidadesViewController;
     private final UnidadeTableModel unidadeTableModel;
-    private final JTableCustom tabela;
+    private final JTableCustom<Map<String, Object>> tabela;
 
     /**
      * Creates new form HomeView
@@ -29,7 +31,7 @@ public class UnidadesView extends javax.swing.JPanel {
     public UnidadesView() throws Exception {
         this.unidadesViewController = new UnidadesViewController();
         this.unidadeTableModel = new UnidadeTableModel();
-        this.tabela = new JTableCustom(this.unidadeTableModel);
+        this.tabela = new JTableCustom<>(this.unidadeTableModel);
         initComponents();
     }
 
@@ -162,6 +164,9 @@ public class UnidadesView extends javax.swing.JPanel {
         jPButtonEditar.setBackground(new java.awt.Color(79, 195, 247));
         jPButtonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPButtonEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPButtonEditarMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPButtonEditarMouseEntered(evt);
             }
@@ -281,9 +286,20 @@ public class UnidadesView extends javax.swing.JPanel {
         try {
             App.PRINCIPAL_VIEW.mostraConteudo(new UnidadeCadastroView(null));
         } catch (Exception e) {
-            System.out.println(e);
+            enviarMensagemErro(e.getMessage());
         }
     }//GEN-LAST:event_jPButtonNovoMouseClicked
+
+    private void jPButtonEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonEditarMouseClicked
+        Map<String, Object> unidadeSelecionada = this.tabela.getSelected();
+        if (unidadeSelecionada != null) {
+            try {
+                App.PRINCIPAL_VIEW.mostraConteudo(new UnidadeCadastroView((Long) unidadeSelecionada.get("ID")));
+            } catch (Exception e) {
+                enviarMensagemErro(e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jPButtonEditarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

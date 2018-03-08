@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author INLOC01
  */
-public class UnidadeTableModel extends AbstractTableModel implements TableModelCustom {
+public class UnidadeTableModel extends AbstractTableModel implements TableModelCustom<Map<String, Object>> {
 
     private final String[] columnNames = {"Sigla", "Descrição"};
     private List<Map<String, Object>> lista;
@@ -60,11 +60,13 @@ public class UnidadeTableModel extends AbstractTableModel implements TableModelC
         }
     }
 
+    @Override
     public void setLista(List<Map<String, Object>> lista) {
         fireTableDataChanged();
         this.lista = lista;
     }
 
+    @Override
     public List<Map<String, Object>> getLista() {
         return lista;
     }

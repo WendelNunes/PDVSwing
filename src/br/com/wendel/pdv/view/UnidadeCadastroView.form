@@ -6,7 +6,7 @@
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
     <Property name="focusTraversalPolicy" type="java.awt.FocusTraversalPolicy" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-      <Connection code="new TraversalPolicy(asList(this.jTFDescricao, this.jTFSigla, this.jPButtonSalvar, this.jPButtonCancelar))" type="code"/>
+      <Connection code="new TraversalPolicy(asList(this.jTFSigla, this.jTFDescricao, this.jPButtonSalvar, this.jPButtonCancelar))" type="code"/>
     </Property>
     <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
   </Properties>
@@ -49,14 +49,14 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPTopo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLDescricao" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTFDescricao" min="-2" pref="35" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
               <Component id="jLSigla" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTFSigla" min="-2" pref="35" max="-2" attributes="0"/>
-              <EmptySpace pref="10" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLDescricao" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jTFDescricao" min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPButtonCancelar" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jPButtonSalvar" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -123,6 +123,7 @@
         <Property name="toolTipText" type="java.lang.String" value="Descri&#xe7;&#xe3;o da unidade"/>
       </Properties>
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFDescricaoFocusGained"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFDescricaoKeyPressed"/>
       </Events>
     </Component>
@@ -142,6 +143,7 @@
         <Property name="toolTipText" type="java.lang.String" value="Sigla da unidade"/>
       </Properties>
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFSiglaFocusGained"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFSiglaKeyPressed"/>
       </Events>
     </Component>
