@@ -130,6 +130,9 @@ public class UnidadesView extends javax.swing.JPanel {
         jPButtonExcluir.setBackground(new java.awt.Color(79, 195, 247));
         jPButtonExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPButtonExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPButtonExcluirMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPButtonExcluirMouseEntered(evt);
             }
@@ -291,15 +294,28 @@ public class UnidadesView extends javax.swing.JPanel {
     }//GEN-LAST:event_jPButtonNovoMouseClicked
 
     private void jPButtonEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonEditarMouseClicked
-        Map<String, Object> unidadeSelecionada = this.tabela.getSelected();
-        if (unidadeSelecionada != null) {
-            try {
+        try {
+            Map<String, Object> unidadeSelecionada = this.tabela.getSelected();
+            if (unidadeSelecionada != null) {
                 App.PRINCIPAL_VIEW.mostraConteudo(new UnidadeCadastroView((Long) unidadeSelecionada.get("ID")));
-            } catch (Exception e) {
-                enviarMensagemErro(e.getMessage());
             }
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
         }
     }//GEN-LAST:event_jPButtonEditarMouseClicked
+
+    private void jPButtonExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonExcluirMouseClicked
+        try {
+            Map<String, Object> unidadeSelecionada = this.tabela.getSelected();
+            if (unidadeSelecionada != null
+                    && ConfirmDialog.confirm(App.PRINCIPAL_VIEW, "Exclusão",
+                            "<html>Deseja excluir a unidade selecionada?")) {
+                enviarMensagemErro("Excluído!");
+            }
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
+    }//GEN-LAST:event_jPButtonExcluirMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

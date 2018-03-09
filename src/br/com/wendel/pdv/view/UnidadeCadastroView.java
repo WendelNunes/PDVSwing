@@ -62,6 +62,8 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
         jPButtonCancelar = new javax.swing.JPanel();
         jLButtonCancelar = new javax.swing.JLabel();
         jLIconButtonCancelar = new javax.swing.JLabel();
+        jLSigla1 = new javax.swing.JLabel();
+        jLSigla2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setFocusTraversalPolicy(new TraversalPolicy(asList(this.jTFSigla, this.jTFDescricao, this.jPButtonSalvar, this.jPButtonCancelar)));
@@ -224,6 +226,14 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
             .addComponent(jLIconButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jLSigla1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLSigla1.setForeground(new java.awt.Color(255, 0, 0));
+        jLSigla1.setText("*");
+
+        jLSigla2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLSigla2.setForeground(new java.awt.Color(255, 0, 0));
+        jLSigla2.setText("*");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -234,13 +244,22 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTFSigla, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTFDescricao)
-                    .addComponent(jLDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLSigla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLSigla)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLSigla1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLDescricao)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLSigla2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -248,11 +267,15 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPTopo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLSigla)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLSigla)
+                    .addComponent(jLSigla1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTFSigla, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLDescricao)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLDescricao)
+                    .addComponent(jLSigla2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTFDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -381,6 +404,8 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
     private javax.swing.JLabel jLIconButtonCancelar;
     private javax.swing.JLabel jLIconButtonSalvar;
     private javax.swing.JLabel jLSigla;
+    private javax.swing.JLabel jLSigla1;
+    private javax.swing.JLabel jLSigla2;
     private javax.swing.JLabel jLTitulo;
     private javax.swing.JPanel jPButtonCancelar;
     private javax.swing.JPanel jPButtonSalvar;
