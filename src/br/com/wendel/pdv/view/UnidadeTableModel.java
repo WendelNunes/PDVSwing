@@ -62,8 +62,13 @@ public class UnidadeTableModel extends AbstractTableModel implements TableModelC
 
     @Override
     public void setLista(List<Map<String, Object>> lista) {
-        fireTableDataChanged();
         this.lista = lista;
+        fireTableDataChanged();
+    }
+
+    public void remove(Map<String, Object> item) {
+        this.lista.remove(item);
+        fireTableDataChanged();
     }
 
     @Override

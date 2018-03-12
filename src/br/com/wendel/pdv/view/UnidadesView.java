@@ -18,7 +18,7 @@ import javax.swing.SwingUtilities;
  * @author INLOC01
  */
 public class UnidadesView extends javax.swing.JPanel {
-
+    
     private final UnidadesViewController unidadesViewController;
     private final UnidadeTableModel unidadeTableModel;
     private final JTableCustom<Map<String, Object>> tabela;
@@ -34,14 +34,14 @@ public class UnidadesView extends javax.swing.JPanel {
         this.tabela = new JTableCustom<>(this.unidadeTableModel);
         initComponents();
     }
-
+    
     public void carregaTela() throws Exception {
         this.jPButtonNovo.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonEditar.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonExcluir.setBackground(Cores.COR_BOTAO_MENU);
         this.atualizaTabela();
     }
-
+    
     public void atualizaTabela() throws Exception {
         this.unidadesViewController.atualizaLista();
         this.unidadeTableModel.setLista(this.unidadesViewController.getList());
@@ -310,7 +310,8 @@ public class UnidadesView extends javax.swing.JPanel {
             if (unidadeSelecionada != null
                     && ConfirmDialog.confirm(App.PRINCIPAL_VIEW, "Exclusão",
                             "<html>Deseja excluir a unidade selecionada?")) {
-                enviarMensagemErro("Excluído!");
+                this.unidadesViewController.delete((Long) unidadeSelecionada.get("ID"));
+                this.carregaTela();
             }
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());

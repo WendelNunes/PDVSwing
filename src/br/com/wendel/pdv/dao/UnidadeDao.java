@@ -50,6 +50,14 @@ public class UnidadeDao {
         }
     }
 
+    public void delete(Long id) throws Exception {
+        try (PreparedStatement ps = this.connection.prepareStatement("DELETE FROM unidade WHERE id = ?")) {
+            int index = 0;
+            ps.setLong(++index, id);
+            ps.executeUpdate();
+        }
+    }
+
     public List<Map<String, Object>> listView() throws Exception {
         List<Map<String, Object>> list = new ArrayList<>();
         try (PreparedStatement ps = this.connection.prepareStatement("SELECT id, descricao, sigla FROM unidade")) {

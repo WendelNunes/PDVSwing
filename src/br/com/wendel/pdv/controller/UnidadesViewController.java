@@ -6,7 +6,7 @@
 package br.com.wendel.pdv.controller;
 
 import br.com.wendel.pdv.dao.UnidadeDao;
-import br.com.wendel.pdv.util.Conexao;
+import static br.com.wendel.pdv.util.Conexao.criarConexao;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +24,28 @@ public class UnidadesViewController {
     }
 
     public final void atualizaLista() throws Exception {
-        try (Connection connection = Conexao.criarConexao()) {
+        try (Connection connection = criarConexao()) {
             this.list = new UnidadeDao(connection).listView();
+        }
+    }
+
+    public void delete(Long id) throws Exception {
+        Connection connection = null;
+        try {
+            connection = criarConexao();
+            connection.setAutoCommit(false);
+            new UnidadeDao(connection).delete(id);
+            connection.commit();
+        } catch (Exception e) {
+            if (connection != null) {
+                connection.rollback();
+            }
+            throw e;
+        } finally {
+            if (connection != null) {
+                connection.setAutoCommit(true);
+                connection.close();
+            }
         }
     }
 
