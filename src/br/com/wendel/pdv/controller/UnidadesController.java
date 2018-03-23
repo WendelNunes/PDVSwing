@@ -16,12 +16,9 @@ import java.util.Map;
  *
  * @author INLOC01
  */
-public class UnidadesViewController {
+public class UnidadesController {
 
     List<Map<String, Object>> list = new ArrayList<>();
-
-    public UnidadesViewController() throws Exception {
-    }
 
     public final void atualizaLista() throws Exception {
         try (Connection connection = criarConexao()) {

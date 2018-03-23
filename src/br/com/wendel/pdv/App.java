@@ -15,7 +15,7 @@ import javax.swing.UIManager;
  * @author INLOC01
  */
 public class App {
-    
+
     public static PrincipalView PRINCIPAL_VIEW;
 
     /**

@@ -5,7 +5,7 @@
  */
 package br.com.wendel.pdv.view;
 
-import br.com.wendel.pdv.controller.UnidadesViewController;
+import br.com.wendel.pdv.controller.UnidadesController;
 import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
@@ -19,7 +19,7 @@ import javax.swing.SwingUtilities;
  */
 public class UnidadesView extends javax.swing.JPanel {
     
-    private final UnidadesViewController unidadesViewController;
+    private final UnidadesController unidadesViewController;
     private final UnidadeTableModel unidadeTableModel;
     private final JTableCustom<Map<String, Object>> tabela;
 
@@ -29,7 +29,7 @@ public class UnidadesView extends javax.swing.JPanel {
      * @throws java.lang.Exception
      */
     public UnidadesView() throws Exception {
-        this.unidadesViewController = new UnidadesViewController();
+        this.unidadesViewController = new UnidadesController();
         this.unidadeTableModel = new UnidadeTableModel();
         this.tabela = new JTableCustom<>(this.unidadeTableModel);
         initComponents();

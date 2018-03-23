@@ -6,11 +6,16 @@
 package br.com.wendel.pdv.view;
 
 import br.com.wendel.pdv.App;
+import br.com.wendel.pdv.controller.LoginController;
+import br.com.wendel.pdv.util.BCrypt;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
+import br.com.wendel.pdv.util.Sessao;
+import br.com.wendel.pdv.util.TraversalPolicy;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
+import static java.util.Arrays.asList;
 import javax.swing.BorderFactory;
-import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
 /**
@@ -19,10 +24,13 @@ import javax.swing.SwingUtilities;
  */
 public class LoginView extends javax.swing.JFrame {
 
+    private final LoginController loginController;
+
     /**
      * Creates new form LoginView
      */
     public LoginView() {
+        this.loginController = new LoginController();
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -47,7 +55,9 @@ public class LoginView extends javax.swing.JFrame {
         jPBEntrar = new javax.swing.JPanel();
         jLButtonEntrar = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFocusTraversalPolicy(new TraversalPolicy(asList(this.jTFUsuario, this.jPFSenha, this.jPBEntrar)));
+        setFocusTraversalPolicyProvider(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -100,6 +110,11 @@ public class LoginView extends javax.swing.JFrame {
         jLSenha.setText("Senha");
 
         jPFSenha.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jPFSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPFSenhaKeyPressed(evt);
+            }
+        });
 
         jPBEntrar.setBackground(new java.awt.Color(0, 123, 255));
         jPBEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -262,11 +277,23 @@ public class LoginView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPBEntrarKeyPressed
 
+    private void jPFSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPFSenhaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jPBEntrar.requestFocusInWindow();
+            });
+        }
+    }//GEN-LAST:event_jPFSenhaKeyPressed
+
     private void acaoEntrar() {
         try {
-            PrincipalView principalView = new PrincipalView();
-            App.PRINCIPAL_VIEW = principalView;
-            principalView.setVisible(true);
+            System.out.println(BCrypt.hashpw(Arrays.toString(this.jPFSenha.getPassword()), BCrypt.gensalt()));
+            if (this.loginController.acaoEntrar(this.jTFUsuario.getText(), Arrays.toString(this.jPFSenha.getPassword()))) {
+                PrincipalView principalView = new PrincipalView();
+                Sessao.USUARIO = this.loginController.getUsuario();
+                App.PRINCIPAL_VIEW = principalView;
+                principalView.setVisible(true);
+            }
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
