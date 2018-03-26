@@ -55,7 +55,7 @@ public class LoginView extends javax.swing.JFrame {
         jPBEntrar = new javax.swing.JPanel();
         jLButtonEntrar = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setFocusTraversalPolicy(new TraversalPolicy(asList(this.jTFUsuario, this.jPFSenha, this.jPBEntrar)));
         setFocusTraversalPolicyProvider(true);
         setResizable(false);
@@ -287,12 +287,12 @@ public class LoginView extends javax.swing.JFrame {
 
     private void acaoEntrar() {
         try {
-            System.out.println(BCrypt.hashpw(Arrays.toString(this.jPFSenha.getPassword()), BCrypt.gensalt()));
             if (this.loginController.acaoEntrar(this.jTFUsuario.getText(), Arrays.toString(this.jPFSenha.getPassword()))) {
                 PrincipalView principalView = new PrincipalView();
                 Sessao.USUARIO = this.loginController.getUsuario();
                 App.PRINCIPAL_VIEW = principalView;
                 principalView.setVisible(true);
+                this.dispose();
             }
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
