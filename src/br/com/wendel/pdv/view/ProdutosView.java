@@ -11,6 +11,7 @@ import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
 import java.awt.event.KeyEvent;
 import java.util.Map;
+import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
@@ -35,13 +36,16 @@ public class ProdutosView extends javax.swing.JPanel {
     }
 
     public void carregaTela() throws Exception {
-        this.jPButtonNovo.setBackground(Cores.COR_BOTAO_MENU);
-        this.jPButtonEditar.setBackground(Cores.COR_BOTAO_MENU);
-        this.jPButtonExcluir.setBackground(Cores.COR_BOTAO_MENU);
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonNovo.setBackground(Cores.COR_BOTAO_MENU);
+            this.jPButtonEditar.setBackground(Cores.COR_BOTAO_MENU);
+            this.jPButtonExcluir.setBackground(Cores.COR_BOTAO_MENU);
+            this.jTFCodigo.requestFocusInWindow();
+        });
     }
 
     public void atualizaTabela() throws Exception {
-        this.produtosViewController.pesquisar(TOOL_TIP_TEXT_KEY, TOOL_TIP_TEXT_KEY);
+        this.produtosViewController.pesquisar(this.jTFCodigo.getText(), this.jTFDescricao.getText());
         this.produtoTableModel.setLista(this.produtosViewController.getList());
     }
 
@@ -70,6 +74,9 @@ public class ProdutosView extends javax.swing.JPanel {
         jLCodigo = new javax.swing.JLabel();
         jTFDescricao = new javax.swing.JTextField();
         jLDescricao = new javax.swing.JLabel();
+        jPButtonPesquisar = new javax.swing.JPanel();
+        jLButtonPesquisar = new javax.swing.JLabel();
+        jLIconButtonPesquisar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -249,6 +256,58 @@ public class ProdutosView extends javax.swing.JPanel {
         jLDescricao.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLDescricao.setText("Descrição");
 
+        jPButtonPesquisar.setBackground(new java.awt.Color(0, 123, 255));
+        jPButtonPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPButtonPesquisar.setPreferredSize(new java.awt.Dimension(106, 35));
+        jPButtonPesquisar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPButtonPesquisarFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPButtonPesquisarFocusLost(evt);
+            }
+        });
+        jPButtonPesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPButtonPesquisarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPButtonPesquisarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPButtonPesquisarMouseExited(evt);
+            }
+        });
+        jPButtonPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPButtonPesquisarKeyPressed(evt);
+            }
+        });
+
+        jLButtonPesquisar.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLButtonPesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        jLButtonPesquisar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLButtonPesquisar.setText("Pesquisar");
+
+        jLIconButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_save.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPButtonPesquisarLayout = new javax.swing.GroupLayout(jPButtonPesquisar);
+        jPButtonPesquisar.setLayout(jPButtonPesquisarLayout);
+        jPButtonPesquisarLayout.setHorizontalGroup(
+            jPButtonPesquisarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPButtonPesquisarLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLIconButtonPesquisar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLButtonPesquisar)
+                .addGap(10, 10, 10))
+        );
+        jPButtonPesquisarLayout.setVerticalGroup(
+            jPButtonPesquisarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLButtonPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+            .addComponent(jLIconButtonPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -259,15 +318,15 @@ public class ProdutosView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSPProdutos)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLCodigo)
-                            .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTFCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                            .addComponent(jLCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLDescricao)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jTFDescricao))))
+                            .addComponent(jTFDescricao)
+                            .addComponent(jLDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -283,7 +342,8 @@ public class ProdutosView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLDescricao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTFDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTFDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSPProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                 .addContainerGap())
@@ -340,8 +400,8 @@ public class ProdutosView extends javax.swing.JPanel {
 
     private void jPButtonEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonEditarMouseClicked
         try {
-            Map<String, Object> unidadeSelecionada = this.tabela.getSelected();
-            if (unidadeSelecionada != null) {
+            Map<String, Object> produtoSelecionado = this.tabela.getSelected();
+            if (produtoSelecionado != null) {
 //                App.PRINCIPAL_VIEW.mostraConteudo(new UnidadeCadastroView((Long) unidadeSelecionada.get("ID")));
             }
         } catch (Exception e) {
@@ -376,27 +436,78 @@ public class ProdutosView extends javax.swing.JPanel {
     }//GEN-LAST:event_jTFCodigoKeyPressed
 
     private void jTFDescricaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFDescricaoFocusGained
-        // TODO add your handling code here:
+        SwingUtilities.invokeLater(() -> {
+            this.jTFDescricao.selectAll();
+        });
     }//GEN-LAST:event_jTFDescricaoFocusGained
 
     private void jTFDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescricaoKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jPButtonPesquisar.requestFocusInWindow();
+            });
+        }
     }//GEN-LAST:event_jTFDescricaoKeyPressed
 
+    private void jPButtonPesquisarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonPesquisarFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonPesquisar.setBorder(BorderFactory.createDashedBorder(null, 1, 5, 5, false));
+        });
+    }//GEN-LAST:event_jPButtonPesquisarFocusGained
+
+    private void jPButtonPesquisarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonPesquisarFocusLost
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonPesquisar.setBorder(null);
+        });
+    }//GEN-LAST:event_jPButtonPesquisarFocusLost
+
+    private void jPButtonPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonPesquisarMouseClicked
+        this.acaoPesquisar();
+    }//GEN-LAST:event_jPButtonPesquisarMouseClicked
+
+    private void jPButtonPesquisarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonPesquisarMouseEntered
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonPesquisar.setBackground(Cores.COR_BOTAO_SALVAR_ENTERED);
+        });
+    }//GEN-LAST:event_jPButtonPesquisarMouseEntered
+
+    private void jPButtonPesquisarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonPesquisarMouseExited
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonPesquisar.setBackground(Cores.COR_BOTAO_SALVAR);
+        });
+    }//GEN-LAST:event_jPButtonPesquisarMouseExited
+
+    private void jPButtonPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonPesquisarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            this.acaoPesquisar();
+        }
+    }//GEN-LAST:event_jPButtonPesquisarKeyPressed
+
+    public void acaoPesquisar() {
+        try {
+            this.atualizaTabela();
+            this.jTFCodigo.requestFocusInWindow();
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLButtonEditar;
     private javax.swing.JLabel jLButtonExcluir;
     private javax.swing.JLabel jLButtonNovo;
+    private javax.swing.JLabel jLButtonPesquisar;
     private javax.swing.JLabel jLCodigo;
     private javax.swing.JLabel jLDescricao;
     private javax.swing.JLabel jLIconButtonEditar;
     private javax.swing.JLabel jLIconButtonExcluir;
     private javax.swing.JLabel jLIconButtonNovo;
+    private javax.swing.JLabel jLIconButtonPesquisar;
     private javax.swing.JLabel jLTitulo;
     private javax.swing.JPanel jPButtonEditar;
     private javax.swing.JPanel jPButtonExcluir;
     private javax.swing.JPanel jPButtonNovo;
+    private javax.swing.JPanel jPButtonPesquisar;
     private javax.swing.JPanel jPTopo;
     private javax.swing.JScrollPane jSPProdutos;
     private javax.swing.JTextField jTFCodigo;
