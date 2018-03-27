@@ -84,7 +84,8 @@ public class ProdutoDao {
         query.append("   SELECT p.id,\n");
         query.append("          p.codigo,\n");
         query.append("          p.descricao,\n");
-        query.append("          u.sigla\n");
+        query.append("          u.sigla,\n");
+        query.append("          p.valor\n");
         query.append("     FROM produto p\n");
         query.append("LEFT JOIN unidade u ON u.id = p.id_unidade\n");
         if ((codigo != null && !codigo.isEmpty()) || (descricao != null && !descricao.isEmpty())) {
@@ -111,6 +112,7 @@ public class ProdutoDao {
                     item.put("CODIGO", rs.getString("codigo"));
                     item.put("DESCRICAO", rs.getString("descricao"));
                     item.put("UNIDADE", rs.getString("sigla"));
+                    item.put("VALOR", rs.getBigDecimal("valor"));
                     list.add(item);
                 }
             }
