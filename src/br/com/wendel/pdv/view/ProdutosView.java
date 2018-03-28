@@ -9,7 +9,9 @@ import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.controller.ProdutosController;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
+import br.com.wendel.pdv.util.TraversalPolicy;
 import java.awt.event.KeyEvent;
+import static java.util.Arrays.asList;
 import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
@@ -33,13 +35,16 @@ public class ProdutosView extends javax.swing.JPanel {
         this.produtoTableModel = new ProdutoTableModel();
         this.tabela = new JTableCustom<>(this.produtoTableModel);
         initComponents();
+        SwingUtilities.invokeLater(() -> {
+            this.jTFCodigo.requestFocusInWindow();
+        });
     }
 
     public void carregaTela() throws Exception {
+        this.jPButtonNovo.setBackground(Cores.COR_BOTAO_MENU);
+        this.jPButtonEditar.setBackground(Cores.COR_BOTAO_MENU);
+        this.jPButtonExcluir.setBackground(Cores.COR_BOTAO_MENU);
         SwingUtilities.invokeLater(() -> {
-            this.jPButtonNovo.setBackground(Cores.COR_BOTAO_MENU);
-            this.jPButtonEditar.setBackground(Cores.COR_BOTAO_MENU);
-            this.jPButtonExcluir.setBackground(Cores.COR_BOTAO_MENU);
             this.jTFCodigo.requestFocusInWindow();
         });
     }
@@ -79,6 +84,8 @@ public class ProdutosView extends javax.swing.JPanel {
         jLIconButtonPesquisar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setFocusTraversalPolicy(new TraversalPolicy(asList(this.jTFCodigo, this.jTFDescricao, this.jPButtonPesquisar, this.tabela)));
+        setFocusTraversalPolicyProvider(true);
 
         jPTopo.setBackground(new java.awt.Color(79, 195, 247));
         jPTopo.setPreferredSize(new java.awt.Dimension(85, 35));

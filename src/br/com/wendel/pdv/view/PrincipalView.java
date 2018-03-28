@@ -710,8 +710,8 @@ public class PrincipalView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void mostraTelaUnidades() throws Exception {
-        this.telaUnidades.carregaTela();
         this.ajustaTela(this.jPMenuUnidades, this.telaUnidades);
+        this.telaUnidades.carregaTela();
     }
 
     public final void mostraTelaHome() {
@@ -723,8 +723,8 @@ public class PrincipalView extends javax.swing.JFrame {
     }
 
     public void mostraTelaProdutos() throws Exception {
-        this.telaProdutos.carregaTela();
         this.ajustaTela(this.jPMenuProdutos, this.telaProdutos);
+        this.telaProdutos.carregaTela();
     }
 
     public void mostraTelaAtendimento() {

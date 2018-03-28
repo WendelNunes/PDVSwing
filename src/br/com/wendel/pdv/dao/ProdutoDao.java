@@ -88,22 +88,24 @@ public class ProdutoDao {
         query.append("          p.valor\n");
         query.append("     FROM produto p\n");
         query.append("LEFT JOIN unidade u ON u.id = p.id_unidade\n");
-        if ((codigo != null && !codigo.isEmpty()) || (descricao != null && !descricao.isEmpty())) {
-            query.append("WHERE\n");
-        }
+        StringBuilder filtro = new StringBuilder();
         if (codigo != null && !codigo.isEmpty()) {
-            query.append("AND p.codigo = ?\n");
+            filtro.append("p.codigo = ?\n");
         }
         if (descricao != null && !descricao.isEmpty()) {
-            query.append("AND p.descricao LIKE ?\n");
+            filtro.append(!filtro.toString().isEmpty() ? "AND " : "").append("LOWER(p.descricao) LIKE ?\n");
+        }
+        if (!filtro.toString().isEmpty()) {
+            query.append("WHERE ").append(filtro);
         }
         query.append("ORDER BY descricao");
         try (PreparedStatement ps = this.connection.prepareStatement(query.toString())) {
+            int index = 0;
             if (codigo != null && !codigo.isEmpty()) {
-                ps.setString(1, codigo);
+                ps.setString(++index, codigo);
             }
             if (descricao != null && !descricao.isEmpty()) {
-                ps.setString(2, "%" + descricao + "%");
+                ps.setString(++index, "%" + descricao.toLowerCase() + "%");
             }
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
