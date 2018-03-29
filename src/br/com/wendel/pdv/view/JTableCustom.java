@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -20,6 +21,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.RowSorter;
 import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 
@@ -44,7 +46,8 @@ public class JTableCustom<T> extends JTable {
         this.setSelectionBackground(new Color(140, 219, 254));
         this.getTableHeader().setPreferredSize(new Dimension(WIDTH, 35));
         this.getTableHeader().setDefaultRenderer(new TableHeader(this.getTableHeader().getDefaultRenderer()));
-        this.setDefaultRenderer(Object.class, new TableCell(this.getDefaultRenderer(Object.class)));
+        this.setDefaultRenderer(Object.class, new TableCell());
+        this.setDefaultRenderer(BigDecimal.class, new TableCell());
         this.setRowHeight(25);
         this.setFont(new Font("Segoe UI", 0, 15));
         this.tableModelCustom = tableModelCustom;
@@ -106,26 +109,21 @@ public class JTableCustom<T> extends JTable {
         }
     }
 
-    private class TableCell extends JLabel implements TableCellRenderer {
-
-        private final TableCellRenderer delegate;
-
-        public TableCell(TableCellRenderer delegate) {
-            this.delegate = delegate;
-        }
+    private class TableCell extends DefaultTableCellRenderer {
 
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            JComponent c = (JComponent) this.delegate.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-            c.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(241, 241, 241)));
+            super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            this.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(241, 241, 241)));
+            this.setText(tableModelCustom.format(value, column));
             if (getSelectedRow() != row) {
                 if (row % 2 == 0) {
-                    c.setBackground(new Color(252, 254, 254));
+                    this.setBackground(new Color(252, 254, 254));
                 } else {
-                    c.setBackground(new Color(255, 255, 255));
+                    this.setBackground(new Color(255, 255, 255));
                 }
             }
-            return c;
+            return this;
         }
     }
 

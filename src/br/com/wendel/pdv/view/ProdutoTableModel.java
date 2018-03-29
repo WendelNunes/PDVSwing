@@ -5,6 +5,7 @@
  */
 package br.com.wendel.pdv.view;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +20,11 @@ public class ProdutoTableModel extends AbstractTableModel implements TableModelC
 
     private final String[] columnNames = {"Código", "Descrição", "Unidade", "Valor"};
     private List<Map<String, Object>> lista;
-    private final DecimalFormat formatValorUnitario = new DecimalFormat("#,##0.00");
+    private final DecimalFormat formatValor;
 
     public ProdutoTableModel() {
         this.lista = new ArrayList<>();
+        this.formatValor = new DecimalFormat("#,##0.00");
     }
 
     @Override
@@ -45,7 +47,7 @@ public class ProdutoTableModel extends AbstractTableModel implements TableModelC
             case 2:
                 return this.lista.get(rowIndex).get("UNIDADE");
             case 3:
-                return this.formatValorUnitario.format(this.lista.get(rowIndex).get("VALOR"));
+                return this.lista.get(rowIndex).get("VALOR");
             default:
                 return null;
         }
@@ -58,7 +60,12 @@ public class ProdutoTableModel extends AbstractTableModel implements TableModelC
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        return String.class;
+        switch (columnIndex) {
+            case 3:
+                return BigDecimal.class;
+            default:
+                return String.class;
+        }
     }
 
     @Override
@@ -79,6 +86,16 @@ public class ProdutoTableModel extends AbstractTableModel implements TableModelC
 
     @Override
     public int[] getColumnWidth() {
-        return new int[]{80, 300, 100, 200};
+        return new int[]{30, 500, 30, 100};
+    }
+
+    @Override
+    public String format(Object value, int columnIndex) {
+        switch (columnIndex) {
+            case 3:
+                return value != null ? this.formatValor.format(value) : "";
+            default:
+                return value != null ? value.toString() : "";
+        }
     }
 }

@@ -20,4 +20,6 @@ public interface TableModelCustom<T> extends TableModel {
     public int[] getColumnWidth();
 
     public List<T> getLista();
+
+    public String format(Object value, int columnIndex);
 }

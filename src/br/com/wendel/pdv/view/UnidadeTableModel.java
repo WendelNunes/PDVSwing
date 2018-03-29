@@ -80,4 +80,9 @@ public class UnidadeTableModel extends AbstractTableModel implements TableModelC
     public int[] getColumnWidth() {
         return new int[]{80, 800};
     }
+
+    @Override
+    public String format(Object value, int columnIndex) {
+        return value != null ? value.toString() : "";
+    }
 }

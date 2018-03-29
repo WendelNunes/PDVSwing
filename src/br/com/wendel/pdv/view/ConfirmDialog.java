@@ -7,8 +7,10 @@ package br.com.wendel.pdv.view;
 
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
+import br.com.wendel.pdv.util.TraversalPolicy;
 import java.awt.Frame;
 import java.awt.event.KeyEvent;
+import static java.util.Arrays.asList;
 import javax.swing.BorderFactory;
 import javax.swing.SwingUtilities;
 
@@ -60,6 +62,8 @@ public class ConfirmDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setFocusTraversalPolicy(new TraversalPolicy(asList(this.jPButtonSim, this.jPButtonNao)));
+        setFocusTraversalPolicyProvider(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
