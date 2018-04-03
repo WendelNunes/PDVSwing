@@ -18,7 +18,11 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ProdutoTableModel extends AbstractTableModel implements TableModelCustom<Map<String, Object>> {
 
-    private final String[] columnNames = {"Código", "Descrição", "Unidade", "Valor"};
+    private final String NOME_COLUNA_CODIGO = "Código";
+    private final String NOME_COLUNA_DESCRICAO = "Descrição";
+    private final String NOME_COLUNA_UNIDADE = "Unidade";
+    private final String NOME_COLUNA_VALOR = "Valor";
+    private final String[] columnNames = {NOME_COLUNA_CODIGO, NOME_COLUNA_DESCRICAO, NOME_COLUNA_UNIDADE, NOME_COLUNA_VALOR};
     private List<Map<String, Object>> lista;
     private final DecimalFormat formatValor;
 
@@ -91,11 +95,10 @@ public class ProdutoTableModel extends AbstractTableModel implements TableModelC
 
     @Override
     public String format(Object value, int columnIndex) {
-        switch (columnIndex) {
-            case 3:
-                return value != null ? this.formatValor.format(value) : "";
-            default:
-                return value != null ? value.toString() : "";
+        if (this.getColumnName(columnIndex).equals(NOME_COLUNA_VALOR)) {
+            return value != null ? this.formatValor.format(value) : "";
+        } else {
+            return value != null ? value.toString() : "";
         }
     }
 }

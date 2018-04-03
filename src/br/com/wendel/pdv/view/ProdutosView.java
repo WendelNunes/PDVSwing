@@ -47,6 +47,9 @@ public class ProdutosView extends javax.swing.JPanel {
         SwingUtilities.invokeLater(() -> {
             this.jTFCodigo.requestFocusInWindow();
         });
+        if (tabela.getRowCount() > 0) {
+            this.atualizaTabela();
+        }
     }
 
     public void atualizaTabela() throws Exception {
