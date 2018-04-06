@@ -5,11 +5,20 @@
  */
 package br.com.wendel.pdv.view;
 
+import br.com.wendel.pdv.util.Cores;
+import java.awt.event.KeyEvent;
+import java.util.Map;
+import javax.swing.BorderFactory;
+import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author INLOC01
  */
 public class AtendimentoView extends javax.swing.JPanel {
+
+    private JTableCustom<Map<String, Object>> tabela;
 
     /**
      * Creates new form HomeView
@@ -27,32 +36,282 @@ public class AtendimentoView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jPTopo = new javax.swing.JPanel();
+        jLTitulo = new javax.swing.JLabel();
+        jLCodigo = new javax.swing.JLabel();
+        jTFCodigo = new javax.swing.JTextField();
+        jTFDescricao = new javax.swing.JTextField();
+        jLCodigo1 = new javax.swing.JLabel();
+        jTFQuantidade = new javax.swing.JTextField();
+        jLCodigo2 = new javax.swing.JLabel();
+        jPButtonAdicionar = new javax.swing.JPanel();
+        jLButtonAdicionar = new javax.swing.JLabel();
+        jLIconButtonAdicionar = new javax.swing.JLabel();
+        jSPProdutos = new JScrollPane(this.tabela);
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Atendimento");
+        jPTopo.setBackground(new java.awt.Color(79, 195, 247));
+        jPTopo.setPreferredSize(new java.awt.Dimension(85, 35));
+
+        jLTitulo.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        jLTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        jLTitulo.setText("Atendimento");
+
+        javax.swing.GroupLayout jPTopoLayout = new javax.swing.GroupLayout(jPTopo);
+        jPTopo.setLayout(jPTopoLayout);
+        jPTopoLayout.setHorizontalGroup(
+            jPTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPTopoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLTitulo)
+                .addContainerGap(591, Short.MAX_VALUE))
+        );
+        jPTopoLayout.setVerticalGroup(
+            jPTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        jLCodigo.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLCodigo.setText("Código");
+
+        jTFCodigo.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFCodigo.setToolTipText("Sigla da unidade");
+        jTFCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFCodigoFocusGained(evt);
+            }
+        });
+        jTFCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFCodigoKeyPressed(evt);
+            }
+        });
+
+        jTFDescricao.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFDescricao.setToolTipText("Sigla da unidade");
+        jTFDescricao.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFDescricaoFocusGained(evt);
+            }
+        });
+        jTFDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFDescricaoKeyPressed(evt);
+            }
+        });
+
+        jLCodigo1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLCodigo1.setText("Descrição");
+
+        jTFQuantidade.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFQuantidade.setToolTipText("Sigla da unidade");
+        jTFQuantidade.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFQuantidadeFocusGained(evt);
+            }
+        });
+        jTFQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFQuantidadeKeyPressed(evt);
+            }
+        });
+
+        jLCodigo2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLCodigo2.setText("Quantidade");
+
+        jPButtonAdicionar.setBackground(new java.awt.Color(0, 123, 255));
+        jPButtonAdicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPButtonAdicionar.setPreferredSize(new java.awt.Dimension(106, 35));
+        jPButtonAdicionar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPButtonAdicionarFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPButtonAdicionarFocusLost(evt);
+            }
+        });
+        jPButtonAdicionar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPButtonAdicionarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPButtonAdicionarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPButtonAdicionarMouseExited(evt);
+            }
+        });
+        jPButtonAdicionar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPButtonAdicionarKeyPressed(evt);
+            }
+        });
+
+        jLButtonAdicionar.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLButtonAdicionar.setForeground(new java.awt.Color(255, 255, 255));
+        jLButtonAdicionar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLButtonAdicionar.setText("Adicionar");
+
+        jLIconButtonAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_save.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPButtonAdicionarLayout = new javax.swing.GroupLayout(jPButtonAdicionar);
+        jPButtonAdicionar.setLayout(jPButtonAdicionarLayout);
+        jPButtonAdicionarLayout.setHorizontalGroup(
+            jPButtonAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPButtonAdicionarLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLIconButtonAdicionar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLButtonAdicionar)
+                .addContainerGap())
+        );
+        jPButtonAdicionarLayout.setVerticalGroup(
+            jPButtonAdicionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLButtonAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+            .addComponent(jLIconButtonAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jSPProdutos.setBackground(new java.awt.Color(255, 255, 255));
+        jSPProdutos.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jSPProdutos.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(405, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTFCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                            .addComponent(jLCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLCodigo1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jTFDescricao))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLCodigo2)
+                                .addGap(52, 52, 52))
+                            .addComponent(jTFQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPButtonAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSPProdutos))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(299, Short.MAX_VALUE))
+                .addComponent(jPTopo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLCodigo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLCodigo1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTFDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLCodigo2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTFQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPButtonAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSPProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addGap(47, 47, 47))
         );
+
+        jSPProdutos.getViewport().setBackground(new java.awt.Color(255, 255, 255));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTFCodigoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFCodigoFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jTFCodigo.selectAll();
+        });
+    }//GEN-LAST:event_jTFCodigoFocusGained
+
+    private void jTFCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jTFDescricao.requestFocusInWindow();
+            });
+        }
+    }//GEN-LAST:event_jTFCodigoKeyPressed
+
+    private void jTFDescricaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFDescricaoFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFDescricaoFocusGained
+
+    private void jTFDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescricaoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFDescricaoKeyPressed
+
+    private void jTFQuantidadeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFQuantidadeFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFQuantidadeFocusGained
+
+    private void jTFQuantidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFQuantidadeKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFQuantidadeKeyPressed
+
+    private void jPButtonAdicionarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonAdicionarFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonAdicionar.setBorder(BorderFactory.createDashedBorder(null, 1, 5, 5, false));
+        });
+    }//GEN-LAST:event_jPButtonAdicionarFocusGained
+
+    private void jPButtonAdicionarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonAdicionarFocusLost
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonAdicionar.setBorder(null);
+        });
+    }//GEN-LAST:event_jPButtonAdicionarFocusLost
+
+    private void jPButtonAdicionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonAdicionarMouseClicked
+        this.acaoAdicionarItem();
+    }//GEN-LAST:event_jPButtonAdicionarMouseClicked
+
+    private void jPButtonAdicionarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonAdicionarMouseEntered
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonAdicionar.setBackground(Cores.COR_BOTAO_SALVAR_ENTERED);
+        });
+    }//GEN-LAST:event_jPButtonAdicionarMouseEntered
+
+    private void jPButtonAdicionarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonAdicionarMouseExited
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonAdicionar.setBackground(Cores.COR_BOTAO_SALVAR);
+        });
+    }//GEN-LAST:event_jPButtonAdicionarMouseExited
+
+    private void jPButtonAdicionarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonAdicionarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            this.acaoAdicionarItem();
+        }
+    }//GEN-LAST:event_jPButtonAdicionarKeyPressed
+
+    private void acaoAdicionarItem() {
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLButtonAdicionar;
+    private javax.swing.JLabel jLCodigo;
+    private javax.swing.JLabel jLCodigo1;
+    private javax.swing.JLabel jLCodigo2;
+    private javax.swing.JLabel jLIconButtonAdicionar;
+    private javax.swing.JLabel jLTitulo;
+    private javax.swing.JPanel jPButtonAdicionar;
+    private javax.swing.JPanel jPTopo;
+    private javax.swing.JScrollPane jSPProdutos;
+    private javax.swing.JTextField jTFCodigo;
+    private javax.swing.JTextField jTFDescricao;
+    private javax.swing.JTextField jTFQuantidade;
     // End of variables declaration//GEN-END:variables
 }
