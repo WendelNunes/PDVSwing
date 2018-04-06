@@ -21,5 +21,5 @@ public interface TableModelCustom<T> extends TableModel {
 
     public List<T> getLista();
 
-    public String format(Object value, int columnIndex);
+    public String format(Object value, String columnName);
 }

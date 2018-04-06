@@ -5,7 +5,6 @@
  */
 package br.com.wendel.pdv.view;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +52,7 @@ public class ProdutoTableModel extends AbstractTableModel implements TableModelC
             case 3:
                 return this.lista.get(rowIndex).get("VALOR");
             default:
-                return null;
+                throw new IllegalArgumentException("Coluna inválida");
         }
     }
 
@@ -64,12 +63,10 @@ public class ProdutoTableModel extends AbstractTableModel implements TableModelC
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        switch (columnIndex) {
-            case 3:
-                return BigDecimal.class;
-            default:
-                return String.class;
+        if (this.lista.isEmpty()) {
+            return Object.class;
         }
+        return getValueAt(0, columnIndex).getClass();
     }
 
     @Override
@@ -94,8 +91,8 @@ public class ProdutoTableModel extends AbstractTableModel implements TableModelC
     }
 
     @Override
-    public String format(Object value, int columnIndex) {
-        if (this.getColumnName(columnIndex).equals(NOME_COLUNA_VALOR)) {
+    public String format(Object value, String columnName) {
+        if (columnName.equals(NOME_COLUNA_VALOR)) {
             return value != null ? this.formatValor.format(value) : "";
         } else {
             return value != null ? value.toString() : "";

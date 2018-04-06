@@ -82,7 +82,7 @@ public class UnidadeTableModel extends AbstractTableModel implements TableModelC
     }
 
     @Override
-    public String format(Object value, int columnIndex) {
+    public String format(Object value, String columnName) {
         return value != null ? value.toString() : "";
     }
 }

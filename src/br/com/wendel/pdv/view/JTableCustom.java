@@ -114,7 +114,7 @@ public class JTableCustom<T> extends JTable {
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             this.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(241, 241, 241)));
-            this.setText(tableModelCustom.format(value, column));
+            this.setText(tableModelCustom.format(value, table.getColumnName(column)));
             if (getSelectedRow() != row) {
                 if (row % 2 == 0) {
                     this.setBackground(new Color(252, 254, 254));
