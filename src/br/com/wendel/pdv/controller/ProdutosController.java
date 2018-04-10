@@ -22,7 +22,7 @@ public class ProdutosController {
 
     public void pesquisar(String codigo, String descricao) throws Exception {
         try (Connection connection = criarConexao()) {
-            this.list = new ProdutoDao(connection).listView(codigo, descricao);
+            this.list = new ProdutoDao(connection).listarTela(codigo, descricao);
         }
     }
 
@@ -31,7 +31,7 @@ public class ProdutosController {
         try {
             connection = criarConexao();
             connection.setAutoCommit(false);
-            new ProdutoDao(connection).delete(id);
+            new ProdutoDao(connection).deletar(id);
             connection.commit();
         } catch (Exception e) {
             if (connection != null) {

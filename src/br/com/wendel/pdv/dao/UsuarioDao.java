@@ -26,7 +26,7 @@ public class UsuarioDao {
         this.connection = connection;
     }
 
-    public Usuario save(Usuario usuario) throws Exception {
+    public Usuario salvar(Usuario usuario) throws Exception {
         try (PreparedStatement ps = this.connection.prepareStatement("INSERT INTO usuario (codigo, senha) VALUES (?, ?) RETURNING id")) {
             int index = 0;
             ps.setString(++index, usuario.getCodigo());
@@ -40,7 +40,7 @@ public class UsuarioDao {
         return usuario;
     }
 
-    public void update(Usuario usuario) throws Exception {
+    public void atualizar(Usuario usuario) throws Exception {
         try (PreparedStatement ps = this.connection.prepareStatement("UPDATE usuario SET codigo = ?, senha = ? WHERE id = ?")) {
             int index = 0;
             ps.setString(++index, usuario.getCodigo());
@@ -50,7 +50,7 @@ public class UsuarioDao {
         }
     }
 
-    public void delete(Long id) throws Exception {
+    public void deletar(Long id) throws Exception {
         try (PreparedStatement ps = this.connection.prepareStatement("DELETE FROM usuario WHERE id = ?")) {
             int index = 0;
             ps.setLong(++index, id);
@@ -58,7 +58,7 @@ public class UsuarioDao {
         }
     }
 
-    public List<Map<String, Object>> listView() throws Exception {
+    public List<Map<String, Object>> listarTela() throws Exception {
         List<Map<String, Object>> list = new ArrayList<>();
         try (PreparedStatement ps = this.connection.prepareStatement("SELECT id, codigo, senha FROM usuario")) {
             try (ResultSet rs = ps.executeQuery()) {
@@ -74,7 +74,7 @@ public class UsuarioDao {
         return list;
     }
 
-    public Usuario findById(Long id) throws Exception {
+    public Usuario procurarPorId(Long id) throws Exception {
         try (PreparedStatement ps = this.connection.prepareStatement("SELECT id, codigo, senha FROM usuario WHERE id = ?")) {
             ps.setLong(1, id);
             try (ResultSet rs = ps.executeQuery()) {
@@ -86,7 +86,7 @@ public class UsuarioDao {
         return null;
     }
 
-    public Usuario findByCodigo(String codigo) throws Exception {
+    public Usuario procurarPorCodigo(String codigo) throws Exception {
         try (PreparedStatement ps = this.connection.prepareStatement("SELECT id, codigo, senha FROM usuario WHERE codigo = ?")) {
             ps.setString(1, codigo);
             try (ResultSet rs = ps.executeQuery()) {

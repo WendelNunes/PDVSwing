@@ -22,7 +22,7 @@ public class LoginController {
 
     public boolean acaoEntrar(String codigo, String senha) throws Exception {
         try (Connection connection = criarConexao()) {
-            this.usuario = new UsuarioDao(connection).findByCodigo(codigo);
+            this.usuario = new UsuarioDao(connection).procurarPorCodigo(codigo);
             if (this.usuario != null && checkpw(senha, this.usuario.getSenha())) {
                 return true;
             }

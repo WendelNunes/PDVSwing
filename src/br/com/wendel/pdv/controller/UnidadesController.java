@@ -22,7 +22,7 @@ public class UnidadesController {
 
     public final void atualizaLista() throws Exception {
         try (Connection connection = criarConexao()) {
-            this.list = new UnidadeDao(connection).listView();
+            this.list = new UnidadeDao(connection).listarTela();
         }
     }
 
@@ -31,7 +31,7 @@ public class UnidadesController {
         try {
             connection = criarConexao();
             connection.setAutoCommit(false);
-            new UnidadeDao(connection).delete(id);
+            new UnidadeDao(connection).deletar(id);
             connection.commit();
         } catch (Exception e) {
             if (connection != null) {

@@ -26,7 +26,7 @@ public class ProdutoDao {
         this.connection = connection;
     }
 
-    public Produto save(Produto produto) throws Exception {
+    public Produto salvar(Produto produto) throws Exception {
         try (PreparedStatement ps = this.connection.prepareStatement("INSERT INTO produto (codigo, descricao, id_unidade, valor) VALUES (?, ?, ?, ?) RETURNING id")) {
             int index = 0;
             ps.setString(++index, produto.getCodigo());
@@ -42,7 +42,7 @@ public class ProdutoDao {
         return produto;
     }
 
-    public void update(Produto produto) throws Exception {
+    public void atualizar(Produto produto) throws Exception {
         try (PreparedStatement ps = this.connection.prepareStatement("UPDATE produto SET codigo = ?, descricao = ?, id_unidade = ?, valor = ? WHERE id = ?")) {
             int index = 0;
             ps.setString(++index, produto.getCodigo());
@@ -54,7 +54,7 @@ public class ProdutoDao {
         }
     }
 
-    public void delete(Long id) throws Exception {
+    public void deletar(Long id) throws Exception {
         try (PreparedStatement ps = this.connection.prepareStatement("DELETE FROM produto WHERE id = ?")) {
             int index = 0;
             ps.setLong(++index, id);
@@ -62,7 +62,7 @@ public class ProdutoDao {
         }
     }
 
-    public Produto findById(Long id) throws Exception {
+    public Produto procurarPorId(Long id) throws Exception {
         try (PreparedStatement ps = this.connection.prepareStatement("SELECT id, codigo, descricao, id_unidade, valor FROM produto WHERE id = ?")) {
             ps.setLong(1, id);
             try (ResultSet rs = ps.executeQuery()) {
@@ -70,7 +70,7 @@ public class ProdutoDao {
                     return new Produto(rs.getLong("id"),
                             rs.getString("codigo"),
                             rs.getString("descricao"),
-                            new UnidadeDao(this.connection).findById(rs.getLong("id_unidade")),
+                            new UnidadeDao(this.connection).procurarPorId(rs.getLong("id_unidade")),
                             rs.getBigDecimal("valor"));
                 }
             }
@@ -78,7 +78,7 @@ public class ProdutoDao {
         return null;
     }
 
-    public List<Map<String, Object>> listView(String codigo, String descricao) throws Exception {
+    public List<Map<String, Object>> listarTela(String codigo, String descricao) throws Exception {
         List<Map<String, Object>> list = new ArrayList<>();
         StringBuilder query = new StringBuilder();
         query.append("   SELECT p.id,\n");

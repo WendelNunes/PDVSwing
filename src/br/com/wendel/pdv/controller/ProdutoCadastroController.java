@@ -30,9 +30,9 @@ public class ProdutoCadastroController {
     public ProdutoCadastroController(Long id) throws Exception {
         try (Connection connection = criarConexao()) {
             if (id != null) {
-                this.produto = new ProdutoDao(connection).findById(id);
+                this.produto = new ProdutoDao(connection).procurarPorId(id);
             }
-            this.listaUnidades = new UnidadeDao(connection).listView();
+            this.listaUnidades = new UnidadeDao(connection).listarTela();
         }
     }
 
@@ -70,9 +70,9 @@ public class ProdutoCadastroController {
             this.produto.setUnidade(unidade);
             this.produto.setValor(valor);
             if (insert) {
-                this.produto = produtoDao.save(this.produto);
+                this.produto = produtoDao.salvar(this.produto);
             } else {
-                produtoDao.update(this.produto);
+                produtoDao.atualizar(this.produto);
             }
             connection.commit();
             if (this.produto.getId() == null) {

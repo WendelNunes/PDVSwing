@@ -24,7 +24,7 @@ public class UnidadeCadastroController {
     public UnidadeCadastroController(Long id) throws Exception {
         if (id != null) {
             try (Connection connection = criarConexao()) {
-                this.unidade = new UnidadeDao(connection).findById(id);
+                this.unidade = new UnidadeDao(connection).procurarPorId(id);
             }
         }
     }
@@ -55,9 +55,9 @@ public class UnidadeCadastroController {
             this.unidade.setDescricao(descricao);
             this.unidade.setSigla(sigla);
             if (insert) {
-                this.unidade = unidadeDao.save(this.unidade);
+                this.unidade = unidadeDao.salvar(this.unidade);
             } else {
-                unidadeDao.update(this.unidade);
+                unidadeDao.atualizar(this.unidade);
             }
             connection.commit();
             if (this.unidade.getId() == null) {

@@ -5,7 +5,7 @@
  */
 package br.com.wendel.pdv.dao;
 
-import br.com.wendel.pdv.entity.Unidade;
+import br.com.wendel.pdv.entity.Caixa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,40 +18,40 @@ import java.util.Map;
  *
  * @author INLOC01
  */
-public class UnidadeDao {
+public class CaixaDao {
 
     private final Connection connection;
 
-    public UnidadeDao(Connection connection) {
+    public CaixaDao(Connection connection) {
         this.connection = connection;
     }
 
-    public Unidade salvar(Unidade unidade) throws Exception {
-        try (PreparedStatement ps = this.connection.prepareStatement("INSERT INTO unidade (descricao, sigla) VALUES (?, ?) RETURNING id")) {
+    public Caixa salvar(Caixa caixa) throws Exception {
+        try (PreparedStatement ps = this.connection.prepareStatement("INSERT INTO caixa (codigo, descricao) VALUES (?, ?) RETURNING id")) {
             int index = 0;
-            ps.setString(++index, unidade.getDescricao());
-            ps.setString(++index, unidade.getSigla());
+            ps.setString(++index, caixa.getCodigo());
+            ps.setString(++index, caixa.getDescricao());
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    unidade.setId(rs.getLong("id"));
+                    caixa.setId(rs.getLong("id"));
                 }
             }
         }
-        return unidade;
+        return caixa;
     }
 
-    public void atualizar(Unidade unidade) throws Exception {
-        try (PreparedStatement ps = this.connection.prepareStatement("UPDATE unidade SET descricao = ?, sigla = ? WHERE id = ?")) {
+    public void atualizar(Caixa caixa) throws Exception {
+        try (PreparedStatement ps = this.connection.prepareStatement("UPDATE caixa SET codigo = ?, descricao = ? WHERE id = ?")) {
             int index = 0;
-            ps.setString(++index, unidade.getDescricao());
-            ps.setString(++index, unidade.getSigla());
-            ps.setLong(++index, unidade.getId());
+            ps.setString(++index, caixa.getCodigo());
+            ps.setString(++index, caixa.getDescricao());
+            ps.setLong(++index, caixa.getId());
             ps.executeUpdate();
         }
     }
 
     public void deletar(Long id) throws Exception {
-        try (PreparedStatement ps = this.connection.prepareStatement("DELETE FROM unidade WHERE id = ?")) {
+        try (PreparedStatement ps = this.connection.prepareStatement("DELETE FROM caixa WHERE id = ?")) {
             int index = 0;
             ps.setLong(++index, id);
             ps.executeUpdate();
@@ -60,12 +60,12 @@ public class UnidadeDao {
 
     public List<Map<String, Object>> listarTela() throws Exception {
         List<Map<String, Object>> list = new ArrayList<>();
-        try (PreparedStatement ps = this.connection.prepareStatement("SELECT id, descricao, sigla FROM unidade")) {
+        try (PreparedStatement ps = this.connection.prepareStatement("SELECT id, codigo, descricao FROM caixa")) {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Map<String, Object> item = new HashMap<>();
                     item.put("ID", rs.getLong("id"));
-                    item.put("SIGLA", rs.getString("sigla"));
+                    item.put("CODIGO", rs.getString("codigo"));
                     item.put("DESCRICAO", rs.getString("descricao"));
                     list.add(item);
                 }
@@ -74,12 +74,12 @@ public class UnidadeDao {
         return list;
     }
 
-    public Unidade procurarPorId(Long id) throws Exception {
-        try (PreparedStatement ps = this.connection.prepareStatement("SELECT id, descricao, sigla FROM unidade WHERE id = ?")) {
+    public Caixa procurarPorId(Long id) throws Exception {
+        try (PreparedStatement ps = this.connection.prepareStatement("SELECT id, codigo, descricao FROM caixa WHERE id = ?")) {
             ps.setLong(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return new Unidade(rs.getLong("id"), rs.getString("descricao"), rs.getString("sigla"));
+                    return new Caixa(rs.getLong("id"), rs.getString("codigo"), rs.getString("descricao"));
                 }
             }
         }
