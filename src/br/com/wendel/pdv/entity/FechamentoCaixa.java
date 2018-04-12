@@ -5,6 +5,7 @@
  */
 package br.com.wendel.pdv.entity;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,8 +16,19 @@ import java.util.Objects;
 public class FechamentoCaixa {
 
     private Long id;
+    private Date dataHora;
     private AberturaCaixa aberturaCaixa;
     private List<FechamentoCaixaItem> itens;
+
+    public FechamentoCaixa(Long id, Date dataHora, AberturaCaixa aberturaCaixa, List<FechamentoCaixaItem> itens) {
+        this.id = id;
+        this.dataHora = dataHora;
+        this.aberturaCaixa = aberturaCaixa;
+        this.itens = itens;
+    }
+
+    public FechamentoCaixa() {
+    }
 
     public Long getId() {
         return id;
@@ -24,6 +36,14 @@ public class FechamentoCaixa {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getDataHora() {
+        return dataHora;
+    }
+
+    public void setDataHora(Date dataHora) {
+        this.dataHora = dataHora;
     }
 
     public AberturaCaixa getAberturaCaixa() {

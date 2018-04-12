@@ -32,7 +32,7 @@ public enum FormaPagamento {
         return descricao;
     }
 
-    public FormaPagamento get(Integer id) {
+    public static FormaPagamento get(Integer id) {
         for (FormaPagamento fp : FormaPagamento.values()) {
             if (fp.getId().equals(id)) {
                 return fp;

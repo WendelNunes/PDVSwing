@@ -15,8 +15,19 @@ import java.util.Objects;
 public class FechamentoCaixaItem {
 
     private Long id;
+    private FechamentoCaixa fechamentoCaixa;
     private FormaPagamento formaPagamento;
     private BigDecimal valor;
+
+    public FechamentoCaixaItem(Long id, FechamentoCaixa fechamentoCaixa, FormaPagamento formaPagamento, BigDecimal valor) {
+        this.id = id;
+        this.fechamentoCaixa = fechamentoCaixa;
+        this.formaPagamento = formaPagamento;
+        this.valor = valor;
+    }
+
+    public FechamentoCaixaItem() {
+    }
 
     public Long getId() {
         return id;
@@ -24,6 +35,14 @@ public class FechamentoCaixaItem {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public FechamentoCaixa getFechamentoCaixa() {
+        return fechamentoCaixa;
+    }
+
+    public void setFechamentoCaixa(FechamentoCaixa fechamentoCaixa) {
+        this.fechamentoCaixa = fechamentoCaixa;
     }
 
     public FormaPagamento getFormaPagamento() {

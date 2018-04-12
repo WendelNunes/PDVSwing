@@ -60,8 +60,17 @@ public class AberturaCaixaDao {
     }
 
     public AberturaCaixa procurarCaixaAbertoPorUsuario(Usuario usuario) throws Exception {
-        try (PreparedStatement ps = this.connection.prepareStatement(
-                "SELECT id, data_hora, id_caixa, id_usuario, valor_fundo_caixa FROM aberturaCaixa WHERE id = ?")) {
+        StringBuilder query = new StringBuilder();
+        query.append("   SELECT ac.id,\n");
+        query.append("          ac.data_hora,\n");
+        query.append("          ac.id_caixa,\n");
+        query.append("          ac.id_usuario,\n");
+        query.append("          ac.valor_fundo_caixa\n");
+        query.append("     FROM abertura_caixa ac\n");
+        query.append("LEFT JOIN fechamento_caixa fc ON fc.id_abertura_caixa = ac.id\n");
+        query.append("    WHERE fc.id ISNULL\n");
+        query.append("      AND ac.id_usuario = ?\n");
+        try (PreparedStatement ps = this.connection.prepareStatement(query.toString())) {
             ps.setLong(1, usuario.getId());
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
