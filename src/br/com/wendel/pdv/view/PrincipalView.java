@@ -23,7 +23,7 @@ import javax.swing.SwingUtilities;
  * @author INLOC01
  */
 public class PrincipalView extends javax.swing.JFrame {
-    
+
     private final List<JPanel> listaMenus = new ArrayList<>();
     private JPanel menuSelecionado;
     private final HomeView telaHome;
@@ -57,7 +57,7 @@ public class PrincipalView extends javax.swing.JFrame {
         this.mostraTelaHome();
         this.jPCadastros.setVisible(false);
     }
-    
+
     public void mostraConteudo(JPanel tela) {
         jPConteudo.removeAll();
         javax.swing.GroupLayout jPConteudoLayout = new javax.swing.GroupLayout(jPConteudo);
@@ -73,7 +73,7 @@ public class PrincipalView extends javax.swing.JFrame {
                         .addComponent(tela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
-    
+
     private void setarCorDefaultMenusNaoSelecionados() {
         this.listaMenus.stream().filter(i -> !i.equals(this.menuSelecionado)).forEach(i -> {
             i.setBackground(COR_BOTAO_MENU);
@@ -588,7 +588,7 @@ public class PrincipalView extends javax.swing.JFrame {
             });
         }
     }
-    
+
     private void mouseMenuExited(JPanel menu) {
         if (!menu.equals(this.menuSelecionado)) {
             SwingUtilities.invokeLater(() -> {
@@ -596,7 +596,7 @@ public class PrincipalView extends javax.swing.JFrame {
             });
         }
     }
-    
+
     private void ajustaTela(JPanel menu, JPanel tela) {
         SwingUtilities.invokeLater(() -> {
             menu.setBackground(COR_BOTAO_MENU_SELECIONADO);
@@ -607,7 +607,7 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void menuExpandCollapse(JPanel menu, JLabel icon) {
         SwingUtilities.invokeLater(() -> {
             menu.setVisible(!menu.isVisible());
@@ -615,7 +615,7 @@ public class PrincipalView extends javax.swing.JFrame {
                     + (menu.isVisible() ? "icon_collapse.png" : "icon_expand.png"))));
         });
     }
-    
+
 
     private void jPMenuHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuHomeMouseEntered
         this.mouseMenuEntered(this.jPMenuHome);
@@ -775,24 +775,25 @@ public class PrincipalView extends javax.swing.JFrame {
         this.ajustaTela(this.jPMenuUnidades, this.telaUnidades);
         this.telaUnidades.carregaTela();
     }
-    
+
     public final void mostraTelaHome() {
         this.ajustaTela(this.jPMenuHome, this.telaHome);
     }
-    
+
     public void mostraTelaClientes() {
         this.ajustaTela(this.jPMenuClientes, this.telaClientes);
     }
-    
-    public void mostraTelaCaixas() {
+
+    public void mostraTelaCaixas() throws Exception {
         this.ajustaTela(this.jPMenuCaixas, this.telaCaixas);
+        this.telaCaixas.carregaTela();
     }
-    
+
     public void mostraTelaProdutos() throws Exception {
         this.ajustaTela(this.jPMenuProdutos, this.telaProdutos);
         this.telaProdutos.carregaTela();
     }
-    
+
     public void mostraTelaAtendimento() {
         this.ajustaTela(this.jPMenuAtendimento, this.telaAtendimento);
     }

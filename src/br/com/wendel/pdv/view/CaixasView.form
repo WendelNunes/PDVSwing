@@ -41,7 +41,7 @@
           <Component id="jPTopo" alignment="0" pref="555" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSPUnidades" max="32767" attributes="0"/>
+              <Component id="jSPCaixas" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -51,7 +51,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPTopo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSPUnidades" pref="291" max="32767" attributes="0"/>
+              <Component id="jSPCaixas" pref="291" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -74,7 +74,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLTitulo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="225" max="32767" attributes="0"/>
+                  <EmptySpace pref="246" max="32767" attributes="0"/>
                   <Component id="jPButtonNovo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="jPButtonEditar" min="-2" max="-2" attributes="0"/>
@@ -101,7 +101,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Unidades"/>
+            <Property name="text" type="java.lang.String" value="Caixas"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPButtonNovo">
@@ -271,7 +271,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JScrollPane" name="jSPUnidades">
+    <Container class="javax.swing.JScrollPane" name="jSPCaixas">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -286,7 +286,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jSPUnidades.getViewport().setBackground(new java.awt.Color(255, 255, 255));"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jSPCaixas.getViewport().setBackground(new java.awt.Color(255, 255, 255));"/>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JScrollPane(this.tabela)"/>
       </AuxValues>
 

@@ -5,7 +5,7 @@
  */
 package br.com.wendel.pdv.view;
 
-import br.com.wendel.pdv.controller.UnidadesController;
+import br.com.wendel.pdv.controller.CaixasController;
 import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
@@ -18,9 +18,9 @@ import javax.swing.SwingUtilities;
  * @author INLOC01
  */
 public class CaixasView extends javax.swing.JPanel {
-    
-    private final UnidadesController unidadesViewController;
-    private final UnidadeTableModel unidadeTableModel;
+
+    private final CaixasController caixasViewController;
+    private final CaixaTableModel caixaTableModel;
     private final JTableCustom<Map<String, Object>> tabela;
 
     /**
@@ -29,22 +29,22 @@ public class CaixasView extends javax.swing.JPanel {
      * @throws java.lang.Exception
      */
     public CaixasView() throws Exception {
-        this.unidadesViewController = new UnidadesController();
-        this.unidadeTableModel = new UnidadeTableModel();
-        this.tabela = new JTableCustom<>(this.unidadeTableModel);
+        this.caixasViewController = new CaixasController();
+        this.caixaTableModel = new CaixaTableModel();
+        this.tabela = new JTableCustom<>(this.caixaTableModel);
         initComponents();
     }
-    
+
     public void carregaTela() throws Exception {
         this.jPButtonNovo.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonEditar.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonExcluir.setBackground(Cores.COR_BOTAO_MENU);
         this.atualizaTabela();
     }
-    
+
     public void atualizaTabela() throws Exception {
-        this.unidadesViewController.atualizaLista();
-        this.unidadeTableModel.setLista(this.unidadesViewController.getList());
+        this.caixasViewController.atualizaLista();
+        this.caixaTableModel.setLista(this.caixasViewController.getList());
     }
 
     /**
@@ -68,7 +68,7 @@ public class CaixasView extends javax.swing.JPanel {
         jPButtonEditar = new javax.swing.JPanel();
         jLButtonEditar = new javax.swing.JLabel();
         jLIconButtonEditar = new javax.swing.JLabel();
-        jSPUnidades = new JScrollPane(this.tabela);
+        jSPCaixas = new JScrollPane(this.tabela);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,7 +88,7 @@ public class CaixasView extends javax.swing.JPanel {
 
         jLTitulo.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        jLTitulo.setText("Unidades");
+        jLTitulo.setText("Caixas");
 
         jPButtonNovo.setBackground(new java.awt.Color(79, 195, 247));
         jPButtonNovo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -208,7 +208,7 @@ public class CaixasView extends javax.swing.JPanel {
             .addGroup(jPTopoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
                 .addComponent(jPButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,9 +223,9 @@ public class CaixasView extends javax.swing.JPanel {
             .addComponent(jPButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jSPUnidades.setBackground(new java.awt.Color(255, 255, 255));
-        jSPUnidades.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jSPUnidades.setForeground(new java.awt.Color(255, 255, 255));
+        jSPCaixas.setBackground(new java.awt.Color(255, 255, 255));
+        jSPCaixas.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jSPCaixas.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -234,7 +234,7 @@ public class CaixasView extends javax.swing.JPanel {
             .addComponent(jPTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSPUnidades)
+                .addComponent(jSPCaixas)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -242,11 +242,11 @@ public class CaixasView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPTopo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSPUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                .addComponent(jSPCaixas, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jSPUnidades.getViewport().setBackground(new java.awt.Color(255, 255, 255));
+        jSPCaixas.getViewport().setBackground(new java.awt.Color(255, 255, 255));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPButtonNovoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonNovoMouseEntered
@@ -287,7 +287,7 @@ public class CaixasView extends javax.swing.JPanel {
 
     private void jPButtonNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonNovoMouseClicked
         try {
-            App.PRINCIPAL_VIEW.mostraConteudo(new UnidadeCadastroView(null));
+            App.PRINCIPAL_VIEW.mostraConteudo(new CaixaCadastroView(null));
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
@@ -295,9 +295,9 @@ public class CaixasView extends javax.swing.JPanel {
 
     private void jPButtonEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonEditarMouseClicked
         try {
-            Map<String, Object> unidadeSelecionada = this.tabela.getSelected();
-            if (unidadeSelecionada != null) {
-                App.PRINCIPAL_VIEW.mostraConteudo(new UnidadeCadastroView((Long) unidadeSelecionada.get("ID")));
+            Map<String, Object> caixaSelecionada = this.tabela.getSelected();
+            if (caixaSelecionada != null) {
+                App.PRINCIPAL_VIEW.mostraConteudo(new CaixaCadastroView((Long) caixaSelecionada.get("ID")));
             }
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
@@ -306,11 +306,11 @@ public class CaixasView extends javax.swing.JPanel {
 
     private void jPButtonExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonExcluirMouseClicked
         try {
-            Map<String, Object> unidadeSelecionada = this.tabela.getSelected();
-            if (unidadeSelecionada != null
+            Map<String, Object> caixaSelecionado = this.tabela.getSelected();
+            if (caixaSelecionado != null
                     && ConfirmDialog.confirm(App.PRINCIPAL_VIEW, "Exclusão",
-                            "<html>Deseja excluir a unidade selecionada?")) {
-                this.unidadesViewController.delete((Long) unidadeSelecionada.get("ID"));
+                            "<html>Deseja excluir o caixa selecionado?")) {
+                this.caixasViewController.delete((Long) caixaSelecionado.get("ID"));
                 this.carregaTela();
             }
         } catch (Exception e) {
@@ -332,6 +332,6 @@ public class CaixasView extends javax.swing.JPanel {
     private javax.swing.JPanel jPButtonNovo;
     private javax.swing.JPanel jPTopo;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jSPUnidades;
+    private javax.swing.JScrollPane jSPCaixas;
     // End of variables declaration//GEN-END:variables
 }
