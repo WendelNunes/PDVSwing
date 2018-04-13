@@ -5,8 +5,12 @@
  */
 package br.com.wendel.pdv.view;
 
+import br.com.wendel.pdv.App;
+import br.com.wendel.pdv.util.Cores;
+import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
 import java.awt.event.KeyEvent;
 import java.util.Map;
+import javax.swing.BorderFactory;
 import javax.swing.SwingUtilities;
 
 /**
@@ -66,7 +70,7 @@ public class AberturaCaixaCadastroView extends javax.swing.JPanel {
             .addGroup(jPTopoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLTitulo)
-                .addContainerGap(441, Short.MAX_VALUE))
+                .addContainerGap(321, Short.MAX_VALUE))
         );
         jPTopoLayout.setVerticalGroup(
             jPTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,7 +257,7 @@ public class AberturaCaixaCadastroView extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+            .addComponent(jPTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -5,7 +5,9 @@
  */
 package br.com.wendel.pdv.view;
 
+import br.com.wendel.pdv.controller.AtendimentoController;
 import br.com.wendel.pdv.util.Cores;
+import br.com.wendel.pdv.util.Sessao;
 import java.awt.event.KeyEvent;
 import java.util.Map;
 import javax.swing.BorderFactory;
@@ -18,12 +20,11 @@ import javax.swing.SwingUtilities;
  */
 public class AtendimentoView extends javax.swing.JPanel {
 
+    private final AtendimentoController atendimentoController;
     private JTableCustom<Map<String, Object>> tabela;
 
-    /**
-     * Creates new form HomeView
-     */
-    public AtendimentoView() {
+    public AtendimentoView() throws Exception {
+        this.atendimentoController = new AtendimentoController(Sessao.USUARIO);
         initComponents();
     }
 
