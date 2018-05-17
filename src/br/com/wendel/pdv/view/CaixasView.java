@@ -287,7 +287,7 @@ public class CaixasView extends javax.swing.JPanel {
 
     private void jPButtonNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonNovoMouseClicked
         try {
-            App.PRINCIPAL_VIEW.mostraConteudo(new CaixaCadastroView(null));
+            App.getInstance().getPrincipalView().mostraConteudo(new CaixaCadastroView(null));
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
@@ -297,7 +297,7 @@ public class CaixasView extends javax.swing.JPanel {
         try {
             Map<String, Object> caixaSelecionada = this.tabela.getSelected();
             if (caixaSelecionada != null) {
-                App.PRINCIPAL_VIEW.mostraConteudo(new CaixaCadastroView((Long) caixaSelecionada.get("ID")));
+                App.getInstance().getPrincipalView().mostraConteudo(new CaixaCadastroView((Long) caixaSelecionada.get("ID")));
             }
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
@@ -308,7 +308,7 @@ public class CaixasView extends javax.swing.JPanel {
         try {
             Map<String, Object> caixaSelecionado = this.tabela.getSelected();
             if (caixaSelecionado != null
-                    && ConfirmDialog.confirm(App.PRINCIPAL_VIEW, "Exclusão",
+                    && ConfirmDialog.confirm(App.getInstance().getPrincipalView(), "Exclusão",
                             "<html>Deseja excluir o caixa selecionado?")) {
                 this.caixasViewController.delete((Long) caixaSelecionado.get("ID"));
                 this.carregaTela();

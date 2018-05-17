@@ -17,17 +17,22 @@ import java.sql.Connection;
  */
 public class AtendimentoController {
 
-    private final AberturaCaixa aberturaCaixa;
-    private Usuario usuario;
+    private AberturaCaixa aberturaCaixa;
+    private final Usuario usuario;
 
     public AtendimentoController(Usuario usuario) throws Exception {
-        try (Connection connection = criarConexao()) {
-            this.aberturaCaixa = new AberturaCaixaDao(connection)
-                    .procurarCaixaAbertoPorUsuario(usuario);
-        }
+        this.usuario = usuario;
+        this.carregaAberturaCaixa();
     }
 
     public boolean isCaixaAberto() {
         return this.aberturaCaixa != null;
+    }
+
+    public final void carregaAberturaCaixa() throws Exception {
+        try (Connection connection = criarConexao()) {
+            this.aberturaCaixa = new AberturaCaixaDao(connection)
+                    .procurarCaixaAbertoPorUsuario(this.usuario);
+        }
     }
 }

@@ -18,7 +18,7 @@ import javax.swing.SwingUtilities;
  * @author INLOC01
  */
 public class UnidadesView extends javax.swing.JPanel {
-    
+
     private final UnidadesController unidadesViewController;
     private final UnidadeTableModel unidadeTableModel;
     private final JTableCustom<Map<String, Object>> tabela;
@@ -34,14 +34,14 @@ public class UnidadesView extends javax.swing.JPanel {
         this.tabela = new JTableCustom<>(this.unidadeTableModel);
         initComponents();
     }
-    
+
     public void carregaTela() throws Exception {
         this.jPButtonNovo.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonEditar.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonExcluir.setBackground(Cores.COR_BOTAO_MENU);
         this.atualizaTabela();
     }
-    
+
     public void atualizaTabela() throws Exception {
         this.unidadesViewController.atualizaLista();
         this.unidadeTableModel.setLista(this.unidadesViewController.getList());
@@ -287,7 +287,7 @@ public class UnidadesView extends javax.swing.JPanel {
 
     private void jPButtonNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonNovoMouseClicked
         try {
-            App.PRINCIPAL_VIEW.mostraConteudo(new UnidadeCadastroView(null));
+            App.getInstance().getPrincipalView().mostraConteudo(new UnidadeCadastroView(null));
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
@@ -297,7 +297,7 @@ public class UnidadesView extends javax.swing.JPanel {
         try {
             Map<String, Object> unidadeSelecionada = this.tabela.getSelected();
             if (unidadeSelecionada != null) {
-                App.PRINCIPAL_VIEW.mostraConteudo(new UnidadeCadastroView((Long) unidadeSelecionada.get("ID")));
+                App.getInstance().getPrincipalView().mostraConteudo(new UnidadeCadastroView((Long) unidadeSelecionada.get("ID")));
             }
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
@@ -308,7 +308,7 @@ public class UnidadesView extends javax.swing.JPanel {
         try {
             Map<String, Object> unidadeSelecionada = this.tabela.getSelected();
             if (unidadeSelecionada != null
-                    && ConfirmDialog.confirm(App.PRINCIPAL_VIEW, "Exclusão",
+                    && ConfirmDialog.confirm(App.getInstance().getPrincipalView(), "Exclusão",
                             "<html>Deseja excluir a unidade selecionada?")) {
                 this.unidadesViewController.delete((Long) unidadeSelecionada.get("ID"));
                 this.carregaTela();

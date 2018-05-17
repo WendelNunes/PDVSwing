@@ -316,7 +316,7 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
 
     private void jPButtonCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonCancelarMouseClicked
         try {
-            App.PRINCIPAL_VIEW.mostraTelaUnidades();
+            App.getInstance().getPrincipalView().mostraTelaUnidades();
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
@@ -325,7 +325,7 @@ public class UnidadeCadastroView extends javax.swing.JPanel {
     private void acaoSalvar() {
         try {
             if (this.controller.salvarUnidade(this.jTFDescricao.getText(), this.jTFSigla.getText())) {
-                App.PRINCIPAL_VIEW.mostraTelaUnidades();
+                App.getInstance().getPrincipalView().mostraTelaUnidades();
             }
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());

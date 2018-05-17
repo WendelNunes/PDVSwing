@@ -13,5 +13,19 @@ import br.com.wendel.pdv.entity.Usuario;
  */
 public class Sessao {
 
-    public static Usuario USUARIO;
+    private static final Sessao INSTANCE = new Sessao();
+
+    private Usuario usuario;
+
+    public static Sessao getInstance() {
+        return INSTANCE;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
 }

@@ -24,7 +24,7 @@ public class AtendimentoView extends javax.swing.JPanel {
     private JTableCustom<Map<String, Object>> tabela;
 
     public AtendimentoView() throws Exception {
-        this.atendimentoController = new AtendimentoController(Sessao.USUARIO);
+        this.atendimentoController = new AtendimentoController(Sessao.getInstance().getUsuario());
         initComponents();
     }
 
@@ -315,4 +315,8 @@ public class AtendimentoView extends javax.swing.JPanel {
     private javax.swing.JTextField jTFDescricao;
     private javax.swing.JTextField jTFQuantidade;
     // End of variables declaration//GEN-END:variables
+
+    public AtendimentoController getAtendimentoController() {
+        return atendimentoController;
+    }
 }

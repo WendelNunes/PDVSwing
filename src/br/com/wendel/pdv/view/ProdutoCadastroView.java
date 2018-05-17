@@ -407,7 +407,7 @@ public class ProdutoCadastroView extends javax.swing.JPanel {
 
     private void jPButtonCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonCancelarMouseClicked
         try {
-            App.PRINCIPAL_VIEW.mostraTelaProdutos();
+            App.getInstance().getPrincipalView().mostraTelaProdutos();
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
@@ -426,7 +426,7 @@ public class ProdutoCadastroView extends javax.swing.JPanel {
                 valor = (BigDecimal) this.formataValor.parse(this.jFTFValor.getText());
             }
             if (this.controller.salvarProduto(this.jTFCodigo.getText(), this.jTFDescricao.getText(), unidade, valor)) {
-                App.PRINCIPAL_VIEW.mostraTelaProdutos();
+                App.getInstance().getPrincipalView().mostraTelaProdutos();
             }
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());

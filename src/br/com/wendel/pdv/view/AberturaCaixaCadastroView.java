@@ -9,6 +9,7 @@ import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.SwingUtilities;
@@ -19,10 +20,14 @@ import javax.swing.SwingUtilities;
  */
 public class AberturaCaixaCadastroView extends javax.swing.JPanel {
 
+    private final DecimalFormat formataValor;
+
     /**
      * Creates new form HomeView
      */
     public AberturaCaixaCadastroView() {
+        this.formataValor = new DecimalFormat("#,##0.00");
+        this.formataValor.setParseBigDecimal(true);
         initComponents();
     }
 
@@ -121,7 +126,6 @@ public class AberturaCaixaCadastroView extends javax.swing.JPanel {
         jLObrigatorioCaixa.setText("*");
 
         jCBCaixas.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jCBCaixas.setRenderer(new UnidadeListCellRender());
         jCBCaixas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jCBCaixasKeyPressed(evt);
@@ -380,7 +384,7 @@ public class AberturaCaixaCadastroView extends javax.swing.JPanel {
     }//GEN-LAST:event_jPButtonSalvarFocusLost
 
     private void jPButtonSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonSalvarMouseClicked
-        this.acaoSalvar();
+
     }//GEN-LAST:event_jPButtonSalvarMouseClicked
 
     private void jPButtonSalvarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonSalvarMouseEntered
@@ -397,7 +401,7 @@ public class AberturaCaixaCadastroView extends javax.swing.JPanel {
 
     private void jPButtonSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonSalvarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            this.acaoSalvar();
+
         }
     }//GEN-LAST:event_jPButtonSalvarKeyPressed
 
@@ -415,7 +419,7 @@ public class AberturaCaixaCadastroView extends javax.swing.JPanel {
 
     private void jPButtonCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonCancelarMouseClicked
         try {
-            App.PRINCIPAL_VIEW.mostraTelaProdutos();
+            App.getInstance().getPrincipalView().mostraTelaHome();
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
@@ -438,10 +442,6 @@ public class AberturaCaixaCadastroView extends javax.swing.JPanel {
             this.jPButtonCancelarMouseClicked(null);
         }
     }//GEN-LAST:event_jPButtonCancelarKeyPressed
-
-    private void acaoAdicionarItem() {
-
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Map<String,Object>> jCBCaixas;

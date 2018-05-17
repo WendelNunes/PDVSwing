@@ -364,7 +364,7 @@ public class ProdutosView extends javax.swing.JPanel {
 
     private void jPButtonNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonNovoMouseClicked
         try {
-            App.PRINCIPAL_VIEW.mostraConteudo(new ProdutoCadastroView(null));
+            App.getInstance().getPrincipalView().mostraConteudo(new ProdutoCadastroView(null));
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
@@ -386,7 +386,7 @@ public class ProdutosView extends javax.swing.JPanel {
         try {
             Map<String, Object> produtoSelecionado = this.tabela.getSelected();
             if (produtoSelecionado != null
-                    && ConfirmDialog.confirm(App.PRINCIPAL_VIEW, "Exclusão",
+                    && ConfirmDialog.confirm(App.getInstance().getPrincipalView(), "Exclusão",
                             "<html>Deseja excluir o produto selecionado?")) {
                 this.produtosViewController.delete((Long) produtoSelecionado.get("ID"));
                 this.atualizaTabela();
@@ -412,7 +412,7 @@ public class ProdutosView extends javax.swing.JPanel {
         try {
             Map<String, Object> produtoSelecionado = this.tabela.getSelected();
             if (produtoSelecionado != null) {
-                App.PRINCIPAL_VIEW.mostraConteudo(new ProdutoCadastroView((Long) produtoSelecionado.get("ID")));
+                App.getInstance().getPrincipalView().mostraConteudo(new ProdutoCadastroView((Long) produtoSelecionado.get("ID")));
             }
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());

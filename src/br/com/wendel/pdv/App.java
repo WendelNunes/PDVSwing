@@ -9,6 +9,7 @@ import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
 import br.com.wendel.pdv.view.LoginView;
 import br.com.wendel.pdv.view.PrincipalView;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -16,7 +17,8 @@ import javax.swing.UIManager;
  */
 public class App {
 
-    public static PrincipalView PRINCIPAL_VIEW;
+    private static final App INSTANCE = new App();
+    private PrincipalView principalView;
 
     /**
      * @param args the command line arguments
@@ -28,8 +30,20 @@ public class App {
             java.awt.EventQueue.invokeLater(() -> {
                 loginView.setVisible(true);
             });
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             enviarMensagemErro(e.getMessage());
         }
+    }
+
+    public static App getInstance() {
+        return INSTANCE;
+    }
+
+    public PrincipalView getPrincipalView() {
+        return principalView;
+    }
+
+    public void setPrincipalView(PrincipalView principalView) {
+        this.principalView = principalView;
     }
 }

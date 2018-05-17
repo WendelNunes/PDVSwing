@@ -720,7 +720,11 @@ public class PrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_jPMenuUnidadesMouseClicked
 
     private void jPMenuAtendimentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuAtendimentoMouseClicked
-        this.mostraTelaAtendimento();
+        try {
+            this.mostraTelaAtendimento();
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
     }//GEN-LAST:event_jPMenuAtendimentoMouseClicked
 
     private void jPMenuCaixasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuCaixasMouseClicked
@@ -794,7 +798,12 @@ public class PrincipalView extends javax.swing.JFrame {
         this.telaProdutos.carregaTela();
     }
 
-    public void mostraTelaAtendimento() {
-        this.ajustaTela(this.jPMenuAtendimento, this.telaAtendimento);
+    public void mostraTelaAtendimento() throws Exception {
+        this.telaAtendimento.getAtendimentoController().carregaAberturaCaixa();
+        if (this.telaAtendimento.getAtendimentoController().isCaixaAberto()) {
+            this.ajustaTela(this.jPMenuAtendimento, this.telaAtendimento);
+        } else {
+            this.ajustaTela(this.jPMenuAtendimento, new AberturaCaixaCadastroView());
+        }
     }
 }

@@ -288,9 +288,9 @@ public class LoginView extends javax.swing.JFrame {
     private void acaoEntrar() {
         try {
             if (this.loginController.acaoEntrar(this.jTFUsuario.getText(), Arrays.toString(this.jPFSenha.getPassword()))) {
+                Sessao.getInstance().setUsuario(this.loginController.getUsuario());
                 PrincipalView principalView = new PrincipalView();
-                Sessao.USUARIO = this.loginController.getUsuario();
-                App.PRINCIPAL_VIEW = principalView;
+                App.getInstance().setPrincipalView(principalView);
                 principalView.setVisible(true);
                 this.dispose();
             }

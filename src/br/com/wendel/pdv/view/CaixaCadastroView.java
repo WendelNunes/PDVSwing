@@ -316,7 +316,7 @@ public class CaixaCadastroView extends javax.swing.JPanel {
 
     private void jPButtonCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonCancelarMouseClicked
         try {
-            App.PRINCIPAL_VIEW.mostraTelaCaixas();
+            App.getInstance().getPrincipalView().mostraTelaCaixas();
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
@@ -325,7 +325,7 @@ public class CaixaCadastroView extends javax.swing.JPanel {
     private void acaoSalvar() {
         try {
             if (this.controller.salvarCaixa(this.jTFCodigo.getText(), this.jTFDescricao.getText())) {
-                App.PRINCIPAL_VIEW.mostraTelaCaixas();
+                App.getInstance().getPrincipalView().mostraTelaCaixas();
             }
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
