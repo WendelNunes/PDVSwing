@@ -803,7 +803,7 @@ public class PrincipalView extends javax.swing.JFrame {
         if (this.telaAtendimento.getAtendimentoController().isCaixaAberto()) {
             this.ajustaTela(this.jPMenuAtendimento, this.telaAtendimento);
         } else {
-            this.ajustaTela(this.jPMenuAtendimento, new AberturaCaixaCadastroView());
+            this.ajustaTela(this.jPMenuAtendimento, new AberturaCaixaCadastroView(null));
         }
     }
 }

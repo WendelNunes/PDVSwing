@@ -6,12 +6,22 @@
 package br.com.wendel.pdv.view;
 
 import br.com.wendel.pdv.App;
+import br.com.wendel.pdv.controller.AberturaCaixaCadastroController;
+import br.com.wendel.pdv.entity.Caixa;
+import br.com.wendel.pdv.entity.Usuario;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
+import br.com.wendel.pdv.util.Sessao;
+import java.awt.Component;
 import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JList;
 import javax.swing.SwingUtilities;
 
 /**
@@ -20,15 +30,46 @@ import javax.swing.SwingUtilities;
  */
 public class AberturaCaixaCadastroView extends javax.swing.JPanel {
 
+    private final AberturaCaixaCadastroController controller;
     private final DecimalFormat formataValor;
+    private final SimpleDateFormat formataData;
+    private final Date dataHora;
+    private final Usuario usuario;
 
     /**
      * Creates new form HomeView
+     *
+     * @param id
+     * @throws java.lang.Exception
      */
-    public AberturaCaixaCadastroView() {
+    public AberturaCaixaCadastroView(Long id) throws Exception {
         this.formataValor = new DecimalFormat("#,##0.00");
         this.formataValor.setParseBigDecimal(true);
+        this.formataData = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        this.controller = new AberturaCaixaCadastroController(id);
         initComponents();
+        this.controller.getListaCaixas().forEach(i -> this.jCBCaixas.addItem(i));
+        if (this.controller.getAberturaCaixa() != null) {
+            this.usuario = this.controller.getAberturaCaixa().getUsuario();
+            this.jTFUsuario.setText(this.controller.getAberturaCaixa().getUsuario().getCodigo());
+            this.dataHora = this.controller.getAberturaCaixa().getDataHora();
+            this.jTFData.setText(this.formataData.format(this.controller.getAberturaCaixa().getDataHora()));
+            for (int i = 0; i < this.jCBCaixas.getItemCount(); i++) {
+                if (this.jCBCaixas.getItemAt(i).get("ID").equals(this.controller.getAberturaCaixa().getCaixa().getId())) {
+                    this.jCBCaixas.setSelectedIndex(i);
+                    break;
+                }
+            }
+            this.jFTFSaldoInicial.setText(this.formataValor.format(this.controller.getAberturaCaixa().getValorFundoCaixa()));
+        } else {
+            this.usuario = Sessao.getInstance().getUsuario();
+            this.jTFUsuario.setText(this.usuario.getCodigo());
+            this.dataHora = new Date();
+            this.jTFData.setText(this.formataData.format(this.dataHora));
+        }
+        SwingUtilities.invokeLater(() -> {
+            this.jCBCaixas.requestFocusInWindow();
+        });
     }
 
     /**
@@ -89,31 +130,11 @@ public class AberturaCaixaCadastroView extends javax.swing.JPanel {
         jTFUsuario.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jTFUsuario.setToolTipText("Sigla da unidade");
         jTFUsuario.setEnabled(false);
-        jTFUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTFUsuarioFocusGained(evt);
-            }
-        });
-        jTFUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTFUsuarioKeyPressed(evt);
-            }
-        });
 
         jTFData.setEditable(false);
         jTFData.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jTFData.setToolTipText("Sigla da unidade");
         jTFData.setEnabled(false);
-        jTFData.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTFDataFocusGained(evt);
-            }
-        });
-        jTFData.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTFDataKeyPressed(evt);
-            }
-        });
 
         jLData.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLData.setText("Data");
@@ -126,6 +147,7 @@ public class AberturaCaixaCadastroView extends javax.swing.JPanel {
         jLObrigatorioCaixa.setText("*");
 
         jCBCaixas.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jCBCaixas.setRenderer(new CaixaListCellRender());
         jCBCaixas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jCBCaixasKeyPressed(evt);
@@ -327,28 +349,6 @@ public class AberturaCaixaCadastroView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTFUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFUsuarioFocusGained
-        SwingUtilities.invokeLater(() -> {
-            this.jTFUsuario.selectAll();
-        });
-    }//GEN-LAST:event_jTFUsuarioFocusGained
-
-    private void jTFUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFUsuarioKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            SwingUtilities.invokeLater(() -> {
-                this.jTFData.requestFocusInWindow();
-            });
-        }
-    }//GEN-LAST:event_jTFUsuarioKeyPressed
-
-    private void jTFDataFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFDataFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFDataFocusGained
-
-    private void jTFDataKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDataKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFDataKeyPressed
-
     private void jCBCaixasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCBCaixasKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             SwingUtilities.invokeLater(() -> {
@@ -384,8 +384,28 @@ public class AberturaCaixaCadastroView extends javax.swing.JPanel {
     }//GEN-LAST:event_jPButtonSalvarFocusLost
 
     private void jPButtonSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonSalvarMouseClicked
-
+        this.acaoSalvar();
     }//GEN-LAST:event_jPButtonSalvarMouseClicked
+
+    private void acaoSalvar() {
+        try {
+            Map<String, Object> caixaSelecionado = (Map<String, Object>) this.jCBCaixas.getSelectedItem();
+            Caixa caixa = null;
+            if (caixaSelecionado != null) {
+                caixa = new Caixa();
+                caixa.setId((Long) caixaSelecionado.get("ID"));
+            }
+            BigDecimal valor = BigDecimal.ZERO;
+            if (!this.jFTFSaldoInicial.getText().trim().isEmpty()) {
+                valor = (BigDecimal) this.formataValor.parse(this.jFTFSaldoInicial.getText());
+            }
+            if (this.controller.salvarAberturaCaixa(caixa, this.dataHora, this.usuario, valor)) {
+                App.getInstance().getPrincipalView().mostraTelaAtendimento();
+            }
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
+    }
 
     private void jPButtonSalvarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonSalvarMouseEntered
         SwingUtilities.invokeLater(() -> {
@@ -401,7 +421,7 @@ public class AberturaCaixaCadastroView extends javax.swing.JPanel {
 
     private void jPButtonSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonSalvarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
-
+            this.acaoSalvar();
         }
     }//GEN-LAST:event_jPButtonSalvarKeyPressed
 
@@ -463,4 +483,18 @@ public class AberturaCaixaCadastroView extends javax.swing.JPanel {
     private javax.swing.JTextField jTFData;
     private javax.swing.JTextField jTFUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private class CaixaListCellRender extends DefaultListCellRenderer {
+
+        @Override
+        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            if (value != null && value instanceof Map) {
+                this.setText(((Map<String, Object>) value).get("CODIGO") + " - " + ((Map<String, Object>) value).get("DESCRICAO"));
+            } else {
+                this.setText("");
+            }
+            return c;
+        }
+    }
 }
