@@ -801,6 +801,7 @@ public class PrincipalView extends javax.swing.JFrame {
     public void mostraTelaAtendimento() throws Exception {
         this.telaAtendimento.getAtendimentoController().carregaAberturaCaixa();
         if (this.telaAtendimento.getAtendimentoController().isCaixaAberto()) {
+            this.jPMenu.setVisible(false);
             this.ajustaTela(this.jPMenuAtendimento, this.telaAtendimento);
         } else {
             this.ajustaTela(this.jPMenuAtendimento, new AberturaCaixaCadastroView(null));
