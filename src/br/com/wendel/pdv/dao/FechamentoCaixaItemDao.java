@@ -5,10 +5,8 @@
  */
 package br.com.wendel.pdv.dao;
 
-import br.com.wendel.pdv.entity.FechamentoCaixa;
 import br.com.wendel.pdv.entity.FechamentoCaixaItem;
 import br.com.wendel.pdv.entity.FormaPagamento;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
