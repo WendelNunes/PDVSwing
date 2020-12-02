@@ -31,6 +31,8 @@ public class PessoaDao {
         query.append("                    descricao,\n");
         query.append("                    data_nascimento,\n");
         query.append("                    tipo,\n");
+        query.append("                    e_fornecedor,\n");
+        query.append("                    e_cliente,\n");
         query.append("                    telefone_celular,\n");
         query.append("                    telefone_fixo)\n");
         query.append("            VALUES (?,?,?,?,?,?)\n");
@@ -54,6 +56,8 @@ public class PessoaDao {
             } else {
                 ps.setNull(++index, Types.VARCHAR);
             }
+            ps.setBoolean(++index, pessoa.isFornecedor());
+            ps.setBoolean(++index, pessoa.isCliente());
             if (pessoa.getTelefoneFixo() != null && !pessoa.getTelefoneFixo().isEmpty()) {
                 ps.setString(++index, pessoa.getTelefoneFixo());
             } else {
@@ -74,6 +78,8 @@ public class PessoaDao {
         query.append("                  descricao = ?,\n");
         query.append("                  data_nascimento = ?,\n");
         query.append("                  tipo = ?,\n");
+        query.append("                  e_fornecedor = ?,\n");
+        query.append("                  e_cliente = ?,\n");
         query.append("                  telefone_celular = ?,\n");
         query.append("                  telefone_fixo = ?\n");
         query.append("            WHERE id = ?\n");
@@ -91,6 +97,8 @@ public class PessoaDao {
                 ps.setNull(++index, Types.DATE);
             }
             ps.setString(++index, pessoa.getTipoPessoa().getId());
+            ps.setBoolean(++index, pessoa.isFornecedor());
+            ps.setBoolean(++index, pessoa.isCliente());
             if (pessoa.getTelefoneCelular() != null && !pessoa.getTelefoneCelular().isEmpty()) {
                 ps.setString(++index, pessoa.getTelefoneCelular());
             } else {
@@ -120,6 +128,8 @@ public class PessoaDao {
         query.append("       descricao,\n");
         query.append("       data_nascimento,\n");
         query.append("       tipo,\n");
+        query.append("       e_fornecedor,\n");
+        query.append("       e_cliente,\n");
         query.append("       telefone_celular,\n");
         query.append("       telefone_fixo\n");
         query.append("  FROM pessoa\n");
@@ -133,6 +143,8 @@ public class PessoaDao {
                             rs.getString("descricao"),
                             rs.getDate("data_nascimento"),
                             TipoPessoa.get(rs.getString("tipo")),
+                            rs.getBoolean("e_fornecedor"),
+                            rs.getBoolean("e_cliente"),
                             rs.getString("telefone_celular"),
                             rs.getString("telefone_fixo"),
                             new Endereco());

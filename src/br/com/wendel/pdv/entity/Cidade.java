@@ -15,6 +15,15 @@ public class Cidade {
     private String descricao;
     private Estado estado;
 
+    public Cidade() {
+    }
+
+    public Cidade(Long id, String descricao, Estado estado) {
+        this.id = id;
+        this.descricao = descricao;
+        this.estado = estado;
+    }
+
     public Long getId() {
         return id;
     }

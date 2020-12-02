@@ -64,3 +64,10 @@ CREATE TABLE motivo_movim_estoque (
     tipo VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE cidade (
+    id SERIAL NOT NULL,
+    descricao VARCHAR NOT NULL,
+    estado VARCHAR NOT NULL,
+    PRIMARY KEY (id)
+);

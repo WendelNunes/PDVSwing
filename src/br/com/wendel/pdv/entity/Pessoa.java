@@ -18,6 +18,8 @@ public class Pessoa {
     private String descricao;
     private Date dataNascimento;
     private TipoPessoa tipoPessoa;
+    private boolean fornecedor;
+    private boolean cliente;
     private String telefoneCelular;
     private String telefoneFixo;
     private Endereco endereco;
@@ -25,12 +27,14 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(Long id, String cpfCnpj, String descricao, Date dataNascimento, TipoPessoa tipoPessoa, String telefoneCelular, String telefoneFixo, Endereco endereco) {
+    public Pessoa(Long id, String cpfCnpj, String descricao, Date dataNascimento, TipoPessoa tipoPessoa, boolean fornecedor, boolean cliente, String telefoneCelular, String telefoneFixo, Endereco endereco) {
         this.id = id;
         this.cpfCnpj = cpfCnpj;
         this.descricao = descricao;
         this.dataNascimento = dataNascimento;
         this.tipoPessoa = tipoPessoa;
+        this.fornecedor = fornecedor;
+        this.cliente = cliente;
         this.telefoneCelular = telefoneCelular;
         this.telefoneFixo = telefoneFixo;
         this.endereco = endereco;
@@ -93,10 +97,28 @@ public class Pessoa {
     }
 
     public Endereco getEndereco() {
-            return endereco;
+        return endereco;
     }
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+
+    public boolean isFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(boolean fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
+    public boolean isCliente() {
+        return cliente;
+    }
+
+    public void setCliente(boolean cliente) {
+        this.cliente = cliente;
+    }
+    
+    
 }

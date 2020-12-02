@@ -28,6 +28,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private JPanel menuSelecionado;
     private final HomeView telaHome;
     private final CaixasView telaCaixas;
+    private final CidadesView telaCidades;
     private final ClientesView telaClientes;
     private final ProdutosView telaProdutos;
     private final UnidadesView telaUnidades;
@@ -44,6 +45,7 @@ public class PrincipalView extends javax.swing.JFrame {
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         this.telaHome = new HomeView();
         this.telaCaixas = new CaixasView();
+        this.telaCidades = new CidadesView();
         this.telaClientes = new ClientesView();
         this.telaProdutos = new ProdutosView();
         this.telaUnidades = new UnidadesView();
@@ -118,6 +120,8 @@ public class PrincipalView extends javax.swing.JFrame {
         jLMenuCadastrosProdutos = new javax.swing.JLabel();
         jPMenuUnidades = new javax.swing.JPanel();
         jLMenuCadastrosUnidades = new javax.swing.JLabel();
+        jPMenuCidades = new javax.swing.JPanel();
+        jLMenuCadastrosCidades = new javax.swing.JLabel();
         jPTop = new javax.swing.JPanel();
         jPMostraMenu = new javax.swing.JPanel();
         jLIconMenu = new javax.swing.JLabel();
@@ -453,6 +457,39 @@ public class PrincipalView extends javax.swing.JFrame {
             .addComponent(jLMenuCadastrosUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
+        jPMenuCidades.setBackground(new java.awt.Color(79, 195, 247));
+        jPMenuCidades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPMenuCidades.setPreferredSize(new java.awt.Dimension(100, 35));
+        jPMenuCidades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPMenuCidadesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPMenuCidadesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPMenuCidadesMouseExited(evt);
+            }
+        });
+
+        jLMenuCadastrosCidades.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLMenuCadastrosCidades.setForeground(new java.awt.Color(255, 255, 255));
+        jLMenuCadastrosCidades.setText("Cidades");
+
+        javax.swing.GroupLayout jPMenuCidadesLayout = new javax.swing.GroupLayout(jPMenuCidades);
+        jPMenuCidades.setLayout(jPMenuCidadesLayout);
+        jPMenuCidadesLayout.setHorizontalGroup(
+            jPMenuCidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPMenuCidadesLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLMenuCadastrosCidades, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPMenuCidadesLayout.setVerticalGroup(
+            jPMenuCidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLMenuCadastrosCidades, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPCadastrosLayout = new javax.swing.GroupLayout(jPCadastros);
         jPCadastros.setLayout(jPCadastrosLayout);
         jPCadastrosLayout.setHorizontalGroup(
@@ -462,6 +499,7 @@ public class PrincipalView extends javax.swing.JFrame {
             .addComponent(jPMenuMotivosMovimentacaoEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
             .addComponent(jPMenuProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
             .addComponent(jPMenuUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+            .addComponent(jPMenuCidades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
         );
         jPCadastrosLayout.setVerticalGroup(
             jPCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,6 +507,8 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jPMenuCaixas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
+                .addComponent(jPMenuCidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPMenuClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPMenuMotivosMovimentacaoEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -476,7 +516,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addComponent(jPMenuProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPMenuUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout jPMenuLayout = new javax.swing.GroupLayout(jPMenu);
@@ -800,6 +840,22 @@ public class PrincipalView extends javax.swing.JFrame {
         this.mouseMenuExited(this.jPMenuMotivosMovimentacaoEstoque);
     }//GEN-LAST:event_jPMenuMotivosMovimentacaoEstoqueMouseExited
 
+    private void jPMenuCidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuCidadesMouseClicked
+        try {
+            this.mostraTelaCidades();
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
+    }//GEN-LAST:event_jPMenuCidadesMouseClicked
+
+    private void jPMenuCidadesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuCidadesMouseEntered
+        this.mouseMenuEntered(this.jPMenuCidades);
+    }//GEN-LAST:event_jPMenuCidadesMouseEntered
+
+    private void jPMenuCidadesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuCidadesMouseExited
+        this.mouseMenuExited(this.jPMenuCidades);
+    }//GEN-LAST:event_jPMenuCidadesMouseExited
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLIconAtendimento;
     private javax.swing.JLabel jLIconCadastros;
@@ -810,6 +866,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLMenuAtendimento;
     private javax.swing.JLabel jLMenuCadastros;
     private javax.swing.JLabel jLMenuCadastrosCaixas;
+    private javax.swing.JLabel jLMenuCadastrosCidades;
     private javax.swing.JLabel jLMenuCadastrosClientes;
     private javax.swing.JLabel jLMenuCadastrosMotivosMovimentacaoEstoque;
     private javax.swing.JLabel jLMenuCadastrosProdutos;
@@ -822,6 +879,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JPanel jPMenuAtendimento;
     private javax.swing.JPanel jPMenuCadastros;
     private javax.swing.JPanel jPMenuCaixas;
+    private javax.swing.JPanel jPMenuCidades;
     private javax.swing.JPanel jPMenuClientes;
     private javax.swing.JPanel jPMenuHome;
     private javax.swing.JPanel jPMenuMotivosMovimentacaoEstoque;
@@ -850,6 +908,11 @@ public class PrincipalView extends javax.swing.JFrame {
     public void mostraTelaCaixas() throws Exception {
         this.ajustaTela(this.jPMenuCaixas, this.telaCaixas);
         this.telaCaixas.carregaTela();
+    }
+
+    public void mostraTelaCidades() throws Exception {
+        this.ajustaTela(this.jPMenuCidades, this.telaCidades);
+        this.telaCidades.carregaTela();
     }
 
     public void mostraTelaMotivosMovimentacaoEstoque() throws Exception {

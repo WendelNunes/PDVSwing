@@ -16,7 +16,8 @@ public class Endereco {
     private String logradouro;
     private String numero;
     private String complemento;
-    private Setor setor;
+    private String setor;
+    private Cidade cidade;
 
     public Long getId() {
         return id;
@@ -58,11 +59,19 @@ public class Endereco {
         this.complemento = complemento;
     }
 
-    public Setor getSetor() {
+    public String getSetor() {
         return setor;
     }
 
-    public void setSetor(Setor setor) {
+    public void setSetor(String setor) {
         this.setor = setor;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 }
