@@ -57,3 +57,10 @@ CREATE TABLE produto (
     FOREIGN KEY (id_unidade) REFERENCES unidade(id)
 );
 
+CREATE TABLE motivo_movim_estoque (
+    id SERIAL NOT NULL,
+    codigo VARCHAR NOT NULL,
+    descricao VARCHAR NOT NULL,
+    tipo VARCHAR NOT NULL,
+    PRIMARY KEY (id)
+);

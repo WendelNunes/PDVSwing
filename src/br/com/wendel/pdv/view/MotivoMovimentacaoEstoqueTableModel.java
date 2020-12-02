@@ -40,8 +40,8 @@ public class MotivoMovimentacaoEstoqueTableModel extends AbstractTableModel impl
                 return this.lista.get(rowIndex).get("CODIGO");
             case 1:
                 return this.lista.get(rowIndex).get("DESCRICAO");
-            case 3:
-                return this.lista.get(rowIndex).get("TIPO");
+            case 2:
+                return this.lista.get(rowIndex).get("DESC_TIPO");
             default:
                 return null;
         }

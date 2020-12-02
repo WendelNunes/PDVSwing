@@ -28,7 +28,7 @@ public class MotivoMovimentacaoEstoqueDao {
     }
 
     public MotivoMovimentacaoEstoque salvar(MotivoMovimentacaoEstoque motivoMovimentacaoEstoque) throws Exception {
-        try (PreparedStatement ps = this.connection.prepareStatement("INSERT INTO motivo_movim_estoque (codigo, descricao, tipo) VALUES (?, ?) RETURNING id")) {
+        try (PreparedStatement ps = this.connection.prepareStatement("INSERT INTO motivo_movim_estoque (codigo, descricao, tipo) VALUES (?, ?, ?) RETURNING id")) {
             int index = 0;
             ps.setString(++index, motivoMovimentacaoEstoque.getCodigo());
             ps.setString(++index, motivoMovimentacaoEstoque.getDescricao());
@@ -70,7 +70,9 @@ public class MotivoMovimentacaoEstoqueDao {
                     item.put("ID", rs.getLong("id"));
                     item.put("CODIGO", rs.getString("codigo"));
                     item.put("DESCRICAO", rs.getString("descricao"));
-                    item.put("TIPO", rs.getString("tipo"));
+                    TipoMotivoMovimentacaoEstoque tipo = TipoMotivoMovimentacaoEstoque.get(rs.getString("tipo"));
+                    item.put("ID_TIPO", tipo.getId());
+                    item.put("DESC_TIPO", tipo.getDescricao());
                     list.add(item);
                 }
             }

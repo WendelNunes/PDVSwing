@@ -65,7 +65,9 @@ public class MotivosMovimentacaoEstoqueView extends javax.swing.JPanel {
         jPButtonEditar = new javax.swing.JPanel();
         jLButtonEditar = new javax.swing.JLabel();
         jLIconButtonEditar = new javax.swing.JLabel();
-        jSPCaixas = new JScrollPane(this.tabela);
+        jSPMotivosMovimentacaoEstoque = new JScrollPane(this.tabela);
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jPTopo.setBackground(new java.awt.Color(79, 195, 247));
         jPTopo.setPreferredSize(new java.awt.Dimension(85, 35));
@@ -207,9 +209,9 @@ public class MotivosMovimentacaoEstoqueView extends javax.swing.JPanel {
             .addComponent(jPButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jSPCaixas.setBackground(new java.awt.Color(255, 255, 255));
-        jSPCaixas.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jSPCaixas.setForeground(new java.awt.Color(255, 255, 255));
+        jSPMotivosMovimentacaoEstoque.setBackground(new java.awt.Color(255, 255, 255));
+        jSPMotivosMovimentacaoEstoque.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jSPMotivosMovimentacaoEstoque.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -218,7 +220,7 @@ public class MotivosMovimentacaoEstoqueView extends javax.swing.JPanel {
             .addComponent(jPTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSPCaixas)
+                .addComponent(jSPMotivosMovimentacaoEstoque)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -226,16 +228,16 @@ public class MotivosMovimentacaoEstoqueView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPTopo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSPCaixas, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                .addComponent(jSPMotivosMovimentacaoEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jSPCaixas.getViewport().setBackground(new java.awt.Color(255, 255, 255));
+        jSPMotivosMovimentacaoEstoque.getViewport().setBackground(new java.awt.Color(255, 255, 255));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPButtonNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonNovoMouseClicked
         try {
-            App.getInstance().getPrincipalView().mostraConteudo(new CaixaCadastroView(null));
+            App.getInstance().getPrincipalView().mostraConteudo(new MotivoMovimentacaoEstoqueCadastroView(null));
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
@@ -255,11 +257,11 @@ public class MotivosMovimentacaoEstoqueView extends javax.swing.JPanel {
 
     private void jPButtonExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonExcluirMouseClicked
         try {
-            Map<String, Object> caixaSelecionado = this.tabela.getSelected();
-            if (caixaSelecionado != null
+            Map<String, Object> motivoMovimentacaoEstoqueSelecionado = this.tabela.getSelected();
+            if (motivoMovimentacaoEstoqueSelecionado != null
                     && ConfirmDialog.confirm(App.getInstance().getPrincipalView(), "Exclusão",
                             "<html>Deseja excluir o motivo de movimentação selecionado?")) {
-                this.motivosMovimentacaoEstoqueViewController.delete((Long) caixaSelecionado.get("ID"));
+                this.motivosMovimentacaoEstoqueViewController.delete((Long) motivoMovimentacaoEstoqueSelecionado.get("ID"));
                 this.carregaTela();
             }
         } catch (Exception e) {
@@ -281,9 +283,9 @@ public class MotivosMovimentacaoEstoqueView extends javax.swing.JPanel {
 
     private void jPButtonEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonEditarMouseClicked
         try {
-            Map<String, Object> caixaSelecionada = this.tabela.getSelected();
-            if (caixaSelecionada != null) {
-                App.getInstance().getPrincipalView().mostraConteudo(new CaixaCadastroView((Long) caixaSelecionada.get("ID")));
+            Map<String, Object> motivoMovimentacaoEstoqueSelecionado = this.tabela.getSelected();
+            if (motivoMovimentacaoEstoqueSelecionado != null) {
+                App.getInstance().getPrincipalView().mostraConteudo(new MotivoMovimentacaoEstoqueCadastroView((Long) motivoMovimentacaoEstoqueSelecionado.get("ID")));
             }
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
@@ -315,6 +317,6 @@ public class MotivosMovimentacaoEstoqueView extends javax.swing.JPanel {
     private javax.swing.JPanel jPButtonExcluir;
     private javax.swing.JPanel jPButtonNovo;
     private javax.swing.JPanel jPTopo;
-    private javax.swing.JScrollPane jSPCaixas;
+    private javax.swing.JScrollPane jSPMotivosMovimentacaoEstoque;
     // End of variables declaration//GEN-END:variables
 }

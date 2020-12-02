@@ -31,6 +31,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private final ClientesView telaClientes;
     private final ProdutosView telaProdutos;
     private final UnidadesView telaUnidades;
+    private final MotivosMovimentacaoEstoqueView telaMotivosMovimentacaoEstoque;
     private AtendimentoView telaAtendimento = new AtendimentoView();
 
     /**
@@ -40,16 +41,18 @@ public class PrincipalView extends javax.swing.JFrame {
      */
     public PrincipalView() throws Exception {
         initComponents();
-        this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         this.telaHome = new HomeView();
         this.telaCaixas = new CaixasView();
         this.telaClientes = new ClientesView();
         this.telaProdutos = new ProdutosView();
         this.telaUnidades = new UnidadesView();
         this.telaAtendimento = new AtendimentoView();
+        this.telaMotivosMovimentacaoEstoque = new MotivosMovimentacaoEstoqueView();
         this.listaMenus.add(this.jPMenuHome);
         this.listaMenus.add(this.jPMenuCaixas);
         this.listaMenus.add(this.jPMenuClientes);
+        this.listaMenus.add(this.jPMenuMotivosMovimentacaoEstoque);
         this.listaMenus.add(this.jPMenuProdutos);
         this.listaMenus.add(this.jPMenuUnidades);
         this.listaMenus.add(this.jPMenuAtendimento);
@@ -64,13 +67,13 @@ public class PrincipalView extends javax.swing.JFrame {
         jPConteudo.setLayout(jPConteudoLayout);
         jPConteudoLayout.setHorizontalGroup(
                 jPConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPConteudoLayout.createSequentialGroup()
-                        .addComponent(tela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPConteudoLayout.createSequentialGroup()
+                                .addComponent(tela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPConteudoLayout.setVerticalGroup(
                 jPConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPConteudoLayout.createSequentialGroup()
-                        .addComponent(tela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPConteudoLayout.createSequentialGroup()
+                                .addComponent(tela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }
 
@@ -105,14 +108,16 @@ public class PrincipalView extends javax.swing.JFrame {
         jLMenuAtendimento = new javax.swing.JLabel();
         jLIconAtendimento = new javax.swing.JLabel();
         jPCadastros = new javax.swing.JPanel();
-        jPMenuProdutos = new javax.swing.JPanel();
-        jLMenuCadastrosProdutos = new javax.swing.JLabel();
         jPMenuClientes = new javax.swing.JPanel();
         jLMenuCadastrosClientes = new javax.swing.JLabel();
-        jPMenuUnidades = new javax.swing.JPanel();
-        jLMenuCadastrosUnidades = new javax.swing.JLabel();
         jPMenuCaixas = new javax.swing.JPanel();
         jLMenuCadastrosCaixas = new javax.swing.JLabel();
+        jPMenuMotivosMovimentacaoEstoque = new javax.swing.JPanel();
+        jLMenuCadastrosMotivosMovimentacaoEstoque = new javax.swing.JLabel();
+        jPMenuProdutos = new javax.swing.JPanel();
+        jLMenuCadastrosProdutos = new javax.swing.JLabel();
+        jPMenuUnidades = new javax.swing.JPanel();
+        jLMenuCadastrosUnidades = new javax.swing.JLabel();
         jPTop = new javax.swing.JPanel();
         jPMostraMenu = new javax.swing.JPanel();
         jLIconMenu = new javax.swing.JLabel();
@@ -283,39 +288,6 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jPCadastros.setBackground(new java.awt.Color(79, 195, 247));
 
-        jPMenuProdutos.setBackground(new java.awt.Color(79, 195, 247));
-        jPMenuProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPMenuProdutos.setPreferredSize(new java.awt.Dimension(100, 35));
-        jPMenuProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPMenuProdutosMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPMenuProdutosMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPMenuProdutosMouseExited(evt);
-            }
-        });
-
-        jLMenuCadastrosProdutos.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLMenuCadastrosProdutos.setForeground(new java.awt.Color(255, 255, 255));
-        jLMenuCadastrosProdutos.setText("Produtos");
-
-        javax.swing.GroupLayout jPMenuProdutosLayout = new javax.swing.GroupLayout(jPMenuProdutos);
-        jPMenuProdutos.setLayout(jPMenuProdutosLayout);
-        jPMenuProdutosLayout.setHorizontalGroup(
-            jPMenuProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPMenuProdutosLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLMenuCadastrosProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPMenuProdutosLayout.setVerticalGroup(
-            jPMenuProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLMenuCadastrosProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
         jPMenuClientes.setBackground(new java.awt.Color(79, 195, 247));
         jPMenuClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPMenuClientes.setPreferredSize(new java.awt.Dimension(100, 35));
@@ -347,39 +319,6 @@ public class PrincipalView extends javax.swing.JFrame {
         jPMenuClientesLayout.setVerticalGroup(
             jPMenuClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLMenuCadastrosClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-        );
-
-        jPMenuUnidades.setBackground(new java.awt.Color(79, 195, 247));
-        jPMenuUnidades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPMenuUnidades.setPreferredSize(new java.awt.Dimension(100, 35));
-        jPMenuUnidades.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPMenuUnidadesMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPMenuUnidadesMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPMenuUnidadesMouseExited(evt);
-            }
-        });
-
-        jLMenuCadastrosUnidades.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLMenuCadastrosUnidades.setForeground(new java.awt.Color(255, 255, 255));
-        jLMenuCadastrosUnidades.setText("Unidades");
-
-        javax.swing.GroupLayout jPMenuUnidadesLayout = new javax.swing.GroupLayout(jPMenuUnidades);
-        jPMenuUnidades.setLayout(jPMenuUnidadesLayout);
-        jPMenuUnidadesLayout.setHorizontalGroup(
-            jPMenuUnidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPMenuUnidadesLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLMenuCadastrosUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPMenuUnidadesLayout.setVerticalGroup(
-            jPMenuUnidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLMenuCadastrosUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
         jPMenuCaixas.setBackground(new java.awt.Color(79, 195, 247));
@@ -415,14 +354,114 @@ public class PrincipalView extends javax.swing.JFrame {
             .addComponent(jLMenuCadastrosCaixas, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
+        jPMenuMotivosMovimentacaoEstoque.setBackground(new java.awt.Color(79, 195, 247));
+        jPMenuMotivosMovimentacaoEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPMenuMotivosMovimentacaoEstoque.setPreferredSize(new java.awt.Dimension(100, 35));
+        jPMenuMotivosMovimentacaoEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPMenuMotivosMovimentacaoEstoqueMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPMenuMotivosMovimentacaoEstoqueMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPMenuMotivosMovimentacaoEstoqueMouseExited(evt);
+            }
+        });
+
+        jLMenuCadastrosMotivosMovimentacaoEstoque.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLMenuCadastrosMotivosMovimentacaoEstoque.setForeground(new java.awt.Color(255, 255, 255));
+        jLMenuCadastrosMotivosMovimentacaoEstoque.setText("Motivos de Movimentação do Estoque");
+
+        javax.swing.GroupLayout jPMenuMotivosMovimentacaoEstoqueLayout = new javax.swing.GroupLayout(jPMenuMotivosMovimentacaoEstoque);
+        jPMenuMotivosMovimentacaoEstoque.setLayout(jPMenuMotivosMovimentacaoEstoqueLayout);
+        jPMenuMotivosMovimentacaoEstoqueLayout.setHorizontalGroup(
+            jPMenuMotivosMovimentacaoEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPMenuMotivosMovimentacaoEstoqueLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLMenuCadastrosMotivosMovimentacaoEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPMenuMotivosMovimentacaoEstoqueLayout.setVerticalGroup(
+            jPMenuMotivosMovimentacaoEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLMenuCadastrosMotivosMovimentacaoEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        jPMenuProdutos.setBackground(new java.awt.Color(79, 195, 247));
+        jPMenuProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPMenuProdutos.setPreferredSize(new java.awt.Dimension(100, 35));
+        jPMenuProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPMenuProdutosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPMenuProdutosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPMenuProdutosMouseExited(evt);
+            }
+        });
+
+        jLMenuCadastrosProdutos.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLMenuCadastrosProdutos.setForeground(new java.awt.Color(255, 255, 255));
+        jLMenuCadastrosProdutos.setText("Produtos");
+
+        javax.swing.GroupLayout jPMenuProdutosLayout = new javax.swing.GroupLayout(jPMenuProdutos);
+        jPMenuProdutos.setLayout(jPMenuProdutosLayout);
+        jPMenuProdutosLayout.setHorizontalGroup(
+            jPMenuProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPMenuProdutosLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLMenuCadastrosProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPMenuProdutosLayout.setVerticalGroup(
+            jPMenuProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLMenuCadastrosProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        jPMenuUnidades.setBackground(new java.awt.Color(79, 195, 247));
+        jPMenuUnidades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPMenuUnidades.setPreferredSize(new java.awt.Dimension(100, 35));
+        jPMenuUnidades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPMenuUnidadesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPMenuUnidadesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPMenuUnidadesMouseExited(evt);
+            }
+        });
+
+        jLMenuCadastrosUnidades.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLMenuCadastrosUnidades.setForeground(new java.awt.Color(255, 255, 255));
+        jLMenuCadastrosUnidades.setText("Unidades");
+
+        javax.swing.GroupLayout jPMenuUnidadesLayout = new javax.swing.GroupLayout(jPMenuUnidades);
+        jPMenuUnidades.setLayout(jPMenuUnidadesLayout);
+        jPMenuUnidadesLayout.setHorizontalGroup(
+            jPMenuUnidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPMenuUnidadesLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLMenuCadastrosUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPMenuUnidadesLayout.setVerticalGroup(
+            jPMenuUnidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLMenuCadastrosUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPCadastrosLayout = new javax.swing.GroupLayout(jPCadastros);
         jPCadastros.setLayout(jPCadastrosLayout);
         jPCadastrosLayout.setHorizontalGroup(
             jPCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPMenuClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-            .addComponent(jPMenuUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-            .addComponent(jPMenuProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-            .addComponent(jPMenuCaixas, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+            .addComponent(jPMenuClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+            .addComponent(jPMenuCaixas, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+            .addComponent(jPMenuMotivosMovimentacaoEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+            .addComponent(jPMenuProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+            .addComponent(jPMenuUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
         );
         jPCadastrosLayout.setVerticalGroup(
             jPCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,6 +470,8 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addComponent(jPMenuCaixas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPMenuClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPMenuMotivosMovimentacaoEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPMenuProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -444,7 +485,7 @@ public class PrincipalView extends javax.swing.JFrame {
             jPMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPMenuHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPMenuRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPMenuAtendimento, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+            .addComponent(jPMenuAtendimento, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
             .addComponent(jPCadastros, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPMenuCadastros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -461,7 +502,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addComponent(jPMenuAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPMenuRelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         jPTop.setBackground(new java.awt.Color(3, 169, 244));
@@ -521,11 +562,11 @@ public class PrincipalView extends javax.swing.JFrame {
         jPConteudo.setLayout(jPConteudoLayout);
         jPConteudoLayout.setHorizontalGroup(
             jPConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 496, Short.MAX_VALUE)
+            .addGap(0, 494, Short.MAX_VALUE)
         );
         jPConteudoLayout.setVerticalGroup(
             jPConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 425, Short.MAX_VALUE)
+            .addGap(0, 449, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPPrincipalLayout = new javax.swing.GroupLayout(jPPrincipal);
@@ -743,6 +784,22 @@ public class PrincipalView extends javax.swing.JFrame {
         this.mouseMenuExited(this.jPMenuCaixas);
     }//GEN-LAST:event_jPMenuCaixasMouseExited
 
+    private void jPMenuMotivosMovimentacaoEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuMotivosMovimentacaoEstoqueMouseClicked
+        try {
+            this.mostraTelaMotivosMovimentacaoEstoque();
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
+    }//GEN-LAST:event_jPMenuMotivosMovimentacaoEstoqueMouseClicked
+
+    private void jPMenuMotivosMovimentacaoEstoqueMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuMotivosMovimentacaoEstoqueMouseEntered
+        this.mouseMenuEntered(this.jPMenuMotivosMovimentacaoEstoque);
+    }//GEN-LAST:event_jPMenuMotivosMovimentacaoEstoqueMouseEntered
+
+    private void jPMenuMotivosMovimentacaoEstoqueMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPMenuMotivosMovimentacaoEstoqueMouseExited
+        this.mouseMenuExited(this.jPMenuMotivosMovimentacaoEstoque);
+    }//GEN-LAST:event_jPMenuMotivosMovimentacaoEstoqueMouseExited
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLIconAtendimento;
     private javax.swing.JLabel jLIconCadastros;
@@ -754,6 +811,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLMenuCadastros;
     private javax.swing.JLabel jLMenuCadastrosCaixas;
     private javax.swing.JLabel jLMenuCadastrosClientes;
+    private javax.swing.JLabel jLMenuCadastrosMotivosMovimentacaoEstoque;
     private javax.swing.JLabel jLMenuCadastrosProdutos;
     private javax.swing.JLabel jLMenuCadastrosUnidades;
     private javax.swing.JLabel jLMenuHome;
@@ -766,6 +824,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JPanel jPMenuCaixas;
     private javax.swing.JPanel jPMenuClientes;
     private javax.swing.JPanel jPMenuHome;
+    private javax.swing.JPanel jPMenuMotivosMovimentacaoEstoque;
     private javax.swing.JPanel jPMenuProdutos;
     private javax.swing.JPanel jPMenuRelatorios;
     private javax.swing.JPanel jPMenuUnidades;
@@ -791,6 +850,11 @@ public class PrincipalView extends javax.swing.JFrame {
     public void mostraTelaCaixas() throws Exception {
         this.ajustaTela(this.jPMenuCaixas, this.telaCaixas);
         this.telaCaixas.carregaTela();
+    }
+
+    public void mostraTelaMotivosMovimentacaoEstoque() throws Exception {
+        this.ajustaTela(this.jPMenuMotivosMovimentacaoEstoque, this.telaMotivosMovimentacaoEstoque);
+        this.telaMotivosMovimentacaoEstoque.carregaTela();
     }
 
     public void mostraTelaProdutos() throws Exception {
