@@ -5,7 +5,6 @@
  */
 package br.com.wendel.pdv.view;
 
-import br.com.wendel.pdv.controller.CaixaCadastroController;
 import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
@@ -22,23 +21,22 @@ import javax.swing.SwingUtilities;
  */
 public class PessoaCadastroView extends javax.swing.JPanel {
 
-    private final CaixaCadastroController controller;
-
+//    private final CaixaCadastroController controller;
     /**
      * Creates new form CaixaCadastroViewPanel
      *
      * @param id
      * @throws java.lang.Exception
      */
-    public PessoaCadastroView(Long id) throws Exception {
-        this.controller = new CaixaCadastroController(id);
+    public PessoaCadastroView(Long id) {
+//        this.controller = new CaixaCadastroController(id);
         initComponents();
-        if (this.controller.getCaixa() != null) {
-            this.jTFDescricao.setText(this.controller.getCaixa().getDescricao());
-        }
-        SwingUtilities.invokeLater(() -> {
-            this.jFTFCpfCnpj.requestFocusInWindow();
-        });
+//        if (this.controller.getCaixa() != null) {
+//            this.jTFDescricao.setText(this.controller.getCaixa().getDescricao());
+//        }
+//        SwingUtilities.invokeLater(() -> {
+//            this.jFTFCpfCnpj.requestFocusInWindow();
+//        });
     }
 
     /**
@@ -68,9 +66,28 @@ public class PessoaCadastroView extends javax.swing.JPanel {
         jRBJuridica = new javax.swing.JRadioButton();
         jFTFCpfCnpj = new javax.swing.JFormattedTextField();
         jLCpfCnpj = new javax.swing.JLabel();
+        jLDataNascimento = new javax.swing.JLabel();
+        jFTFDataNascimento = new javax.swing.JFormattedTextField();
+        jLTelefoneCelular = new javax.swing.JLabel();
+        jFTFTelefoneCelular = new javax.swing.JFormattedTextField();
+        jLTelefoneCelular1 = new javax.swing.JLabel();
+        jFTFTelefoneFixo = new javax.swing.JFormattedTextField();
+        jCBCliente = new javax.swing.JCheckBox();
+        jCBCliente1 = new javax.swing.JCheckBox();
+        jLTelefoneCelular2 = new javax.swing.JLabel();
+        jLLogradouro = new javax.swing.JLabel();
+        jTFLogradouro = new javax.swing.JTextField();
+        jLLogradouro1 = new javax.swing.JLabel();
+        jTFLogradouro1 = new javax.swing.JTextField();
+        jLLogradouro2 = new javax.swing.JLabel();
+        jTFLogradouro2 = new javax.swing.JTextField();
+        jLLogradouro3 = new javax.swing.JLabel();
+        jTFLogradouro3 = new javax.swing.JTextField();
+        jLLogradouro4 = new javax.swing.JLabel();
+        jTFLogradouro4 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setFocusTraversalPolicy(new TraversalPolicy(asList(this.jRBFisica, this.jRBJuridica, this.jFTFCpfCnpj, this.jTFDescricao, this.jPButtonSalvar, this.jPButtonCancelar)));
+        setFocusTraversalPolicy(new TraversalPolicy(asList(this.jRBFisica, this.jRBJuridica, this.jFTFCpfCnpj, this.jFTFDataNascimento, this.jTFDescricao, this.jPButtonSalvar, this.jPButtonCancelar)));
         setFocusTraversalPolicyProvider(true);
 
         jPTopo.setBackground(new java.awt.Color(79, 195, 247));
@@ -87,7 +104,7 @@ public class PessoaCadastroView extends javax.swing.JPanel {
             .addGroup(jPTopoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLTitulo)
-                .addContainerGap(657, Short.MAX_VALUE))
+                .addContainerGap(569, Short.MAX_VALUE))
         );
         jPTopoLayout.setVerticalGroup(
             jPTopoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,6 +253,11 @@ public class PessoaCadastroView extends javax.swing.JPanel {
                 jRBFisicaItemStateChanged(evt);
             }
         });
+        jRBFisica.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jRBFisicaKeyPressed(evt);
+            }
+        });
 
         jRBJuridica.setBackground(new java.awt.Color(255, 255, 255));
         bgTipo.add(jRBJuridica);
@@ -247,26 +269,191 @@ public class PessoaCadastroView extends javax.swing.JPanel {
                 jRBJuridicaItemStateChanged(evt);
             }
         });
+        jRBJuridica.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jRBJuridicaKeyPressed(evt);
+            }
+        });
 
         try {
             jFTFCpfCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFTFCpfCnpj.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         jFTFCpfCnpj.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jFTFCpfCnpj.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFTFCpfCnpjKeyPressed(evt);
+            }
+        });
 
         jLCpfCnpj.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLCpfCnpj.setText("CPF");
+
+        jLDataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLDataNascimento.setText("Data de Nascimento");
+
+        try {
+            jFTFDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFTFDataNascimento.setToolTipText("Data de nascimento da pessoa");
+        jFTFDataNascimento.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
+        jFTFDataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jFTFDataNascimento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFTFDataNascimentoKeyPressed(evt);
+            }
+        });
+
+        jLTelefoneCelular.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLTelefoneCelular.setText("Telefone Celular");
+
+        try {
+            jFTFTelefoneCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFTFTelefoneCelular.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
+        jFTFTelefoneCelular.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jFTFTelefoneCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFTFTelefoneCelularKeyPressed(evt);
+            }
+        });
+
+        jLTelefoneCelular1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLTelefoneCelular1.setText("Telefone Fixo");
+
+        try {
+            jFTFTelefoneFixo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFTFTelefoneFixo.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
+        jFTFTelefoneFixo.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jFTFTelefoneFixo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFTFTelefoneFixoKeyPressed(evt);
+            }
+        });
+
+        jCBCliente.setBackground(new java.awt.Color(255, 255, 255));
+        jCBCliente.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jCBCliente.setText("Cliente");
+
+        jCBCliente1.setBackground(new java.awt.Color(255, 255, 255));
+        jCBCliente1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jCBCliente1.setText("Fornecedor");
+
+        jLTelefoneCelular2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLTelefoneCelular2.setText("A pessoa é?");
+
+        jLLogradouro.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLLogradouro.setText("Logradouro");
+
+        jTFLogradouro.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFLogradouro.setToolTipText("Descrição do caixa");
+        jTFLogradouro.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFLogradouroFocusGained(evt);
+            }
+        });
+        jTFLogradouro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFLogradouroKeyPressed(evt);
+            }
+        });
+
+        jLLogradouro1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLLogradouro1.setText("Número");
+
+        jTFLogradouro1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFLogradouro1.setToolTipText("Descrição do caixa");
+        jTFLogradouro1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFLogradouro1FocusGained(evt);
+            }
+        });
+        jTFLogradouro1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFLogradouro1KeyPressed(evt);
+            }
+        });
+
+        jLLogradouro2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLLogradouro2.setText("Complemento");
+
+        jTFLogradouro2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFLogradouro2.setToolTipText("Descrição do caixa");
+        jTFLogradouro2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFLogradouro2FocusGained(evt);
+            }
+        });
+        jTFLogradouro2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFLogradouro2KeyPressed(evt);
+            }
+        });
+
+        jLLogradouro3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLLogradouro3.setText("Setor");
+
+        jTFLogradouro3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFLogradouro3.setToolTipText("Descrição do caixa");
+        jTFLogradouro3.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFLogradouro3FocusGained(evt);
+            }
+        });
+        jTFLogradouro3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFLogradouro3KeyPressed(evt);
+            }
+        });
+
+        jLLogradouro4.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLLogradouro4.setText("Cidade");
+
+        jTFLogradouro4.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFLogradouro4.setToolTipText("Descrição do caixa");
+        jTFLogradouro4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFLogradouro4FocusGained(evt);
+            }
+        });
+        jTFLogradouro4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFLogradouro4KeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
+            .addComponent(jPTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTFDescricao)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFLogradouro, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLLogradouro1)
+                            .addComponent(jTFLogradouro1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLLogradouro2)
+                            .addComponent(jTFLogradouro2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -286,36 +473,109 @@ public class PessoaCadastroView extends javax.swing.JPanel {
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jFTFCpfCnpj, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                                    .addComponent(jLCpfCnpj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLCpfCnpj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLDataNascimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jFTFDataNascimento)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jFTFTelefoneCelular)
+                                    .addComponent(jLTelefoneCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jFTFTelefoneFixo, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                    .addComponent(jLTelefoneCelular1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(15, 15, 15)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jCBCliente)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jCBCliente1))
+                                    .addComponent(jLTelefoneCelular2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLLogradouro)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLLogradouro3)
+                                    .addComponent(jTFLogradouro3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLLogradouro4)
+                                    .addComponent(jTFLogradouro4, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPTopo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPTopo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLTipo)
+                                    .addComponent(jLTipoObrigatorio)
+                                    .addComponent(jLCpfCnpj)
+                                    .addComponent(jLDataNascimento))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                    .addComponent(jFTFCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFTFDataNascimento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLDescricao)
+                                    .addComponent(jLDescricaoObrigatoria))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTFDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jRBJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jRBFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLTelefoneCelular)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFTFTelefoneCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jCBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCBCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLTelefoneCelular1)
+                            .addComponent(jLTelefoneCelular2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFTFTelefoneFixo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLTipo)
-                    .addComponent(jLTipoObrigatorio)
-                    .addComponent(jLCpfCnpj))
+                .addComponent(jLLogradouro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRBFisica, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRBJuridica, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFTFCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLDescricao)
-                    .addComponent(jLDescricaoObrigatoria))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTFDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTFLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLLogradouro1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTFLogradouro1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLLogradouro2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTFLogradouro2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLLogradouro3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTFLogradouro3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLLogradouro4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTFLogradouro4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -423,8 +683,11 @@ public class PessoaCadastroView extends javax.swing.JPanel {
         try {
             if (this.jRBFisica.isSelected()) {
                 this.jLCpfCnpj.setText("CPF");
-                this.jLCpfCnpj.setToolTipText("CPF da pessoa física");
+                this.jFTFCpfCnpj.setToolTipText("CPF da pessoa física");
+                this.jFTFCpfCnpj.setValue("");
                 this.jFTFCpfCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+                this.jLDataNascimento.setVisible(true);
+                this.jFTFDataNascimento.setVisible(true);
             }
         } catch (ParseException e) {
             enviarMensagemErro(e.getMessage());
@@ -435,25 +698,126 @@ public class PessoaCadastroView extends javax.swing.JPanel {
         try {
             if (this.jRBJuridica.isSelected()) {
                 this.jLCpfCnpj.setText("CPNJ");
-                this.jLCpfCnpj.setToolTipText("CNPJ da pessoa jurídica");
+                this.jFTFCpfCnpj.setToolTipText("CNPJ da pessoa jurídica");
+                this.jFTFCpfCnpj.setValue("");
                 this.jFTFCpfCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+                this.jLDataNascimento.setVisible(false);
+                this.jFTFDataNascimento.setVisible(false);
             }
         } catch (ParseException e) {
             enviarMensagemErro(e.getMessage());
         }
     }//GEN-LAST:event_jRBJuridicaItemStateChanged
 
+    private void jRBFisicaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRBFisicaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jRBJuridica.requestFocusInWindow();
+            });
+        }
+    }//GEN-LAST:event_jRBFisicaKeyPressed
+
+    private void jRBJuridicaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRBJuridicaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jFTFCpfCnpj.requestFocusInWindow();
+            });
+        }
+    }//GEN-LAST:event_jRBJuridicaKeyPressed
+
+    private void jFTFCpfCnpjKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFTFCpfCnpjKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                if (this.jRBFisica.isSelected()) {
+                    this.jFTFDataNascimento.requestFocusInWindow();
+                } else {
+                    this.jTFDescricao.requestFocusInWindow();
+                }
+            });
+        }
+    }//GEN-LAST:event_jFTFCpfCnpjKeyPressed
+
+    private void jFTFDataNascimentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFTFDataNascimentoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jTFDescricao.requestFocusInWindow();
+            });
+        }
+    }//GEN-LAST:event_jFTFDataNascimentoKeyPressed
+
+    private void jFTFTelefoneCelularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFTFTelefoneCelularKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFTFTelefoneCelularKeyPressed
+
+    private void jFTFTelefoneFixoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFTFTelefoneFixoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFTFTelefoneFixoKeyPressed
+
+    private void jTFLogradouroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFLogradouroFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFLogradouroFocusGained
+
+    private void jTFLogradouroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFLogradouroKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFLogradouroKeyPressed
+
+    private void jTFLogradouro1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFLogradouro1FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFLogradouro1FocusGained
+
+    private void jTFLogradouro1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFLogradouro1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFLogradouro1KeyPressed
+
+    private void jTFLogradouro2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFLogradouro2FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFLogradouro2FocusGained
+
+    private void jTFLogradouro2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFLogradouro2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFLogradouro2KeyPressed
+
+    private void jTFLogradouro3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFLogradouro3FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFLogradouro3FocusGained
+
+    private void jTFLogradouro3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFLogradouro3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFLogradouro3KeyPressed
+
+    private void jTFLogradouro4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFLogradouro4FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFLogradouro4FocusGained
+
+    private void jTFLogradouro4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFLogradouro4KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFLogradouro4KeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgTipo;
+    private javax.swing.JCheckBox jCBCliente;
+    private javax.swing.JCheckBox jCBCliente1;
     private javax.swing.JFormattedTextField jFTFCpfCnpj;
+    private javax.swing.JFormattedTextField jFTFDataNascimento;
+    private javax.swing.JFormattedTextField jFTFTelefoneCelular;
+    private javax.swing.JFormattedTextField jFTFTelefoneFixo;
     private javax.swing.JLabel jLButtonCancelar;
     private javax.swing.JLabel jLButtonSalvar;
     private javax.swing.JLabel jLCpfCnpj;
+    private javax.swing.JLabel jLDataNascimento;
     private javax.swing.JLabel jLDescricao;
     private javax.swing.JLabel jLDescricaoObrigatoria;
     private javax.swing.JLabel jLIconButtonCancelar;
     private javax.swing.JLabel jLIconButtonSalvar;
+    private javax.swing.JLabel jLLogradouro;
+    private javax.swing.JLabel jLLogradouro1;
+    private javax.swing.JLabel jLLogradouro2;
+    private javax.swing.JLabel jLLogradouro3;
+    private javax.swing.JLabel jLLogradouro4;
+    private javax.swing.JLabel jLTelefoneCelular;
+    private javax.swing.JLabel jLTelefoneCelular1;
+    private javax.swing.JLabel jLTelefoneCelular2;
     private javax.swing.JLabel jLTipo;
     private javax.swing.JLabel jLTipoObrigatorio;
     private javax.swing.JLabel jLTitulo;
@@ -463,5 +827,10 @@ public class PessoaCadastroView extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRBFisica;
     private javax.swing.JRadioButton jRBJuridica;
     private javax.swing.JTextField jTFDescricao;
+    private javax.swing.JTextField jTFLogradouro;
+    private javax.swing.JTextField jTFLogradouro1;
+    private javax.swing.JTextField jTFLogradouro2;
+    private javax.swing.JTextField jTFLogradouro3;
+    private javax.swing.JTextField jTFLogradouro4;
     // End of variables declaration//GEN-END:variables
 }
