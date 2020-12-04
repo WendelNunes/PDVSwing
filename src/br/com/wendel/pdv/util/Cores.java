@@ -20,4 +20,7 @@ public class Cores {
     public static final Color COR_BOTAO_SALVAR_ENTERED = new Color(0, 105, 217);
     public static final Color COR_BOTAO_CANCELAR = new Color(220, 53, 69);
     public static final Color COR_BOTAO_CANCELAR_ENTERED = new Color(200, 35, 51);
+    public static final Color COR_BOTAO_PROCURAR = new Color(102, 228, 112);
+    public static final Color COR_BOTAO_PROCURAR_ENTERED = new Color(102, 175, 112);
+
 }

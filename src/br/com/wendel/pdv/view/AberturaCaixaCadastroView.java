@@ -260,7 +260,7 @@ public class AberturaCaixaCadastroView extends javax.swing.JPanel {
         jLButtonCancelar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLButtonCancelar.setText("Cancelar");
 
-        jLIconButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_save.png"))); // NOI18N
+        jLIconButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_cancel.png"))); // NOI18N
 
         javax.swing.GroupLayout jPButtonCancelarLayout = new javax.swing.GroupLayout(jPButtonCancelar);
         jPButtonCancelar.setLayout(jPButtonCancelarLayout);

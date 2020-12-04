@@ -9,10 +9,12 @@ import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
 import br.com.wendel.pdv.util.TraversalPolicy;
+import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import static java.util.Arrays.asList;
 import javax.swing.BorderFactory;
+import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
 /**
@@ -22,11 +24,12 @@ import javax.swing.SwingUtilities;
 public class PessoaCadastroView extends javax.swing.JPanel {
 
 //    private final CaixaCadastroController controller;
+    private JDialog telaConsultaCidade;
+
     /**
      * Creates new form CaixaCadastroViewPanel
      *
      * @param id
-     * @throws java.lang.Exception
      */
     public PessoaCadastroView(Long id) {
 //        this.controller = new CaixaCadastroController(id);
@@ -84,7 +87,9 @@ public class PessoaCadastroView extends javax.swing.JPanel {
         jLLogradouro3 = new javax.swing.JLabel();
         jTFLogradouro3 = new javax.swing.JTextField();
         jLLogradouro4 = new javax.swing.JLabel();
-        jTFLogradouro4 = new javax.swing.JTextField();
+        jTFCodigoCidade = new javax.swing.JTextField();
+        jTFDescricaoCidade = new javax.swing.JTextField();
+        jLButtonProcurarCidade = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setFocusTraversalPolicy(new TraversalPolicy(asList(this.jRBFisica, this.jRBJuridica, this.jFTFCpfCnpj, this.jFTFDataNascimento, this.jTFDescricao, this.jPButtonSalvar, this.jPButtonCancelar)));
@@ -212,7 +217,7 @@ public class PessoaCadastroView extends javax.swing.JPanel {
         jLButtonCancelar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLButtonCancelar.setText("Cancelar");
 
-        jLIconButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_save.png"))); // NOI18N
+        jLIconButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_cancel.png"))); // NOI18N
 
         javax.swing.GroupLayout jPButtonCancelarLayout = new javax.swing.GroupLayout(jPButtonCancelar);
         jPButtonCancelar.setLayout(jPButtonCancelarLayout);
@@ -418,16 +423,60 @@ public class PessoaCadastroView extends javax.swing.JPanel {
         jLLogradouro4.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLLogradouro4.setText("Cidade");
 
-        jTFLogradouro4.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jTFLogradouro4.setToolTipText("Descrição do caixa");
-        jTFLogradouro4.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTFCodigoCidade.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFCodigoCidade.setToolTipText("Descrição do caixa");
+        jTFCodigoCidade.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTFLogradouro4FocusGained(evt);
+                jTFCodigoCidadeFocusGained(evt);
             }
         });
-        jTFLogradouro4.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFCodigoCidade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTFLogradouro4KeyPressed(evt);
+                jTFCodigoCidadeKeyPressed(evt);
+            }
+        });
+
+        jTFDescricaoCidade.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFDescricaoCidade.setToolTipText("Descrição do caixa");
+        jTFDescricaoCidade.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFDescricaoCidadeFocusGained(evt);
+            }
+        });
+        jTFDescricaoCidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFDescricaoCidadeKeyPressed(evt);
+            }
+        });
+
+        jLButtonProcurarCidade.setBackground(new java.awt.Color(102, 228, 112));
+        jLButtonProcurarCidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLButtonProcurarCidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_search.png"))); // NOI18N
+        jLButtonProcurarCidade.setToolTipText("");
+        jLButtonProcurarCidade.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLButtonProcurarCidade.setOpaque(true);
+        jLButtonProcurarCidade.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jLButtonProcurarCidadeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jLButtonProcurarCidadeFocusLost(evt);
+            }
+        });
+        jLButtonProcurarCidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLButtonProcurarCidadeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLButtonProcurarCidadeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLButtonProcurarCidadeMouseExited(evt);
+            }
+        });
+        jLButtonProcurarCidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLButtonProcurarCidadeKeyPressed(evt);
             }
         });
 
@@ -501,8 +550,12 @@ public class PessoaCadastroView extends javax.swing.JPanel {
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLLogradouro4)
-                                    .addComponent(jTFLogradouro4, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTFCodigoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTFDescricaoCidade)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLButtonProcurarCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -556,26 +609,26 @@ public class PessoaCadastroView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTFLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLLogradouro1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTFLogradouro1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLLogradouro2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTFLogradouro2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTFLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLLogradouro3)
+                        .addComponent(jLLogradouro1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTFLogradouro3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTFLogradouro1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLLogradouro4)
+                        .addComponent(jLLogradouro2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTFLogradouro4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addComponent(jTFLogradouro2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLLogradouro3)
+                    .addComponent(jLLogradouro4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLButtonProcurarCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFDescricaoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFCodigoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFLogradouro3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -785,14 +838,63 @@ public class PessoaCadastroView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFLogradouro3KeyPressed
 
-    private void jTFLogradouro4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFLogradouro4FocusGained
+    private void jTFCodigoCidadeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFCodigoCidadeFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTFLogradouro4FocusGained
+    }//GEN-LAST:event_jTFCodigoCidadeFocusGained
 
-    private void jTFLogradouro4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFLogradouro4KeyPressed
+    private void jTFCodigoCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoCidadeKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTFLogradouro4KeyPressed
+    }//GEN-LAST:event_jTFCodigoCidadeKeyPressed
 
+    private void jTFDescricaoCidadeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFDescricaoCidadeFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFDescricaoCidadeFocusGained
+
+    private void jTFDescricaoCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescricaoCidadeKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFDescricaoCidadeKeyPressed
+
+    private void jLButtonProcurarCidadeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLButtonProcurarCidadeMouseEntered
+        SwingUtilities.invokeLater(() -> {
+            this.jLButtonProcurarCidade.setBackground(Cores.COR_BOTAO_PROCURAR_ENTERED);
+        });
+    }//GEN-LAST:event_jLButtonProcurarCidadeMouseEntered
+
+    private void jLButtonProcurarCidadeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLButtonProcurarCidadeMouseExited
+        SwingUtilities.invokeLater(() -> {
+            this.jLButtonProcurarCidade.setBackground(Cores.COR_BOTAO_PROCURAR);
+        });
+    }//GEN-LAST:event_jLButtonProcurarCidadeMouseExited
+
+    private void jLButtonProcurarCidadeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jLButtonProcurarCidadeFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jLButtonProcurarCidade.setBorder(BorderFactory.createDashedBorder(null, 1, 5, 5, false));
+        });
+    }//GEN-LAST:event_jLButtonProcurarCidadeFocusGained
+
+    private void jLButtonProcurarCidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jLButtonProcurarCidadeFocusLost
+        SwingUtilities.invokeLater(() -> {
+            this.jLButtonProcurarCidade.setBorder(null);
+        });
+    }//GEN-LAST:event_jLButtonProcurarCidadeFocusLost
+
+    private void jLButtonProcurarCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLButtonProcurarCidadeKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            try {
+                this.acaoAbrirConsultaCidade();
+            } catch (Exception e) {
+                enviarMensagemErro(e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jLButtonProcurarCidadeKeyPressed
+
+    private void jLButtonProcurarCidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLButtonProcurarCidadeMouseClicked
+        try {
+            this.acaoAbrirConsultaCidade();
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
+    }//GEN-LAST:event_jLButtonProcurarCidadeMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgTipo;
@@ -803,6 +905,7 @@ public class PessoaCadastroView extends javax.swing.JPanel {
     private javax.swing.JFormattedTextField jFTFTelefoneCelular;
     private javax.swing.JFormattedTextField jFTFTelefoneFixo;
     private javax.swing.JLabel jLButtonCancelar;
+    private javax.swing.JLabel jLButtonProcurarCidade;
     private javax.swing.JLabel jLButtonSalvar;
     private javax.swing.JLabel jLCpfCnpj;
     private javax.swing.JLabel jLDataNascimento;
@@ -826,11 +929,18 @@ public class PessoaCadastroView extends javax.swing.JPanel {
     private javax.swing.JPanel jPTopo;
     private javax.swing.JRadioButton jRBFisica;
     private javax.swing.JRadioButton jRBJuridica;
+    private javax.swing.JTextField jTFCodigoCidade;
     private javax.swing.JTextField jTFDescricao;
+    private javax.swing.JTextField jTFDescricaoCidade;
     private javax.swing.JTextField jTFLogradouro;
     private javax.swing.JTextField jTFLogradouro1;
     private javax.swing.JTextField jTFLogradouro2;
     private javax.swing.JTextField jTFLogradouro3;
-    private javax.swing.JTextField jTFLogradouro4;
     // End of variables declaration//GEN-END:variables
+
+    private void acaoAbrirConsultaCidade() throws Exception {
+        this.telaConsultaCidade = new JDialog();
+        this.telaConsultaCidade.add(new CidadesView());
+        this.telaConsultaCidade.setVisible(true);
+    }
 }
