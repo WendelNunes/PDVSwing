@@ -6,10 +6,10 @@
 package br.com.wendel.pdv.view;
 
 import br.com.wendel.pdv.App;
+import br.com.wendel.pdv.util.Consulta;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
 import br.com.wendel.pdv.util.TraversalPolicy;
-import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import static java.util.Arrays.asList;
@@ -940,6 +940,7 @@ public class PessoaCadastroView extends javax.swing.JPanel {
 
     private void acaoAbrirConsultaCidade() throws Exception {
         this.telaConsultaCidade = new JDialog();
+        Consulta.getInstance().adicionarJanela(this, "idCidade");
         this.telaConsultaCidade.add(new CidadesView());
         this.telaConsultaCidade.setVisible(true);
     }

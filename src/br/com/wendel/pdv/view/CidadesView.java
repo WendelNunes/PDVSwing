@@ -7,9 +7,13 @@ package br.com.wendel.pdv.view;
 
 import br.com.wendel.pdv.controller.CidadesController;
 import br.com.wendel.pdv.App;
+import br.com.wendel.pdv.util.Consulta;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
+import java.awt.event.KeyEvent;
 import java.util.Map;
+import javax.swing.BorderFactory;
+import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
@@ -69,6 +73,9 @@ public class CidadesView extends javax.swing.JPanel {
         jLButtonEditar = new javax.swing.JLabel();
         jLIconButtonEditar = new javax.swing.JLabel();
         jSPCaixas = new JScrollPane(this.tabela);
+        jPButtonCancelar = new javax.swing.JPanel();
+        jLButtonCancelar = new javax.swing.JLabel();
+        jLIconButtonCancelar = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -208,7 +215,7 @@ public class CidadesView extends javax.swing.JPanel {
             .addGroup(jPTopoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
                 .addComponent(jPButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,14 +234,70 @@ public class CidadesView extends javax.swing.JPanel {
         jSPCaixas.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jSPCaixas.setForeground(new java.awt.Color(255, 255, 255));
 
+        jPButtonCancelar.setBackground(new java.awt.Color(220, 53, 69));
+        jPButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPButtonCancelar.setPreferredSize(new java.awt.Dimension(106, 35));
+        jPButtonCancelar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPButtonCancelarFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPButtonCancelarFocusLost(evt);
+            }
+        });
+        jPButtonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPButtonCancelarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPButtonCancelarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPButtonCancelarMouseExited(evt);
+            }
+        });
+        jPButtonCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPButtonCancelarKeyPressed(evt);
+            }
+        });
+
+        jLButtonCancelar.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLButtonCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        jLButtonCancelar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLButtonCancelar.setText("Cancelar");
+
+        jLIconButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_cancel.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPButtonCancelarLayout = new javax.swing.GroupLayout(jPButtonCancelar);
+        jPButtonCancelar.setLayout(jPButtonCancelarLayout);
+        jPButtonCancelarLayout.setHorizontalGroup(
+            jPButtonCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPButtonCancelarLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLIconButtonCancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPButtonCancelarLayout.setVerticalGroup(
+            jPButtonCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+            .addComponent(jLIconButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+            .addComponent(jPTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSPCaixas)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSPCaixas)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -242,7 +305,9 @@ public class CidadesView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPTopo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSPCaixas, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                .addComponent(jSPCaixas, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -318,15 +383,69 @@ public class CidadesView extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jPButtonExcluirMouseClicked
 
+    private void jPButtonCancelarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonCancelarFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonCancelar.setBorder(BorderFactory.createDashedBorder(null, 1, 5, 5, false));
+        });
+    }//GEN-LAST:event_jPButtonCancelarFocusGained
+
+    private void jPButtonCancelarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonCancelarFocusLost
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonCancelar.setBorder(null);
+        });
+    }//GEN-LAST:event_jPButtonCancelarFocusLost
+
+    private void jPButtonCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonCancelarMouseClicked
+        try {
+            this.acaCancelar();
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
+    }//GEN-LAST:event_jPButtonCancelarMouseClicked
+
+    private void acaCancelar() {
+        Consulta consulta = Consulta.getInstance();
+        if (consulta.isConsulta()) {
+            Object janela = consulta.getJanelaRetorno();
+            if (janela instanceof JDialog) {
+
+            } else {
+
+            }
+        }
+    }
+
+
+    private void jPButtonCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonCancelarMouseEntered
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonCancelar.setBackground(Cores.COR_BOTAO_CANCELAR_ENTERED);
+        });
+    }//GEN-LAST:event_jPButtonCancelarMouseEntered
+
+    private void jPButtonCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonCancelarMouseExited
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonCancelar.setBackground(Cores.COR_BOTAO_CANCELAR);
+        });
+    }//GEN-LAST:event_jPButtonCancelarMouseExited
+
+    private void jPButtonCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonCancelarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            this.jPButtonCancelarMouseClicked(null);
+        }
+    }//GEN-LAST:event_jPButtonCancelarKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLButtonCancelar;
     private javax.swing.JLabel jLButtonEditar;
     private javax.swing.JLabel jLButtonExcluir;
     private javax.swing.JLabel jLButtonNovo;
+    private javax.swing.JLabel jLIconButtonCancelar;
     private javax.swing.JLabel jLIconButtonEditar;
     private javax.swing.JLabel jLIconButtonExcluir;
     private javax.swing.JLabel jLIconButtonNovo;
     private javax.swing.JLabel jLTitulo;
+    private javax.swing.JPanel jPButtonCancelar;
     private javax.swing.JPanel jPButtonEditar;
     private javax.swing.JPanel jPButtonExcluir;
     private javax.swing.JPanel jPButtonNovo;
