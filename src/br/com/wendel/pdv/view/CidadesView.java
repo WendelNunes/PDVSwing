@@ -13,7 +13,6 @@ import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
 import java.awt.event.KeyEvent;
 import java.util.Map;
 import javax.swing.BorderFactory;
-import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
@@ -397,21 +396,25 @@ public class CidadesView extends javax.swing.JPanel {
 
     private void jPButtonCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonCancelarMouseClicked
         try {
-            this.acaCancelar();
+            this.acaoCancelar();
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
     }//GEN-LAST:event_jPButtonCancelarMouseClicked
 
-    private void acaCancelar() {
+    private void acaoCancelar() {
         Consulta consulta = Consulta.getInstance();
         if (consulta.isConsulta()) {
-            Object janela = consulta.getJanelaRetorno();
-            if (janela instanceof JDialog) {
+            ConsultaView consultaView = (ConsultaView) consulta.getJanelaRetorno();
+            consultaView.acaoVoltarConsulta();
+        }
+    }
 
-            } else {
-
-            }
+    private void acaoSelecionar() {
+        Consulta consulta = Consulta.getInstance();
+        if (consulta.isConsulta()) {
+            ConsultaView consultaView = (ConsultaView) consulta.getJanelaRetorno();
+            consultaView.acaoVoltarConsulta();
         }
     }
 

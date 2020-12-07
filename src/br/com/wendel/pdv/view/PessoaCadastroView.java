@@ -21,7 +21,7 @@ import javax.swing.SwingUtilities;
  *
  * @author INLOC01
  */
-public class PessoaCadastroView extends javax.swing.JPanel {
+public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaView {
 
 //    private final CaixaCadastroController controller;
     private JDialog telaConsultaCidade;
@@ -943,5 +943,31 @@ public class PessoaCadastroView extends javax.swing.JPanel {
         Consulta.getInstance().adicionarJanela(this, "idCidade");
         this.telaConsultaCidade.add(new CidadesView());
         this.telaConsultaCidade.setVisible(true);
+    }
+
+    @Override
+    public void acaoSelecionarConsulta(String key, Object value) {
+        Consulta consulta = Consulta.getInstance();
+        if (consulta.isConsulta()) {
+            if (key.equals("idCidade")) {
+                this.telaConsultaCidade.dispose();
+                
+                consulta.removerJanela();
+                App.getInstance().getPrincipalView().mostraConteudo(this);
+            }
+        }
+    }
+
+    @Override
+    public void acaoVoltarConsulta() {
+        Consulta consulta = Consulta.getInstance();
+        if (consulta.isConsulta()) {
+            String parametroRetorno = consulta.getParametroRetorno();
+            if (parametroRetorno.equals("idCidade")) {
+                this.telaConsultaCidade.dispose();
+            }
+            consulta.removerJanela();
+            App.getInstance().getPrincipalView().mostraConteudo(this);
+        }
     }
 }

@@ -5,7 +5,6 @@
  */
 package br.com.wendel.pdv.util;
 
-import java.awt.Window;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,8 +36,8 @@ public class Consulta {
         return this.isConsulta() ? this.navegacao.get(this.navegacao.size() - 1).get("JANELA_RETORNO") : null;
     }
 
-    public Object getParametroRetorno() {
-        return this.isConsulta() ? this.navegacao.get(this.navegacao.size() - 1).get("PARAMETRO_RETORNO") : null;
+    public String getParametroRetorno() {
+        return this.isConsulta() ? this.navegacao.get(this.navegacao.size() - 1).get("PARAMETRO_RETORNO").toString() : null;
     }
 
     public boolean isConsulta() {
