@@ -10,9 +10,11 @@ import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Consulta;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
+import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.util.Map;
 import javax.swing.BorderFactory;
+import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
@@ -25,6 +27,7 @@ public class CidadesView extends javax.swing.JPanel {
     private final CidadesController cidadesViewController;
     private final CidadeTableModel cidadeTableModel;
     private final JTableCustom<Map<String, Object>> tabela;
+    private JDialog dialog;
 
     /**
      * Creates new form HomeView
@@ -405,8 +408,7 @@ public class CidadesView extends javax.swing.JPanel {
     private void acaoCancelar() {
         Consulta consulta = Consulta.getInstance();
         if (consulta.isConsulta()) {
-            ConsultaView consultaView = (ConsultaView) consulta.getJanelaRetorno();
-            consultaView.acaoVoltarConsulta();
+            this.dialog.dispose();
         }
     }
 
@@ -456,4 +458,10 @@ public class CidadesView extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jSPCaixas;
     // End of variables declaration//GEN-END:variables
+
+    public void abrirDialog(Window window) {
+        this.dialog = new JDialog(window);
+        this.dialog.add(this);
+        this.dialog.setVisible(true);
+    }
 }

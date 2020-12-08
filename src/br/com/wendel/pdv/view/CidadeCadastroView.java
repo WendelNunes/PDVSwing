@@ -8,12 +8,15 @@ package br.com.wendel.pdv.view;
 import br.com.wendel.pdv.controller.CidadeCadastroController;
 import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.entity.Estado;
+import br.com.wendel.pdv.util.Consulta;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
 import br.com.wendel.pdv.util.TraversalPolicy;
+import java.awt.Window;
 import java.awt.event.KeyEvent;
 import static java.util.Arrays.asList;
 import javax.swing.BorderFactory;
+import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
 /**
@@ -23,6 +26,7 @@ import javax.swing.SwingUtilities;
 public class CidadeCadastroView extends javax.swing.JPanel {
 
     private final CidadeCadastroController controller;
+    private JDialog dialog;
 
     /**
      * Creates new form CidadeCadastroViewPanel
@@ -316,7 +320,7 @@ public class CidadeCadastroView extends javax.swing.JPanel {
 
     private void jPButtonCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonCancelarMouseClicked
         try {
-            App.getInstance().getPrincipalView().mostraTelaCidades();
+            this.acaoCancelar();
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
@@ -325,6 +329,19 @@ public class CidadeCadastroView extends javax.swing.JPanel {
     private void acaoSalvar() {
         try {
             if (this.controller.salvarCidade(this.jTFDescricao.getText(), (Estado) this.jCBEstado.getSelectedItem())) {
+                App.getInstance().getPrincipalView().mostraTelaCidades();
+            }
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
+    }
+
+    private void acaoCancelar() {
+        try {
+            Consulta consulta = Consulta.getInstance();
+            if (consulta.isConsulta()) {
+                this.dialog.dispose();
+            } else {
                 App.getInstance().getPrincipalView().mostraTelaCidades();
             }
         } catch (Exception e) {
@@ -372,7 +389,7 @@ public class CidadeCadastroView extends javax.swing.JPanel {
 
     private void jPButtonCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonCancelarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            this.jPButtonCancelarMouseClicked(null);
+            this.acaoCancelar();
         }
     }//GEN-LAST:event_jPButtonCancelarKeyPressed
 
@@ -407,4 +424,10 @@ public class CidadeCadastroView extends javax.swing.JPanel {
     private javax.swing.JPanel jPTopo;
     private javax.swing.JTextField jTFDescricao;
     // End of variables declaration//GEN-END:variables
+
+    public void abrirDialog(Window window) {
+        this.dialog = new JDialog(window);
+        this.dialog.add(this);
+        this.dialog.setVisible(true);
+    }
 }
