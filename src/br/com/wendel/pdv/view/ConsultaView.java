@@ -11,7 +11,5 @@ package br.com.wendel.pdv.view;
  */
 public interface ConsultaView {
 
-    public void acaoSelecionarConsulta(String key, Object value);
-
-    public void acaoVoltarConsulta();
+    public void acaoSelecionarConsulta(String key, Object value) throws Exception;
 }

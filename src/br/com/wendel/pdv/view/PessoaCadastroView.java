@@ -6,6 +6,9 @@
 package br.com.wendel.pdv.view;
 
 import br.com.wendel.pdv.App;
+import br.com.wendel.pdv.dao.CidadeDao;
+import br.com.wendel.pdv.entity.Cidade;
+import br.com.wendel.pdv.util.Conexao;
 import br.com.wendel.pdv.util.Consulta;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
@@ -14,7 +17,6 @@ import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import static java.util.Arrays.asList;
 import javax.swing.BorderFactory;
-import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
 /**
@@ -24,8 +26,6 @@ import javax.swing.SwingUtilities;
 public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaView {
 
 //    private final CaixaCadastroController controller;
-    private JDialog telaConsultaCidade;
-
     /**
      * Creates new form CaixaCadastroViewPanel
      *
@@ -939,35 +939,18 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
     // End of variables declaration//GEN-END:variables
 
     private void acaoAbrirConsultaCidade() throws Exception {
-        this.telaConsultaCidade = new JDialog();
         Consulta.getInstance().adicionarJanela(this, "idCidade");
-        this.telaConsultaCidade.add(new CidadesView());
-        this.telaConsultaCidade.setVisible(true);
+        PrincipalView principalView = App.getInstance().getPrincipalView();
+        principalView.mostraConteudo(principalView.getTelaCidades());
     }
 
     @Override
-    public void acaoSelecionarConsulta(String key, Object value) {
-        Consulta consulta = Consulta.getInstance();
-        if (consulta.isConsulta()) {
-            if (key.equals("idCidade")) {
-                this.telaConsultaCidade.dispose();
-                
-                consulta.removerJanela();
-                App.getInstance().getPrincipalView().mostraConteudo(this);
-            }
-        }
-    }
-
-    @Override
-    public void acaoVoltarConsulta() {
-        Consulta consulta = Consulta.getInstance();
-        if (consulta.isConsulta()) {
-            String parametroRetorno = consulta.getParametroRetorno();
-            if (parametroRetorno.equals("idCidade")) {
-                this.telaConsultaCidade.dispose();
-            }
-            consulta.removerJanela();
-            App.getInstance().getPrincipalView().mostraConteudo(this);
+    public void acaoSelecionarConsulta(String key, Object value) throws Exception {
+        if (key.equals("idCidade")) {
+            Cidade cidade = new CidadeDao(Conexao.criarConexao()).procurarPorId((Long) value);
+            this.jTFCodigoCidade.setText(cidade.getId().toString());
+            this.jTFDescricaoCidade.setText(cidade.getDescricao());
+            this.jTFCodigoCidade.requestFocusInWindow();
         }
     }
 }

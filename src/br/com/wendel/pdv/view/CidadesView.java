@@ -10,11 +10,10 @@ import br.com.wendel.pdv.App;
 import br.com.wendel.pdv.util.Consulta;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
-import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.util.Map;
 import javax.swing.BorderFactory;
-import javax.swing.JDialog;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
@@ -23,11 +22,10 @@ import javax.swing.SwingUtilities;
  * @author INLOC01
  */
 public class CidadesView extends javax.swing.JPanel {
-
+    
     private final CidadesController cidadesViewController;
     private final CidadeTableModel cidadeTableModel;
     private final JTableCustom<Map<String, Object>> tabela;
-    private JDialog dialog;
 
     /**
      * Creates new form HomeView
@@ -40,14 +38,14 @@ public class CidadesView extends javax.swing.JPanel {
         this.tabela = new JTableCustom<>(this.cidadeTableModel);
         initComponents();
     }
-
+    
     public void carregaTela() throws Exception {
         this.jPButtonNovo.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonEditar.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonExcluir.setBackground(Cores.COR_BOTAO_MENU);
         this.atualizaTabela();
     }
-
+    
     public void atualizaTabela() throws Exception {
         this.cidadesViewController.atualizaLista();
         this.cidadeTableModel.setLista(this.cidadesViewController.getList());
@@ -78,6 +76,9 @@ public class CidadesView extends javax.swing.JPanel {
         jPButtonCancelar = new javax.swing.JPanel();
         jLButtonCancelar = new javax.swing.JLabel();
         jLIconButtonCancelar = new javax.swing.JLabel();
+        jPButtonSalvar = new javax.swing.JPanel();
+        jLButtonSalvar = new javax.swing.JLabel();
+        jLIconButtonSalvar = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -288,6 +289,58 @@ public class CidadesView extends javax.swing.JPanel {
             .addComponent(jLIconButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jPButtonSalvar.setBackground(new java.awt.Color(0, 123, 255));
+        jPButtonSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPButtonSalvar.setPreferredSize(new java.awt.Dimension(106, 35));
+        jPButtonSalvar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPButtonSalvarFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPButtonSalvarFocusLost(evt);
+            }
+        });
+        jPButtonSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPButtonSalvarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPButtonSalvarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPButtonSalvarMouseExited(evt);
+            }
+        });
+        jPButtonSalvar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPButtonSalvarKeyPressed(evt);
+            }
+        });
+
+        jLButtonSalvar.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLButtonSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        jLButtonSalvar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLButtonSalvar.setText("Selecionar");
+
+        jLIconButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_save.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPButtonSalvarLayout = new javax.swing.GroupLayout(jPButtonSalvar);
+        jPButtonSalvar.setLayout(jPButtonSalvarLayout);
+        jPButtonSalvarLayout.setHorizontalGroup(
+            jPButtonSalvarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPButtonSalvarLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLIconButtonSalvar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPButtonSalvarLayout.setVerticalGroup(
+            jPButtonSalvarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+            .addComponent(jLIconButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -299,6 +352,8 @@ public class CidadesView extends javax.swing.JPanel {
                     .addComponent(jSPCaixas)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -309,7 +364,9 @@ public class CidadesView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSPCaixas, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -404,22 +461,32 @@ public class CidadesView extends javax.swing.JPanel {
             enviarMensagemErro(e.getMessage());
         }
     }//GEN-LAST:event_jPButtonCancelarMouseClicked
-
+    
     private void acaoCancelar() {
         Consulta consulta = Consulta.getInstance();
         if (consulta.isConsulta()) {
-            this.dialog.dispose();
+            JPanel janela = (JPanel) consulta.getJanelaRetorno();
+            consulta.removerJanela();
+            App.getInstance().getPrincipalView().mostraConteudo(janela);
+        } else {
+            App.getInstance().getPrincipalView().mostraTelaHome();
         }
     }
-
+    
     private void acaoSelecionar() {
         Consulta consulta = Consulta.getInstance();
         if (consulta.isConsulta()) {
-            ConsultaView consultaView = (ConsultaView) consulta.getJanelaRetorno();
-            consultaView.acaoVoltarConsulta();
+            Map<String, Object> item = this.tabela.getSelected();
+            if (item != null) {
+                ConsultaView consultaView = (ConsultaView) consulta.getJanelaRetorno();
+                consultaView.acaoSelecionarConsulta("idCidade", item.get("ID"));
+                JPanel janela = (JPanel) consulta.getJanelaRetorno();
+                consulta.removerJanela();
+                App.getInstance().getPrincipalView().mostraConteudo(janela);
+            }
         }
     }
-
+    
 
     private void jPButtonCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonCancelarMouseEntered
         SwingUtilities.invokeLater(() -> {
@@ -435,9 +502,43 @@ public class CidadesView extends javax.swing.JPanel {
 
     private void jPButtonCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonCancelarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            this.jPButtonCancelarMouseClicked(null);
+            this.acaoCancelar();
         }
     }//GEN-LAST:event_jPButtonCancelarKeyPressed
+
+    private void jPButtonSalvarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonSalvarFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonSalvar.setBorder(BorderFactory.createDashedBorder(null, 1, 5, 5, false));
+        });
+    }//GEN-LAST:event_jPButtonSalvarFocusGained
+
+    private void jPButtonSalvarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonSalvarFocusLost
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonSalvar.setBorder(null);
+        });
+    }//GEN-LAST:event_jPButtonSalvarFocusLost
+
+    private void jPButtonSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonSalvarMouseClicked
+        this.acaoSelecionar();
+    }//GEN-LAST:event_jPButtonSalvarMouseClicked
+
+    private void jPButtonSalvarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonSalvarMouseEntered
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonSalvar.setBackground(Cores.COR_BOTAO_SALVAR_ENTERED);
+        });
+    }//GEN-LAST:event_jPButtonSalvarMouseEntered
+
+    private void jPButtonSalvarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonSalvarMouseExited
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonSalvar.setBackground(Cores.COR_BOTAO_SALVAR);
+        });
+    }//GEN-LAST:event_jPButtonSalvarMouseExited
+
+    private void jPButtonSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonSalvarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            this.acaoSelecionar();
+        }
+    }//GEN-LAST:event_jPButtonSalvarKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -445,23 +546,20 @@ public class CidadesView extends javax.swing.JPanel {
     private javax.swing.JLabel jLButtonEditar;
     private javax.swing.JLabel jLButtonExcluir;
     private javax.swing.JLabel jLButtonNovo;
+    private javax.swing.JLabel jLButtonSalvar;
     private javax.swing.JLabel jLIconButtonCancelar;
     private javax.swing.JLabel jLIconButtonEditar;
     private javax.swing.JLabel jLIconButtonExcluir;
     private javax.swing.JLabel jLIconButtonNovo;
+    private javax.swing.JLabel jLIconButtonSalvar;
     private javax.swing.JLabel jLTitulo;
     private javax.swing.JPanel jPButtonCancelar;
     private javax.swing.JPanel jPButtonEditar;
     private javax.swing.JPanel jPButtonExcluir;
     private javax.swing.JPanel jPButtonNovo;
+    private javax.swing.JPanel jPButtonSalvar;
     private javax.swing.JPanel jPTopo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jSPCaixas;
     // End of variables declaration//GEN-END:variables
-
-    public void abrirDialog(Window window) {
-        this.dialog = new JDialog(window);
-        this.dialog.add(this);
-        this.dialog.setVisible(true);
-    }
 }

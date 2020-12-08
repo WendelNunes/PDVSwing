@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JPanel;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Consulta {
     private static final Consulta INSTANCE = new Consulta();
     private List<Map<String, Object>> navegacao = new ArrayList<>();
 
-    public void adicionarJanela(Object janela, String parametroRetorno) {
+    public void adicionarJanela(JPanel janela, String parametroRetorno) {
         Map<String, Object> item = new HashMap<>();
         item.put("JANELA_RETORNO", janela);
         item.put("PARAMETRO_RETORNO", parametroRetorno);

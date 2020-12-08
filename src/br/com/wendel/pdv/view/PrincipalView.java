@@ -26,13 +26,13 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private final List<JPanel> listaMenus = new ArrayList<>();
     private JPanel menuSelecionado;
-    private final HomeView telaHome;
-    private final CaixasView telaCaixas;
-    private final CidadesView telaCidades;
+    private HomeView telaHome;
+    private CaixasView telaCaixas;
+    private CidadesView telaCidades;
 //    private final ClientesView telaClientes;
-    private final ProdutosView telaProdutos;
-    private final UnidadesView telaUnidades;
-    private final MotivosMovimentacaoEstoqueView telaMotivosMovimentacaoEstoque;
+    private ProdutosView telaProdutos;
+    private UnidadesView telaUnidades;
+    private MotivosMovimentacaoEstoqueView telaMotivosMovimentacaoEstoque;
     private AtendimentoView telaAtendimento = new AtendimentoView();
 
     /**
@@ -933,5 +933,33 @@ public class PrincipalView extends javax.swing.JFrame {
         } else {
             this.ajustaTela(this.jPMenuAtendimento, new AberturaCaixaCadastroView(null));
         }
+    }
+
+    public HomeView getTelaHome() {
+        return telaHome;
+    }
+
+    public CaixasView getTelaCaixas() {
+        return telaCaixas;
+    }
+
+    public CidadesView getTelaCidades() {
+        return telaCidades;
+    }
+
+    public ProdutosView getTelaProdutos() {
+        return telaProdutos;
+    }
+
+    public UnidadesView getTelaUnidades() {
+        return telaUnidades;
+    }
+
+    public MotivosMovimentacaoEstoqueView getTelaMotivosMovimentacaoEstoque() {
+        return telaMotivosMovimentacaoEstoque;
+    }
+
+    public AtendimentoView getTelaAtendimento() {
+        return telaAtendimento;
     }
 }

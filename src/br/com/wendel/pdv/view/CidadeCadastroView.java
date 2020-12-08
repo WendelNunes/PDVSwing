@@ -12,11 +12,10 @@ import br.com.wendel.pdv.util.Consulta;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
 import br.com.wendel.pdv.util.TraversalPolicy;
-import java.awt.Window;
 import java.awt.event.KeyEvent;
 import static java.util.Arrays.asList;
 import javax.swing.BorderFactory;
-import javax.swing.JDialog;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -24,9 +23,8 @@ import javax.swing.SwingUtilities;
  * @author INLOC01
  */
 public class CidadeCadastroView extends javax.swing.JPanel {
-
+    
     private final CidadeCadastroController controller;
-    private JDialog dialog;
 
     /**
      * Creates new form CidadeCadastroViewPanel
@@ -325,24 +323,34 @@ public class CidadeCadastroView extends javax.swing.JPanel {
             enviarMensagemErro(e.getMessage());
         }
     }//GEN-LAST:event_jPButtonCancelarMouseClicked
-
+    
     private void acaoSalvar() {
         try {
             if (this.controller.salvarCidade(this.jTFDescricao.getText(), (Estado) this.jCBEstado.getSelectedItem())) {
-                App.getInstance().getPrincipalView().mostraTelaCidades();
+                Consulta consulta = Consulta.getInstance();
+                if (consulta.isConsulta()) {
+                    ConsultaView consultaView = (ConsultaView) consulta.getJanelaRetorno();
+                    consultaView.acaoSelecionarConsulta("idCidade", this.controller.getCidade().getId());
+                    JPanel janela = (JPanel) consulta.getJanelaRetorno();
+                    consulta.removerJanela();
+                    App.getInstance().getPrincipalView().mostraConteudo(janela);
+                } else {
+                    App.getInstance().getPrincipalView().mostraTelaCidades();
+                }
             }
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
     }
-
+    
     private void acaoCancelar() {
         try {
             Consulta consulta = Consulta.getInstance();
+            PrincipalView principalView = App.getInstance().getPrincipalView();
             if (consulta.isConsulta()) {
-                this.dialog.dispose();
+                principalView.mostraConteudo(principalView.getTelaCidades());
             } else {
-                App.getInstance().getPrincipalView().mostraTelaCidades();
+                principalView.mostraTelaCidades();
             }
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
@@ -424,10 +432,4 @@ public class CidadeCadastroView extends javax.swing.JPanel {
     private javax.swing.JPanel jPTopo;
     private javax.swing.JTextField jTFDescricao;
     // End of variables declaration//GEN-END:variables
-
-    public void abrirDialog(Window window) {
-        this.dialog = new JDialog(window);
-        this.dialog.add(this);
-        this.dialog.setVisible(true);
-    }
 }
