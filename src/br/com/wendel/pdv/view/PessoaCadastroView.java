@@ -6,9 +6,8 @@
 package br.com.wendel.pdv.view;
 
 import br.com.wendel.pdv.App;
-import br.com.wendel.pdv.dao.CidadeDao;
+import br.com.wendel.pdv.controller.PessoaCadastroController;
 import br.com.wendel.pdv.entity.Cidade;
-import br.com.wendel.pdv.util.Conexao;
 import br.com.wendel.pdv.util.Consulta;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
@@ -25,14 +24,16 @@ import javax.swing.SwingUtilities;
  */
 public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaView {
 
-//    private final CaixaCadastroController controller;
+    private PessoaCadastroController controller;
+    private Cidade cidade;
+
     /**
      * Creates new form CaixaCadastroViewPanel
      *
      * @param id
      */
     public PessoaCadastroView(Long id) {
-//        this.controller = new CaixaCadastroController(id);
+        this.controller = new PessoaCadastroController(id);
         initComponents();
 //        if (this.controller.getCaixa() != null) {
 //            this.jTFDescricao.setText(this.controller.getCaixa().getDescricao());
@@ -76,23 +77,23 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
         jLTelefoneCelular1 = new javax.swing.JLabel();
         jFTFTelefoneFixo = new javax.swing.JFormattedTextField();
         jCBCliente = new javax.swing.JCheckBox();
-        jCBCliente1 = new javax.swing.JCheckBox();
+        jCBFornecedor = new javax.swing.JCheckBox();
         jLTelefoneCelular2 = new javax.swing.JLabel();
         jLLogradouro = new javax.swing.JLabel();
         jTFLogradouro = new javax.swing.JTextField();
-        jLLogradouro1 = new javax.swing.JLabel();
-        jTFLogradouro1 = new javax.swing.JTextField();
-        jLLogradouro2 = new javax.swing.JLabel();
-        jTFLogradouro2 = new javax.swing.JTextField();
-        jLLogradouro3 = new javax.swing.JLabel();
-        jTFLogradouro3 = new javax.swing.JTextField();
-        jLLogradouro4 = new javax.swing.JLabel();
+        jLNumero = new javax.swing.JLabel();
+        jTFNumero = new javax.swing.JTextField();
+        jLComplemento = new javax.swing.JLabel();
+        jTFComplemento = new javax.swing.JTextField();
+        jLSetor = new javax.swing.JLabel();
+        jTFSetor = new javax.swing.JTextField();
+        jLCidade = new javax.swing.JLabel();
         jTFCodigoCidade = new javax.swing.JTextField();
         jTFDescricaoCidade = new javax.swing.JTextField();
         jLButtonProcurarCidade = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setFocusTraversalPolicy(new TraversalPolicy(asList(this.jRBFisica, this.jRBJuridica, this.jFTFCpfCnpj, this.jFTFDataNascimento, this.jTFDescricao, this.jPButtonSalvar, this.jPButtonCancelar)));
+        setFocusTraversalPolicy(new TraversalPolicy(asList(this.jRBFisica, this.jRBJuridica, this.jFTFCpfCnpj, this.jFTFDataNascimento, this.jTFDescricao, this.jFTFTelefoneCelular, this.jFTFTelefoneFixo, this.jCBCliente, this.jCBFornecedor, this.jTFLogradouro, this.jTFNumero, this.jTFComplemento, this.jTFSetor, this.jTFCodigoCidade, this.jTFDescricaoCidade, this.jLButtonProcurarCidade, this.jPButtonSalvar, this.jPButtonCancelar)));
         setFocusTraversalPolicyProvider(true);
 
         jPTopo.setBackground(new java.awt.Color(79, 195, 247));
@@ -287,6 +288,11 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
         }
         jFTFCpfCnpj.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         jFTFCpfCnpj.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jFTFCpfCnpj.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFTFCpfCnpjFocusGained(evt);
+            }
+        });
         jFTFCpfCnpj.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jFTFCpfCnpjKeyPressed(evt);
@@ -307,6 +313,11 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
         jFTFDataNascimento.setToolTipText("Data de nascimento da pessoa");
         jFTFDataNascimento.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         jFTFDataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jFTFDataNascimento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFTFDataNascimentoFocusGained(evt);
+            }
+        });
         jFTFDataNascimento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jFTFDataNascimentoKeyPressed(evt);
@@ -323,6 +334,11 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
         }
         jFTFTelefoneCelular.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         jFTFTelefoneCelular.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jFTFTelefoneCelular.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFTFTelefoneCelularFocusGained(evt);
+            }
+        });
         jFTFTelefoneCelular.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jFTFTelefoneCelularKeyPressed(evt);
@@ -339,6 +355,11 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
         }
         jFTFTelefoneFixo.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         jFTFTelefoneFixo.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jFTFTelefoneFixo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jFTFTelefoneFixoFocusGained(evt);
+            }
+        });
         jFTFTelefoneFixo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jFTFTelefoneFixoKeyPressed(evt);
@@ -348,10 +369,20 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
         jCBCliente.setBackground(new java.awt.Color(255, 255, 255));
         jCBCliente.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jCBCliente.setText("Cliente");
+        jCBCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCBClienteKeyPressed(evt);
+            }
+        });
 
-        jCBCliente1.setBackground(new java.awt.Color(255, 255, 255));
-        jCBCliente1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jCBCliente1.setText("Fornecedor");
+        jCBFornecedor.setBackground(new java.awt.Color(255, 255, 255));
+        jCBFornecedor.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jCBFornecedor.setText("Fornecedor");
+        jCBFornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCBFornecedorKeyPressed(evt);
+            }
+        });
 
         jLTelefoneCelular2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLTelefoneCelular2.setText("A pessoa é?");
@@ -372,56 +403,56 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
             }
         });
 
-        jLLogradouro1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLLogradouro1.setText("Número");
+        jLNumero.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLNumero.setText("Número");
 
-        jTFLogradouro1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jTFLogradouro1.setToolTipText("Descrição do caixa");
-        jTFLogradouro1.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTFNumero.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFNumero.setToolTipText("Descrição do caixa");
+        jTFNumero.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTFLogradouro1FocusGained(evt);
+                jTFNumeroFocusGained(evt);
             }
         });
-        jTFLogradouro1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFNumero.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTFLogradouro1KeyPressed(evt);
+                jTFNumeroKeyPressed(evt);
             }
         });
 
-        jLLogradouro2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLLogradouro2.setText("Complemento");
+        jLComplemento.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLComplemento.setText("Complemento");
 
-        jTFLogradouro2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jTFLogradouro2.setToolTipText("Descrição do caixa");
-        jTFLogradouro2.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTFComplemento.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFComplemento.setToolTipText("Descrição do caixa");
+        jTFComplemento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTFLogradouro2FocusGained(evt);
+                jTFComplementoFocusGained(evt);
             }
         });
-        jTFLogradouro2.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFComplemento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTFLogradouro2KeyPressed(evt);
+                jTFComplementoKeyPressed(evt);
             }
         });
 
-        jLLogradouro3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLLogradouro3.setText("Setor");
+        jLSetor.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLSetor.setText("Setor");
 
-        jTFLogradouro3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jTFLogradouro3.setToolTipText("Descrição do caixa");
-        jTFLogradouro3.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTFSetor.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFSetor.setToolTipText("Descrição do caixa");
+        jTFSetor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTFLogradouro3FocusGained(evt);
+                jTFSetorFocusGained(evt);
             }
         });
-        jTFLogradouro3.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFSetor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTFLogradouro3KeyPressed(evt);
+                jTFSetorKeyPressed(evt);
             }
         });
 
-        jLLogradouro4.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLLogradouro4.setText("Cidade");
+        jLCidade.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLCidade.setText("Cidade");
 
         jTFCodigoCidade.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jTFCodigoCidade.setToolTipText("Descrição do caixa");
@@ -497,12 +528,12 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
                     .addComponent(jTFLogradouro, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLLogradouro1)
-                            .addComponent(jTFLogradouro1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLNumero)
+                            .addComponent(jTFNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLLogradouro2)
-                            .addComponent(jTFLogradouro2)))
+                            .addComponent(jLComplemento)
+                            .addComponent(jTFComplemento)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -540,16 +571,16 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jCBCliente)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jCBCliente1))
+                                        .addComponent(jCBFornecedor))
                                     .addComponent(jLTelefoneCelular2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jLLogradouro)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLLogradouro3)
-                                    .addComponent(jTFLogradouro3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLSetor)
+                                    .addComponent(jTFSetor, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLLogradouro4)
+                                    .addComponent(jLCidade)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jTFCodigoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -597,7 +628,7 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
                                 .addGap(33, 33, 33)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jCBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCBCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jCBFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLTelefoneCelular1)
@@ -611,23 +642,23 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTFLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLLogradouro1)
+                        .addComponent(jLNumero)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTFLogradouro1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTFNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLLogradouro2)
+                        .addComponent(jLComplemento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTFLogradouro2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTFComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLLogradouro3)
-                    .addComponent(jLLogradouro4))
+                    .addComponent(jLSetor)
+                    .addComponent(jLCidade))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLButtonProcurarCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTFDescricaoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTFCodigoCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTFLogradouro3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFSetor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -685,7 +716,7 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
     private void jTFDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescricaoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             SwingUtilities.invokeLater(() -> {
-                this.jPButtonSalvar.requestFocusInWindow();
+                this.jFTFTelefoneCelular.requestFocusInWindow();
             });
         }
     }//GEN-LAST:event_jTFDescricaoKeyPressed
@@ -799,55 +830,95 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
     }//GEN-LAST:event_jFTFDataNascimentoKeyPressed
 
     private void jFTFTelefoneCelularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFTFTelefoneCelularKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jFTFTelefoneFixo.requestFocusInWindow();
+            });
+        }
     }//GEN-LAST:event_jFTFTelefoneCelularKeyPressed
 
     private void jFTFTelefoneFixoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFTFTelefoneFixoKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jCBCliente.requestFocusInWindow();
+            });
+        }
     }//GEN-LAST:event_jFTFTelefoneFixoKeyPressed
 
     private void jTFLogradouroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFLogradouroFocusGained
-        // TODO add your handling code here:
+        SwingUtilities.invokeLater(() -> {
+            this.jTFLogradouro.selectAll();
+        });
     }//GEN-LAST:event_jTFLogradouroFocusGained
 
     private void jTFLogradouroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFLogradouroKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jTFNumero.requestFocusInWindow();
+            });
+        }
     }//GEN-LAST:event_jTFLogradouroKeyPressed
 
-    private void jTFLogradouro1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFLogradouro1FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFLogradouro1FocusGained
+    private void jTFNumeroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNumeroFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jTFNumero.selectAll();
+        });
+    }//GEN-LAST:event_jTFNumeroFocusGained
 
-    private void jTFLogradouro1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFLogradouro1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFLogradouro1KeyPressed
+    private void jTFNumeroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNumeroKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jTFComplemento.requestFocusInWindow();
+            });
+        }
+    }//GEN-LAST:event_jTFNumeroKeyPressed
 
-    private void jTFLogradouro2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFLogradouro2FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFLogradouro2FocusGained
+    private void jTFComplementoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFComplementoFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jTFComplemento.selectAll();
+        });
+    }//GEN-LAST:event_jTFComplementoFocusGained
 
-    private void jTFLogradouro2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFLogradouro2KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFLogradouro2KeyPressed
+    private void jTFComplementoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFComplementoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jTFSetor.requestFocusInWindow();
+            });
+        }
+    }//GEN-LAST:event_jTFComplementoKeyPressed
 
-    private void jTFLogradouro3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFLogradouro3FocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFLogradouro3FocusGained
+    private void jTFSetorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFSetorFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jTFSetor.selectAll();
+        });
+    }//GEN-LAST:event_jTFSetorFocusGained
 
-    private void jTFLogradouro3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFLogradouro3KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFLogradouro3KeyPressed
+    private void jTFSetorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFSetorKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jTFCodigoCidade.requestFocusInWindow();
+            });
+        }
+    }//GEN-LAST:event_jTFSetorKeyPressed
 
     private void jTFCodigoCidadeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFCodigoCidadeFocusGained
-        // TODO add your handling code here:
+        SwingUtilities.invokeLater(() -> {
+            this.jTFCodigoCidade.selectAll();
+        });
     }//GEN-LAST:event_jTFCodigoCidadeFocusGained
 
     private void jTFCodigoCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoCidadeKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jPButtonSalvar.requestFocusInWindow();
+            });
+        }
     }//GEN-LAST:event_jTFCodigoCidadeKeyPressed
 
     private void jTFDescricaoCidadeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFDescricaoCidadeFocusGained
-        // TODO add your handling code here:
+        SwingUtilities.invokeLater(() -> {
+            this.jTFDescricaoCidade.selectAll();
+        });
     }//GEN-LAST:event_jTFDescricaoCidadeFocusGained
 
     private void jTFDescricaoCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescricaoCidadeKeyPressed
@@ -896,10 +967,50 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
         }
     }//GEN-LAST:event_jLButtonProcurarCidadeMouseClicked
 
+    private void jCBClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCBClienteKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jCBFornecedor.requestFocusInWindow();
+            });
+        }
+    }//GEN-LAST:event_jCBClienteKeyPressed
+
+    private void jCBFornecedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCBFornecedorKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jTFLogradouro.requestFocusInWindow();
+            });
+        }
+    }//GEN-LAST:event_jCBFornecedorKeyPressed
+
+    private void jFTFCpfCnpjFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFTFCpfCnpjFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jFTFCpfCnpj.selectAll();
+        });
+    }//GEN-LAST:event_jFTFCpfCnpjFocusGained
+
+    private void jFTFDataNascimentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFTFDataNascimentoFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jFTFDataNascimento.selectAll();
+        });
+    }//GEN-LAST:event_jFTFDataNascimentoFocusGained
+
+    private void jFTFTelefoneCelularFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFTFTelefoneCelularFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jFTFTelefoneCelular.selectAll();
+        });
+    }//GEN-LAST:event_jFTFTelefoneCelularFocusGained
+
+    private void jFTFTelefoneFixoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFTFTelefoneFixoFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jFTFTelefoneFixo.selectAll();
+        });
+    }//GEN-LAST:event_jFTFTelefoneFixoFocusGained
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgTipo;
     private javax.swing.JCheckBox jCBCliente;
-    private javax.swing.JCheckBox jCBCliente1;
+    private javax.swing.JCheckBox jCBFornecedor;
     private javax.swing.JFormattedTextField jFTFCpfCnpj;
     private javax.swing.JFormattedTextField jFTFDataNascimento;
     private javax.swing.JFormattedTextField jFTFTelefoneCelular;
@@ -907,6 +1018,8 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
     private javax.swing.JLabel jLButtonCancelar;
     private javax.swing.JLabel jLButtonProcurarCidade;
     private javax.swing.JLabel jLButtonSalvar;
+    private javax.swing.JLabel jLCidade;
+    private javax.swing.JLabel jLComplemento;
     private javax.swing.JLabel jLCpfCnpj;
     private javax.swing.JLabel jLDataNascimento;
     private javax.swing.JLabel jLDescricao;
@@ -914,10 +1027,8 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
     private javax.swing.JLabel jLIconButtonCancelar;
     private javax.swing.JLabel jLIconButtonSalvar;
     private javax.swing.JLabel jLLogradouro;
-    private javax.swing.JLabel jLLogradouro1;
-    private javax.swing.JLabel jLLogradouro2;
-    private javax.swing.JLabel jLLogradouro3;
-    private javax.swing.JLabel jLLogradouro4;
+    private javax.swing.JLabel jLNumero;
+    private javax.swing.JLabel jLSetor;
     private javax.swing.JLabel jLTelefoneCelular;
     private javax.swing.JLabel jLTelefoneCelular1;
     private javax.swing.JLabel jLTelefoneCelular2;
@@ -930,26 +1041,28 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
     private javax.swing.JRadioButton jRBFisica;
     private javax.swing.JRadioButton jRBJuridica;
     private javax.swing.JTextField jTFCodigoCidade;
+    private javax.swing.JTextField jTFComplemento;
     private javax.swing.JTextField jTFDescricao;
     private javax.swing.JTextField jTFDescricaoCidade;
     private javax.swing.JTextField jTFLogradouro;
-    private javax.swing.JTextField jTFLogradouro1;
-    private javax.swing.JTextField jTFLogradouro2;
-    private javax.swing.JTextField jTFLogradouro3;
+    private javax.swing.JTextField jTFNumero;
+    private javax.swing.JTextField jTFSetor;
     // End of variables declaration//GEN-END:variables
 
     private void acaoAbrirConsultaCidade() throws Exception {
         Consulta.getInstance().adicionarJanela(this, "idCidade");
         PrincipalView principalView = App.getInstance().getPrincipalView();
-        principalView.mostraConteudo(principalView.getTelaCidades());
+        CidadesView cidadesView = principalView.getTelaCidades();
+        cidadesView.carregaTela();
+        principalView.mostraConteudo(cidadesView);
     }
 
     @Override
     public void acaoSelecionarConsulta(String key, Object value) throws Exception {
         if (key.equals("idCidade")) {
-            Cidade cidade = new CidadeDao(Conexao.criarConexao()).procurarPorId((Long) value);
-            this.jTFCodigoCidade.setText(cidade.getId().toString());
-            this.jTFDescricaoCidade.setText(cidade.getDescricao());
+            this.cidade = this.controller.obterCidade((Long) value);
+            this.jTFCodigoCidade.setText(this.cidade.getId().toString());
+            this.jTFDescricaoCidade.setText(this.cidade.getDescricao());
             this.jTFCodigoCidade.requestFocusInWindow();
         }
     }

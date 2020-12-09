@@ -10,7 +10,7 @@
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
     <Property name="focusTraversalPolicy" type="java.awt.FocusTraversalPolicy" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-      <Connection code="new TraversalPolicy(asList(this.jRBFisica, this.jRBJuridica, this.jFTFCpfCnpj, this.jFTFDataNascimento, this.jTFDescricao, this.jPButtonSalvar, this.jPButtonCancelar))" type="code"/>
+      <Connection code="new TraversalPolicy(asList(this.jRBFisica, this.jRBJuridica, this.jFTFCpfCnpj, this.jFTFDataNascimento, this.jTFDescricao, this.jFTFTelefoneCelular, this.jFTFTelefoneFixo, this.jCBCliente, this.jCBFornecedor, this.jTFLogradouro, this.jTFNumero, this.jTFComplemento, this.jTFSetor, this.jTFCodigoCidade, this.jTFDescricaoCidade, this.jLButtonProcurarCidade, this.jPButtonSalvar, this.jPButtonCancelar))" type="code"/>
     </Property>
     <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
   </Properties>
@@ -43,13 +43,13 @@
                   <Component id="jTFLogradouro" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLLogradouro1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTFLogradouro1" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Component id="jLNumero" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTFNumero" min="-2" pref="141" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLLogradouro2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTFLogradouro2" max="32767" attributes="0"/>
+                          <Component id="jLComplemento" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTFComplemento" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -98,7 +98,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jCBCliente" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jCBCliente1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCBFornecedor" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLTelefoneCelular2" max="32767" attributes="0"/>
                               </Group>
@@ -106,12 +106,12 @@
                           <Component id="jLLogradouro" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLLogradouro3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTFLogradouro3" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
+                                  <Component id="jLSetor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTFSetor" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLLogradouro4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLCidade" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jTFCodigoCidade" min="-2" pref="61" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -175,7 +175,7 @@
                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jCBCliente" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="jCBCliente1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="jCBFornecedor" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -196,27 +196,27 @@
                   <Group type="102" attributes="0">
                       <Component id="jTFLogradouro" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLLogradouro1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLNumero" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTFLogradouro1" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="jTFNumero" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="jLLogradouro2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLComplemento" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTFLogradouro2" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="jTFComplemento" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLLogradouro3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLLogradouro4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLSetor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLCidade" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="jLButtonProcurarCidade" alignment="2" min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="jTFDescricaoCidade" alignment="2" min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="jTFCodigoCidade" alignment="2" min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="jTFLogradouro3" alignment="2" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="jTFSetor" alignment="2" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -493,6 +493,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jFTFCpfCnpjFocusGained"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jFTFCpfCnpjKeyPressed"/>
       </Events>
     </Component>
@@ -524,6 +525,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jFTFDataNascimentoFocusGained"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jFTFDataNascimentoKeyPressed"/>
       </Events>
     </Component>
@@ -546,6 +548,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jFTFTelefoneCelularFocusGained"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jFTFTelefoneCelularKeyPressed"/>
       </Events>
     </Component>
@@ -568,6 +571,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jFTFTelefoneFixoFocusGained"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jFTFTelefoneFixoKeyPressed"/>
       </Events>
     </Component>
@@ -581,8 +585,11 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Cliente"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jCBClienteKeyPressed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCBCliente1">
+    <Component class="javax.swing.JCheckBox" name="jCBFornecedor">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -592,6 +599,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Fornecedor"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jCBFornecedorKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLTelefoneCelular2">
       <Properties>
@@ -621,7 +631,7 @@
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFLogradouroKeyPressed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLLogradouro1">
+    <Component class="javax.swing.JLabel" name="jLNumero">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="15" style="0"/>
@@ -629,7 +639,7 @@
         <Property name="text" type="java.lang.String" value="N&#xfa;mero"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTFLogradouro1">
+    <Component class="javax.swing.JTextField" name="jTFNumero">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="15" style="0"/>
@@ -637,11 +647,11 @@
         <Property name="toolTipText" type="java.lang.String" value="Descri&#xe7;&#xe3;o do caixa"/>
       </Properties>
       <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFLogradouro1FocusGained"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFLogradouro1KeyPressed"/>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFNumeroFocusGained"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFNumeroKeyPressed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLLogradouro2">
+    <Component class="javax.swing.JLabel" name="jLComplemento">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="15" style="0"/>
@@ -649,7 +659,7 @@
         <Property name="text" type="java.lang.String" value="Complemento"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTFLogradouro2">
+    <Component class="javax.swing.JTextField" name="jTFComplemento">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="15" style="0"/>
@@ -657,11 +667,11 @@
         <Property name="toolTipText" type="java.lang.String" value="Descri&#xe7;&#xe3;o do caixa"/>
       </Properties>
       <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFLogradouro2FocusGained"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFLogradouro2KeyPressed"/>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFComplementoFocusGained"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFComplementoKeyPressed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLLogradouro3">
+    <Component class="javax.swing.JLabel" name="jLSetor">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="15" style="0"/>
@@ -669,7 +679,7 @@
         <Property name="text" type="java.lang.String" value="Setor"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTFLogradouro3">
+    <Component class="javax.swing.JTextField" name="jTFSetor">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="15" style="0"/>
@@ -677,11 +687,11 @@
         <Property name="toolTipText" type="java.lang.String" value="Descri&#xe7;&#xe3;o do caixa"/>
       </Properties>
       <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFLogradouro3FocusGained"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFLogradouro3KeyPressed"/>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTFSetorFocusGained"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFSetorKeyPressed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLLogradouro4">
+    <Component class="javax.swing.JLabel" name="jLCidade">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="15" style="0"/>

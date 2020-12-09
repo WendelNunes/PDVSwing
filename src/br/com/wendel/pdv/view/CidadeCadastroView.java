@@ -329,11 +329,11 @@ public class CidadeCadastroView extends javax.swing.JPanel {
             if (this.controller.salvarCidade(this.jTFDescricao.getText(), (Estado) this.jCBEstado.getSelectedItem())) {
                 Consulta consulta = Consulta.getInstance();
                 if (consulta.isConsulta()) {
+                    JPanel janela = (JPanel) consulta.getJanelaRetorno();
+                    App.getInstance().getPrincipalView().mostraConteudo(janela);
                     ConsultaView consultaView = (ConsultaView) consulta.getJanelaRetorno();
                     consultaView.acaoSelecionarConsulta("idCidade", this.controller.getCidade().getId());
-                    JPanel janela = (JPanel) consulta.getJanelaRetorno();
                     consulta.removerJanela();
-                    App.getInstance().getPrincipalView().mostraConteudo(janela);
                 } else {
                     App.getInstance().getPrincipalView().mostraTelaCidades();
                 }

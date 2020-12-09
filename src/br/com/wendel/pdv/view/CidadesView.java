@@ -22,7 +22,7 @@ import javax.swing.SwingUtilities;
  * @author INLOC01
  */
 public class CidadesView extends javax.swing.JPanel {
-    
+
     private final CidadesController cidadesViewController;
     private final CidadeTableModel cidadeTableModel;
     private final JTableCustom<Map<String, Object>> tabela;
@@ -38,14 +38,14 @@ public class CidadesView extends javax.swing.JPanel {
         this.tabela = new JTableCustom<>(this.cidadeTableModel);
         initComponents();
     }
-    
+
     public void carregaTela() throws Exception {
         this.jPButtonNovo.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonEditar.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonExcluir.setBackground(Cores.COR_BOTAO_MENU);
         this.atualizaTabela();
     }
-    
+
     public void atualizaTabela() throws Exception {
         this.cidadesViewController.atualizaLista();
         this.cidadeTableModel.setLista(this.cidadesViewController.getList());
@@ -461,7 +461,7 @@ public class CidadesView extends javax.swing.JPanel {
             enviarMensagemErro(e.getMessage());
         }
     }//GEN-LAST:event_jPButtonCancelarMouseClicked
-    
+
     private void acaoCancelar() {
         Consulta consulta = Consulta.getInstance();
         if (consulta.isConsulta()) {
@@ -472,21 +472,25 @@ public class CidadesView extends javax.swing.JPanel {
             App.getInstance().getPrincipalView().mostraTelaHome();
         }
     }
-    
+
     private void acaoSelecionar() {
-        Consulta consulta = Consulta.getInstance();
-        if (consulta.isConsulta()) {
-            Map<String, Object> item = this.tabela.getSelected();
-            if (item != null) {
-                ConsultaView consultaView = (ConsultaView) consulta.getJanelaRetorno();
-                consultaView.acaoSelecionarConsulta("idCidade", item.get("ID"));
-                JPanel janela = (JPanel) consulta.getJanelaRetorno();
-                consulta.removerJanela();
-                App.getInstance().getPrincipalView().mostraConteudo(janela);
+        try {
+            Consulta consulta = Consulta.getInstance();
+            if (consulta.isConsulta()) {
+                Map<String, Object> item = this.tabela.getSelected();
+                if (item != null) {
+                    JPanel janela = (JPanel) consulta.getJanelaRetorno();
+                    App.getInstance().getPrincipalView().mostraConteudo(janela);
+                    ConsultaView consultaView = (ConsultaView) consulta.getJanelaRetorno();
+                    consultaView.acaoSelecionarConsulta("idCidade", item.get("ID"));
+                    consulta.removerJanela();
+                }
             }
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
         }
     }
-    
+
 
     private void jPButtonCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonCancelarMouseEntered
         SwingUtilities.invokeLater(() -> {
