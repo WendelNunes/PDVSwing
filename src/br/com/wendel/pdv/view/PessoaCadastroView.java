@@ -460,6 +460,9 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTFCodigoCidadeFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFCodigoCidadeFocusLost(evt);
+            }
         });
         jTFCodigoCidade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1007,6 +1010,41 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
         });
     }//GEN-LAST:event_jFTFTelefoneFixoFocusGained
 
+    private void jTFCodigoCidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFCodigoCidadeFocusLost
+        try {
+            String codigoNovo = this.jTFCodigoCidade.getText();
+            if (codigoNovo != null && !codigoNovo.isEmpty()) {
+                if (this.cidade == null
+                        || !this.cidade.getId().equals(Long.valueOf(codigoNovo))) {
+                    Cidade cidadeNova = this.controller.obterCidade(Long.valueOf(codigoNovo));
+                    if (cidadeNova != null && cidadeNova.getId() != null) {
+                        this.preencheCidade(cidadeNova);
+                    } else {
+                        this.limparCidade();
+                        enviarMensagemErro("Cidade inexistente!");
+                        this.jTFCodigoCidade.requestFocusInWindow();
+                    }
+                }
+            } else {
+                this.limparCidade();
+            }
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
+    }//GEN-LAST:event_jTFCodigoCidadeFocusLost
+
+    private void limparCidade() {
+        this.cidade = null;
+        this.jTFCodigoCidade.setText("");
+        this.jTFDescricaoCidade.setText("");
+    }
+
+    private void preencheCidade(Cidade cidade) {
+        this.cidade = cidade;
+        this.jTFCodigoCidade.setText(cidade.getId().toString());
+        this.jTFDescricaoCidade.setText(cidade.getDescricao());
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgTipo;
     private javax.swing.JCheckBox jCBCliente;
@@ -1060,9 +1098,7 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
     @Override
     public void acaoSelecionarConsulta(String key, Object value) throws Exception {
         if (key.equals("idCidade")) {
-            this.cidade = this.controller.obterCidade((Long) value);
-            this.jTFCodigoCidade.setText(this.cidade.getId().toString());
-            this.jTFDescricaoCidade.setText(this.cidade.getDescricao());
+            this.preencheCidade(this.controller.obterCidade((Long) value));
             this.jTFCodigoCidade.requestFocusInWindow();
         }
     }
