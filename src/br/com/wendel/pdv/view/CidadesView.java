@@ -79,6 +79,15 @@ public class CidadesView extends javax.swing.JPanel {
         jPButtonSalvar = new javax.swing.JPanel();
         jLButtonSalvar = new javax.swing.JLabel();
         jLIconButtonSalvar = new javax.swing.JLabel();
+        jLCodigo = new javax.swing.JLabel();
+        jTFCodigo = new javax.swing.JTextField();
+        jLDescricao = new javax.swing.JLabel();
+        jTFDescricao = new javax.swing.JTextField();
+        jPButtonPesquisar = new javax.swing.JPanel();
+        jLButtonPesquisar = new javax.swing.JLabel();
+        jLIconButtonPesquisar = new javax.swing.JLabel();
+        jLDescricao1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -218,7 +227,7 @@ public class CidadesView extends javax.swing.JPanel {
             .addGroup(jPTopoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 479, Short.MAX_VALUE)
                 .addComponent(jPButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -341,11 +350,100 @@ public class CidadesView extends javax.swing.JPanel {
             .addComponent(jLIconButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jLCodigo.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLCodigo.setText("Código");
+
+        jTFCodigo.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFCodigo.setToolTipText("Sigla da unidade");
+        jTFCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFCodigoFocusGained(evt);
+            }
+        });
+        jTFCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFCodigoKeyPressed(evt);
+            }
+        });
+
+        jLDescricao.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLDescricao.setText("Descrição");
+
+        jTFDescricao.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTFDescricao.setToolTipText("Sigla da unidade");
+        jTFDescricao.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFDescricaoFocusGained(evt);
+            }
+        });
+        jTFDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFDescricaoKeyPressed(evt);
+            }
+        });
+
+        jPButtonPesquisar.setBackground(new java.awt.Color(0, 123, 255));
+        jPButtonPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPButtonPesquisar.setPreferredSize(new java.awt.Dimension(106, 35));
+        jPButtonPesquisar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPButtonPesquisarFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPButtonPesquisarFocusLost(evt);
+            }
+        });
+        jPButtonPesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPButtonPesquisarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPButtonPesquisarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPButtonPesquisarMouseExited(evt);
+            }
+        });
+        jPButtonPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPButtonPesquisarKeyPressed(evt);
+            }
+        });
+
+        jLButtonPesquisar.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLButtonPesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        jLButtonPesquisar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLButtonPesquisar.setText("Pesquisar");
+
+        jLIconButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/wendel/pdv/images/icon_save.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPButtonPesquisarLayout = new javax.swing.GroupLayout(jPButtonPesquisar);
+        jPButtonPesquisar.setLayout(jPButtonPesquisarLayout);
+        jPButtonPesquisarLayout.setHorizontalGroup(
+            jPButtonPesquisarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPButtonPesquisarLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLIconButtonPesquisar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLButtonPesquisar)
+                .addGap(10, 10, 10))
+        );
+        jPButtonPesquisarLayout.setVerticalGroup(
+            jPButtonPesquisarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLButtonPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+            .addComponent(jLIconButtonPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jLDescricao1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLDescricao1.setText("UF");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GO" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+            .addComponent(jPTopo, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,7 +452,21 @@ public class CidadesView extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTFCodigo)
+                            .addComponent(jLCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFDescricao)
+                            .addComponent(jLDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLDescricao1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(jPButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -362,7 +474,22 @@ public class CidadesView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPTopo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSPCaixas, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLDescricao)
+                            .addComponent(jLDescricao1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTFDescricao)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSPCaixas, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -544,26 +671,101 @@ public class CidadesView extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jPButtonSalvarKeyPressed
 
+    private void jTFCodigoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFCodigoFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jTFCodigo.selectAll();
+        });
+    }//GEN-LAST:event_jTFCodigoFocusGained
+
+    private void jTFCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jTFDescricao.requestFocusInWindow();
+            });
+        }
+    }//GEN-LAST:event_jTFCodigoKeyPressed
+
+    private void jTFDescricaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFDescricaoFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jTFDescricao.selectAll();
+        });
+    }//GEN-LAST:event_jTFDescricaoFocusGained
+
+    private void jTFDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescricaoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            SwingUtilities.invokeLater(() -> {
+                this.jPButtonPesquisar.requestFocusInWindow();
+            });
+        }
+    }//GEN-LAST:event_jTFDescricaoKeyPressed
+
+    private void jPButtonPesquisarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonPesquisarFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonPesquisar.setBorder(BorderFactory.createDashedBorder(null, 1, 5, 5, false));
+        });
+    }//GEN-LAST:event_jPButtonPesquisarFocusGained
+
+    private void jPButtonPesquisarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonPesquisarFocusLost
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonPesquisar.setBorder(null);
+        });
+    }//GEN-LAST:event_jPButtonPesquisarFocusLost
+
+    private void jPButtonPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonPesquisarMouseClicked
+        this.acaoPesquisar();
+    }//GEN-LAST:event_jPButtonPesquisarMouseClicked
+
+    private void jPButtonPesquisarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonPesquisarMouseEntered
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonPesquisar.setBackground(Cores.COR_BOTAO_SALVAR_ENTERED);
+        });
+    }//GEN-LAST:event_jPButtonPesquisarMouseEntered
+
+    private void jPButtonPesquisarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonPesquisarMouseExited
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonPesquisar.setBackground(Cores.COR_BOTAO_SALVAR);
+        });
+    }//GEN-LAST:event_jPButtonPesquisarMouseExited
+
+    private void jPButtonPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonPesquisarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            this.acaoPesquisar();
+        }
+    }//GEN-LAST:event_jPButtonPesquisarKeyPressed
+
+    private void acaoPesquisar() {
+        
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLButtonCancelar;
     private javax.swing.JLabel jLButtonEditar;
     private javax.swing.JLabel jLButtonExcluir;
     private javax.swing.JLabel jLButtonNovo;
+    private javax.swing.JLabel jLButtonPesquisar;
     private javax.swing.JLabel jLButtonSalvar;
+    private javax.swing.JLabel jLCodigo;
+    private javax.swing.JLabel jLDescricao;
+    private javax.swing.JLabel jLDescricao1;
     private javax.swing.JLabel jLIconButtonCancelar;
     private javax.swing.JLabel jLIconButtonEditar;
     private javax.swing.JLabel jLIconButtonExcluir;
     private javax.swing.JLabel jLIconButtonNovo;
+    private javax.swing.JLabel jLIconButtonPesquisar;
     private javax.swing.JLabel jLIconButtonSalvar;
     private javax.swing.JLabel jLTitulo;
     private javax.swing.JPanel jPButtonCancelar;
     private javax.swing.JPanel jPButtonEditar;
     private javax.swing.JPanel jPButtonExcluir;
     private javax.swing.JPanel jPButtonNovo;
+    private javax.swing.JPanel jPButtonPesquisar;
     private javax.swing.JPanel jPButtonSalvar;
     private javax.swing.JPanel jPTopo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jSPCaixas;
+    private javax.swing.JTextField jTFCodigo;
+    private javax.swing.JTextField jTFDescricao;
     // End of variables declaration//GEN-END:variables
 }

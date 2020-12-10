@@ -10,6 +10,8 @@ import br.com.wendel.pdv.entity.Cidade;
 import br.com.wendel.pdv.entity.Pessoa;
 import br.com.wendel.pdv.util.Conexao;
 import java.sql.Connection;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -28,6 +30,12 @@ public class PessoaCadastroController {
     public Cidade obterCidade(Long idCidade) throws Exception {
         try (Connection connection = Conexao.criarConexao()) {
             return new CidadeDao(connection).procurarPorId(idCidade);
+        }
+    }
+
+    public List<Map<String, Object>> obterCidadePorDescricao(String descricao) throws Exception {
+        try (Connection connection = Conexao.criarConexao()) {
+            return new CidadeDao(connection).listarTela(descricao, 2);
         }
     }
 

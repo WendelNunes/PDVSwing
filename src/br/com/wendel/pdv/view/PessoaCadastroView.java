@@ -15,6 +15,8 @@ import br.com.wendel.pdv.util.TraversalPolicy;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import static java.util.Arrays.asList;
+import java.util.List;
+import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.SwingUtilities;
 
@@ -472,6 +474,7 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
 
         jTFDescricaoCidade.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jTFDescricaoCidade.setToolTipText("Descrição do caixa");
+        jTFDescricaoCidade.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTFDescricaoCidade.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTFDescricaoCidadeFocusGained(evt);
@@ -925,7 +928,23 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
     }//GEN-LAST:event_jTFDescricaoCidadeFocusGained
 
     private void jTFDescricaoCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescricaoCidadeKeyPressed
-        // TODO add your handling code here:
+        try {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                if (!this.jTFDescricaoCidade.getText().trim().equals("")) {
+                    List<Map<String, Object>> lista = this.controller.obterCidadePorDescricao(this.jTFDescricaoCidade.getText().trim());
+                    if (!lista.isEmpty() && lista.size() == 1) {
+                        this.preencheCidade(this.controller.obterCidade((Long) lista.get(0).get("ID")));
+                        this.jTFCodigoCidade.requestFocusInWindow();
+                    } else {
+                        this.acaoAbrirConsultaCidade();
+                    }
+                } else {
+                    this.acaoAbrirConsultaCidade();
+                }
+            }
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
     }//GEN-LAST:event_jTFDescricaoCidadeKeyPressed
 
     private void jLButtonProcurarCidadeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLButtonProcurarCidadeMouseEntered
@@ -1037,12 +1056,14 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
         this.cidade = null;
         this.jTFCodigoCidade.setText("");
         this.jTFDescricaoCidade.setText("");
+        this.jTFDescricaoCidade.setEnabled(true);
     }
 
     private void preencheCidade(Cidade cidade) {
         this.cidade = cidade;
         this.jTFCodigoCidade.setText(cidade.getId().toString());
         this.jTFDescricaoCidade.setText(cidade.getDescricao());
+        this.jTFDescricaoCidade.setEnabled(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

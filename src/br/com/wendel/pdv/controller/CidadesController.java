@@ -22,7 +22,7 @@ public class CidadesController {
 
     public final void atualizaLista() throws Exception {
         try (Connection connection = criarConexao()) {
-            this.list = new CidadeDao(connection).listarTela();
+            this.list = new CidadeDao(connection).listarTela(null, null);
         }
     }
 

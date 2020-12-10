@@ -59,9 +59,25 @@ public class CidadeDao {
         }
     }
 
-    public List<Map<String, Object>> listarTela() throws Exception {
+    public List<Map<String, Object>> listarTela(String descricao, Integer limit) throws Exception {
         List<Map<String, Object>> list = new ArrayList<>();
-        try (PreparedStatement ps = this.connection.prepareStatement("SELECT id, descricao, estado FROM cidade")) {
+        StringBuilder query = new StringBuilder();
+        query.append("  SELECT id,\n");
+        query.append("         descricao,\n");
+        query.append("         estado\n");
+        query.append("    FROM cidade\n");
+        if (descricao != null && !descricao.isEmpty()) {
+            query.append("   WHERE descricao LIKE ?\n");
+        }
+        query.append("ORDER BY descricao");
+        if (limit != null && limit > 0) {
+            query.append("   LIMIT ").append(limit);
+        }
+        try (PreparedStatement ps = this.connection.prepareStatement(query.toString())) {
+            Integer index = 0;
+            if (descricao != null && !descricao.isEmpty()) {
+                ps.setString(++index, (descricao.trim().length() > 3 ? "%" : "") + descricao.trim() + "%");
+            }
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Map<String, Object> item = new HashMap<>();
