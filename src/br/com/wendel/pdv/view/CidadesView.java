@@ -7,10 +7,14 @@ package br.com.wendel.pdv.view;
 
 import br.com.wendel.pdv.controller.CidadesController;
 import br.com.wendel.pdv.App;
+import br.com.wendel.pdv.entity.Estado;
+import br.com.wendel.pdv.util.Border;
 import br.com.wendel.pdv.util.Consulta;
 import br.com.wendel.pdv.util.Cores;
 import static br.com.wendel.pdv.util.Mensagem.enviarMensagemErro;
+import br.com.wendel.pdv.util.TraversalPolicy;
 import java.awt.event.KeyEvent;
+import static java.util.Arrays.asList;
 import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -37,18 +41,19 @@ public class CidadesView extends javax.swing.JPanel {
         this.cidadeTableModel = new CidadeTableModel();
         this.tabela = new JTableCustom<>(this.cidadeTableModel);
         initComponents();
+        this.jCBEstado.addItem(null);
+        for (Estado value : Estado.values()) {
+            this.jCBEstado.addItem(value);
+        }
     }
 
-    public void carregaTela() throws Exception {
+    public void carregaTela(String descricao, Estado estado) throws Exception {
+        this.jTFDescricao.setText(descricao);
+        this.jCBEstado.setSelectedItem(estado);
         this.jPButtonNovo.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonEditar.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonExcluir.setBackground(Cores.COR_BOTAO_MENU);
-        this.atualizaTabela();
-    }
-
-    public void atualizaTabela() throws Exception {
-        this.cidadesViewController.atualizaLista();
-        this.cidadeTableModel.setLista(this.cidadesViewController.getList());
+        this.acaoPesquisar();
     }
 
     /**
@@ -79,15 +84,13 @@ public class CidadesView extends javax.swing.JPanel {
         jPButtonSalvar = new javax.swing.JPanel();
         jLButtonSalvar = new javax.swing.JLabel();
         jLIconButtonSalvar = new javax.swing.JLabel();
-        jLCodigo = new javax.swing.JLabel();
-        jTFCodigo = new javax.swing.JTextField();
         jLDescricao = new javax.swing.JLabel();
         jTFDescricao = new javax.swing.JTextField();
         jPButtonPesquisar = new javax.swing.JPanel();
         jLButtonPesquisar = new javax.swing.JLabel();
         jLIconButtonPesquisar = new javax.swing.JLabel();
         jLDescricao1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jCBEstado = new javax.swing.JComboBox<Estado>();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -101,6 +104,8 @@ public class CidadesView extends javax.swing.JPanel {
         );
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setFocusTraversalPolicy(new TraversalPolicy(asList(this.jTFDescricao, this.jCBEstado, this.jPButtonPesquisar, this.jPButtonSalvar, this.jPButtonCancelar, this.jPButtonNovo, this.jPButtonEditar, this.jPButtonExcluir)));
+        setFocusTraversalPolicyProvider(true);
 
         jPTopo.setBackground(new java.awt.Color(79, 195, 247));
         jPTopo.setPreferredSize(new java.awt.Dimension(85, 35));
@@ -111,6 +116,14 @@ public class CidadesView extends javax.swing.JPanel {
 
         jPButtonNovo.setBackground(new java.awt.Color(79, 195, 247));
         jPButtonNovo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPButtonNovo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPButtonNovoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPButtonNovoFocusLost(evt);
+            }
+        });
         jPButtonNovo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPButtonNovoMouseClicked(evt);
@@ -120,6 +133,11 @@ public class CidadesView extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jPButtonNovoMouseExited(evt);
+            }
+        });
+        jPButtonNovo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPButtonNovoKeyPressed(evt);
             }
         });
 
@@ -148,6 +166,14 @@ public class CidadesView extends javax.swing.JPanel {
 
         jPButtonExcluir.setBackground(new java.awt.Color(79, 195, 247));
         jPButtonExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPButtonExcluir.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPButtonExcluirFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPButtonExcluirFocusLost(evt);
+            }
+        });
         jPButtonExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPButtonExcluirMouseClicked(evt);
@@ -157,6 +183,11 @@ public class CidadesView extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jPButtonExcluirMouseExited(evt);
+            }
+        });
+        jPButtonExcluir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPButtonExcluirKeyPressed(evt);
             }
         });
 
@@ -185,6 +216,14 @@ public class CidadesView extends javax.swing.JPanel {
 
         jPButtonEditar.setBackground(new java.awt.Color(79, 195, 247));
         jPButtonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPButtonEditar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPButtonEditarFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPButtonEditarFocusLost(evt);
+            }
+        });
         jPButtonEditar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPButtonEditarMouseClicked(evt);
@@ -194,6 +233,11 @@ public class CidadesView extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jPButtonEditarMouseExited(evt);
+            }
+        });
+        jPButtonEditar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPButtonEditarKeyPressed(evt);
             }
         });
 
@@ -350,22 +394,6 @@ public class CidadesView extends javax.swing.JPanel {
             .addComponent(jLIconButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLCodigo.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLCodigo.setText("Código");
-
-        jTFCodigo.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jTFCodigo.setToolTipText("Sigla da unidade");
-        jTFCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTFCodigoFocusGained(evt);
-            }
-        });
-        jTFCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTFCodigoKeyPressed(evt);
-            }
-        });
-
         jLDescricao.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLDescricao.setText("Descrição");
 
@@ -437,8 +465,6 @@ public class CidadesView extends javax.swing.JPanel {
         jLDescricao1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLDescricao1.setText("UF");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GO" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -454,16 +480,12 @@ public class CidadesView extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTFCodigo)
-                            .addComponent(jLCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTFDescricao)
                             .addComponent(jLDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLDescricao1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addComponent(jPButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -476,17 +498,13 @@ public class CidadesView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLDescricao)
                             .addComponent(jLDescricao1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTFDescricao)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPButtonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSPCaixas, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
@@ -538,7 +556,7 @@ public class CidadesView extends javax.swing.JPanel {
 
     private void jPButtonNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonNovoMouseClicked
         try {
-            App.getInstance().getPrincipalView().mostraConteudo(new CidadeCadastroView(null));
+            this.acaoNovo();
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
@@ -546,28 +564,36 @@ public class CidadesView extends javax.swing.JPanel {
 
     private void jPButtonEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonEditarMouseClicked
         try {
-            Map<String, Object> cidadeSelecionada = this.tabela.getSelected();
-            if (cidadeSelecionada != null) {
-                App.getInstance().getPrincipalView().mostraConteudo(new CidadeCadastroView((Long) cidadeSelecionada.get("ID")));
-            }
+            this.acaoEditar();
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
     }//GEN-LAST:event_jPButtonEditarMouseClicked
 
+    private void acaoEditar() throws Exception {
+        Map<String, Object> cidadeSelecionada = this.tabela.getSelected();
+        if (cidadeSelecionada != null) {
+            App.getInstance().getPrincipalView().mostraConteudo(new CidadeCadastroView((Long) cidadeSelecionada.get("ID")));
+        }
+    }
+
     private void jPButtonExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonExcluirMouseClicked
         try {
-            Map<String, Object> cidadeSelecionado = this.tabela.getSelected();
-            if (cidadeSelecionado != null
-                    && ConfirmDialog.confirm(App.getInstance().getPrincipalView(), "Exclusão",
-                            "<html>Deseja excluir a cidade selecionada?")) {
-                this.cidadesViewController.delete((Long) cidadeSelecionado.get("ID"));
-                this.carregaTela();
-            }
+            this.acaoExcluir();
         } catch (Exception e) {
             enviarMensagemErro(e.getMessage());
         }
     }//GEN-LAST:event_jPButtonExcluirMouseClicked
+
+    private void acaoExcluir() throws Exception {
+        Map<String, Object> cidadeSelecionado = this.tabela.getSelected();
+        if (cidadeSelecionado != null
+                && ConfirmDialog.confirm(App.getInstance().getPrincipalView(), "Exclusão",
+                        "<html>Deseja excluir a cidade selecionada?")) {
+            this.cidadesViewController.delete((Long) cidadeSelecionado.get("ID"));
+            this.acaoPesquisar();
+        }
+    }
 
     private void jPButtonCancelarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonCancelarFocusGained
         SwingUtilities.invokeLater(() -> {
@@ -671,20 +697,6 @@ public class CidadesView extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jPButtonSalvarKeyPressed
 
-    private void jTFCodigoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFCodigoFocusGained
-        SwingUtilities.invokeLater(() -> {
-            this.jTFCodigo.selectAll();
-        });
-    }//GEN-LAST:event_jTFCodigoFocusGained
-
-    private void jTFCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            SwingUtilities.invokeLater(() -> {
-                this.jTFDescricao.requestFocusInWindow();
-            });
-        }
-    }//GEN-LAST:event_jTFCodigoKeyPressed
-
     private void jTFDescricaoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFDescricaoFocusGained
         SwingUtilities.invokeLater(() -> {
             this.jTFDescricao.selectAll();
@@ -701,7 +713,7 @@ public class CidadesView extends javax.swing.JPanel {
 
     private void jPButtonPesquisarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonPesquisarFocusGained
         SwingUtilities.invokeLater(() -> {
-            this.jPButtonPesquisar.setBorder(BorderFactory.createDashedBorder(null, 1, 5, 5, false));
+            this.jPButtonPesquisar.setBorder(Border.BORDER_FOCUS_GAINED);
         });
     }//GEN-LAST:event_jPButtonPesquisarFocusGained
 
@@ -712,7 +724,11 @@ public class CidadesView extends javax.swing.JPanel {
     }//GEN-LAST:event_jPButtonPesquisarFocusLost
 
     private void jPButtonPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonPesquisarMouseClicked
-        this.acaoPesquisar();
+        try {
+            this.acaoPesquisar();
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
     }//GEN-LAST:event_jPButtonPesquisarMouseClicked
 
     private void jPButtonPesquisarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPButtonPesquisarMouseEntered
@@ -728,25 +744,99 @@ public class CidadesView extends javax.swing.JPanel {
     }//GEN-LAST:event_jPButtonPesquisarMouseExited
 
     private void jPButtonPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonPesquisarKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            this.acaoPesquisar();
+        try {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
+                this.acaoPesquisar();
+            }
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
         }
     }//GEN-LAST:event_jPButtonPesquisarKeyPressed
 
-    private void acaoPesquisar() {
-        
+    private void jPButtonNovoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonNovoFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonNovo.setBorder(Border.BORDER_FOCUS_GAINED);
+        });
+    }//GEN-LAST:event_jPButtonNovoFocusGained
+
+    private void jPButtonNovoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonNovoFocusLost
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonNovo.setBorder(null);
+        });
+    }//GEN-LAST:event_jPButtonNovoFocusLost
+
+    private void jPButtonEditarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonEditarFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonEditar.setBorder(Border.BORDER_FOCUS_GAINED);
+        });
+    }//GEN-LAST:event_jPButtonEditarFocusGained
+
+    private void jPButtonEditarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonEditarFocusLost
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonEditar.setBorder(null);
+        });
+    }//GEN-LAST:event_jPButtonEditarFocusLost
+
+    private void jPButtonExcluirFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonExcluirFocusGained
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonExcluir.setBorder(Border.BORDER_FOCUS_GAINED);
+        });
+    }//GEN-LAST:event_jPButtonExcluirFocusGained
+
+    private void jPButtonExcluirFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPButtonExcluirFocusLost
+        SwingUtilities.invokeLater(() -> {
+            this.jPButtonExcluir.setBorder(null);
+        });
+    }//GEN-LAST:event_jPButtonExcluirFocusLost
+
+    private void jPButtonNovoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonNovoKeyPressed
+        try {
+            if (asList(KeyEvent.VK_ENTER, KeyEvent.VK_SPACE).contains(evt.getKeyCode())) {
+                this.acaoNovo();
+            }
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
+    }//GEN-LAST:event_jPButtonNovoKeyPressed
+
+    private void jPButtonEditarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonEditarKeyPressed
+        try {
+            if (asList(KeyEvent.VK_ENTER, KeyEvent.VK_SPACE).contains(evt.getKeyCode())) {
+                this.acaoEditar();
+            }
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
+    }//GEN-LAST:event_jPButtonEditarKeyPressed
+
+    private void jPButtonExcluirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPButtonExcluirKeyPressed
+        try {
+            if (asList(KeyEvent.VK_ENTER, KeyEvent.VK_SPACE).contains(evt.getKeyCode())) {
+                this.acaoExcluir();
+            }
+        } catch (Exception e) {
+            enviarMensagemErro(e.getMessage());
+        }
+    }//GEN-LAST:event_jPButtonExcluirKeyPressed
+
+    private void acaoNovo() throws Exception {
+        App.getInstance().getPrincipalView().mostraConteudo(new CidadeCadastroView(null));
+    }
+
+    private void acaoPesquisar() throws Exception {
+        this.cidadesViewController.atualizaLista(this.jTFDescricao.getText(), this.jCBEstado.getSelectedItem() != null ? (Estado) this.jCBEstado.getSelectedItem() : null);
+        this.cidadeTableModel.setLista(this.cidadesViewController.getList());
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Estado> jCBEstado;
     private javax.swing.JLabel jLButtonCancelar;
     private javax.swing.JLabel jLButtonEditar;
     private javax.swing.JLabel jLButtonExcluir;
     private javax.swing.JLabel jLButtonNovo;
     private javax.swing.JLabel jLButtonPesquisar;
     private javax.swing.JLabel jLButtonSalvar;
-    private javax.swing.JLabel jLCodigo;
     private javax.swing.JLabel jLDescricao;
     private javax.swing.JLabel jLDescricao1;
     private javax.swing.JLabel jLIconButtonCancelar;
@@ -765,7 +855,6 @@ public class CidadesView extends javax.swing.JPanel {
     private javax.swing.JPanel jPTopo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jSPCaixas;
-    private javax.swing.JTextField jTFCodigo;
     private javax.swing.JTextField jTFDescricao;
     // End of variables declaration//GEN-END:variables
 }

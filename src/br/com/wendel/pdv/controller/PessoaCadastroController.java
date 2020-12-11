@@ -35,7 +35,7 @@ public class PessoaCadastroController {
 
     public List<Map<String, Object>> obterCidadePorDescricao(String descricao) throws Exception {
         try (Connection connection = Conexao.criarConexao()) {
-            return new CidadeDao(connection).listarTela(descricao, 2);
+            return new CidadeDao(connection).listarTela(descricao, null, 2);
         }
     }
 

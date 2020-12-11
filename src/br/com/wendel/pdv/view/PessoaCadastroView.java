@@ -1112,7 +1112,7 @@ public class PessoaCadastroView extends javax.swing.JPanel implements ConsultaVi
         Consulta.getInstance().adicionarJanela(this, "idCidade");
         PrincipalView principalView = App.getInstance().getPrincipalView();
         CidadesView cidadesView = principalView.getTelaCidades();
-        cidadesView.carregaTela();
+        cidadesView.carregaTela(this.jTFDescricaoCidade.getText(), null);
         principalView.mostraConteudo(cidadesView);
     }
 

@@ -6,6 +6,7 @@
 package br.com.wendel.pdv.controller;
 
 import br.com.wendel.pdv.dao.CidadeDao;
+import br.com.wendel.pdv.entity.Estado;
 import static br.com.wendel.pdv.util.Conexao.criarConexao;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -20,9 +21,9 @@ public class CidadesController {
 
     List<Map<String, Object>> list = new ArrayList<>();
 
-    public final void atualizaLista() throws Exception {
+    public final void atualizaLista(String descricao, Estado estado) throws Exception {
         try (Connection connection = criarConexao()) {
-            this.list = new CidadeDao(connection).listarTela(null, null);
+            this.list = new CidadeDao(connection).listarTela(descricao, estado, null);
         }
     }
 

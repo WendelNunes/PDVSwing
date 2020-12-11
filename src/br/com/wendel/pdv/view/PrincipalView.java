@@ -912,7 +912,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     public void mostraTelaCidades() throws Exception {
         this.ajustaTela(this.jPMenuCidades, this.telaCidades);
-        this.telaCidades.carregaTela();
+        this.telaCidades.carregaTela(null, null);
     }
 
     public void mostraTelaMotivosMovimentacaoEstoque() throws Exception {

@@ -59,15 +59,22 @@ public class CidadeDao {
         }
     }
 
-    public List<Map<String, Object>> listarTela(String descricao, Integer limit) throws Exception {
+    public List<Map<String, Object>> listarTela(String descricao, Estado estado, Integer limit) throws Exception {
         List<Map<String, Object>> list = new ArrayList<>();
         StringBuilder query = new StringBuilder();
         query.append("  SELECT id,\n");
         query.append("         descricao,\n");
         query.append("         estado\n");
         query.append("    FROM cidade\n");
+        StringBuilder filtro = new StringBuilder();
         if (descricao != null && !descricao.isEmpty()) {
-            query.append("   WHERE descricao LIKE ?\n");
+            filtro.append("LOWER(descricao) LIKE ?\n");
+        }
+        if (estado != null) {
+            filtro.append(!filtro.toString().isEmpty() ? "AND " : "").append("estado = ?\n");
+        }
+        if (!filtro.toString().isEmpty()) {
+            query.append("WHERE ").append(filtro);
         }
         query.append("ORDER BY descricao");
         if (limit != null && limit > 0) {
@@ -76,16 +83,19 @@ public class CidadeDao {
         try (PreparedStatement ps = this.connection.prepareStatement(query.toString())) {
             Integer index = 0;
             if (descricao != null && !descricao.isEmpty()) {
-                ps.setString(++index, (descricao.trim().length() > 3 ? "%" : "") + descricao.trim() + "%");
+                ps.setString(++index, (descricao.trim().length() > 3 ? "%" : "") + descricao.trim().toLowerCase() + "%");
+            }
+            if (estado != null) {
+                ps.setString(++index, estado.getId());
             }
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Map<String, Object> item = new HashMap<>();
                     item.put("ID", rs.getLong("id"));
                     item.put("DESCRICAO", rs.getString("descricao"));
-                    Estado estado = Estado.get(rs.getString("estado"));
-                    item.put("ID_ESTADO", estado.getId());
-                    item.put("DESC_ESTADO", estado.getDescricao());
+                    Estado es = Estado.get(rs.getString("estado"));
+                    item.put("ID_ESTADO", es.getId());
+                    item.put("DESC_ESTADO", es.getDescricao());
                     list.add(item);
                 }
             }
