@@ -54,6 +54,7 @@ public class CidadesView extends javax.swing.JPanel {
         this.jPButtonEditar.setBackground(Cores.COR_BOTAO_MENU);
         this.jPButtonExcluir.setBackground(Cores.COR_BOTAO_MENU);
         this.acaoPesquisar();
+        this.jTFDescricao.requestFocusInWindow();
     }
 
     /**
